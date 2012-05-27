@@ -140,7 +140,7 @@
     if (gameObject != nil) {
         CGFloat deltaX = currentPoint.x - downPoint.x;
         CGFloat deltaY = currentPoint.y - downPoint.y;
-        NSLog(@"x=%f y=%f", deltaX, deltaY);
+        
         gameObject.position = CGPointMake(gameObject.position.x + deltaX, gameObject.position.y + deltaY);
         downPoint = currentPoint;
         
@@ -196,6 +196,9 @@
         case 123:       // left arrow
             gameObject.position = CGPointMake(gameObject.position.x - 1, gameObject.position.y);
             [self updateSelectedInfo];
+            break;
+        case 51:        // delete key
+            [gameObjects removeObject:gameObject];
             break;
         default:
             NSLog(@"Key pressed: %@", theEvent);
