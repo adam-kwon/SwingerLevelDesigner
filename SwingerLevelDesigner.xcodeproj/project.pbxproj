@@ -92,10 +92,10 @@
 				39C05CCE1571C5EF007C0035 /* GameObject.m */,
 				39258DF6156F2E3600311702 /* AppDelegate.h */,
 				39258DF7156F2E3600311702 /* AppDelegate.m */,
-				39258DF9156F2E3600311702 /* MainMenu.xib */,
-				39258DEB156F2E3600311702 /* Supporting Files */,
 				39258E03156F2E9E00311702 /* StretchView.h */,
 				39258E04156F2E9E00311702 /* StretchView.m */,
+				39258DF9156F2E3600311702 /* MainMenu.xib */,
+				39258DEB156F2E3600311702 /* Supporting Files */,
 			);
 			path = SwingerLevelDesigner;
 			sourceTree = "<group>";

@@ -13,6 +13,8 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize xPosition;
+@synthesize yPosition;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -31,6 +33,17 @@
         }
         panel = nil;
      }];
+}
+
+
+
+- (void) controlTextDidEndEditing:(NSNotification *)obj {
+    NSTextField *textField = (NSTextField*)[obj object];
+    [stretchView updateSelectedPosition:CGPointMake([xPosition floatValue], [yPosition floatValue])];
+
+//    if (textField == xPosition) {
+//    } else if (textField == yPosition) {
+//    }
 }
 
 @end

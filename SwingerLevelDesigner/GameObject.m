@@ -26,6 +26,7 @@
     
     if (selected) {
         NSBezierPath *box = [NSBezierPath bezierPathWithRect:[self imageRect]];
+        [[NSColor redColor] set];
         [box stroke];
     }
 }

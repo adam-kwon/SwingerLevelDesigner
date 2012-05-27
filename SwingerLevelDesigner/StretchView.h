@@ -10,7 +10,7 @@
 
 @class GameObject;
 
-@interface StretchView : NSView {
+@interface StretchView : NSView<NSTextDelegate> {
     NSBezierPath *path;
     NSMutableArray *gameObjects;
     float opacity;
@@ -18,9 +18,9 @@
     NSPoint currentPoint;
 }
 
-- (NSRect)currentRect;
 
 - (void) addGameObject:(GameObject*)gameObject;
+- (void) updateSelectedPosition:(CGPoint)newPos;
 
 @property (assign) float opacity;
 //@property (strong) NSMutableArray *gameObjects;

@@ -12,9 +12,13 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet StretchView *stretchView;
+    IBOutlet __weak NSTextField *xPosition;
+    IBOutlet __weak NSTextField *yPosition;
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) NSTextField *xPosition;
+@property (weak) NSTextField *yPosition;
 
 - (IBAction)showOpenPanel:(id)sender;
 
