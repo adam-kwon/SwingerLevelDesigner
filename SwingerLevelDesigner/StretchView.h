@@ -8,9 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class GameObject;
+
 @interface StretchView : NSView {
     NSBezierPath *path;
+    NSMutableArray *gameObjects;
+    float opacity;
+    NSPoint downPoint;
+    NSPoint currentPoint;
 }
 
-- (NSPoint) randomPoint;
+- (NSRect)currentRect;
+
+- (void) addGameObject:(GameObject*)gameObject;
+
+@property (assign) float opacity;
+//@property (strong) NSMutableArray *gameObjects;
+
 @end
