@@ -50,6 +50,9 @@
 - (IBAction)resizeCanvas:(id)sender {
     SetCanvasSizeWindowController *w = [[SetCanvasSizeWindowController alloc] initWithWindowNibName:@"SetCanvasSizeWindowController"];
     
+    w.width = [stretchView frame].size.width;
+    w.height = [stretchView frame].size.height;
+
     // Show document sheet
     [NSApp beginSheet:[w window] 
        modalForWindow:[self window] 

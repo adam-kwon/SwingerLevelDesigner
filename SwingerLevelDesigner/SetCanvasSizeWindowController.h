@@ -14,6 +14,9 @@
 
 @property (assign) IBOutlet NSTextField *widthField;
 @property (assign) IBOutlet NSTextField *heightField;
+@property (assign) CGFloat width;
+@property (assign) CGFloat height;
+
 
 - (IBAction)cancelButton:(id)sender;
 - (IBAction)okButton:(id)sender;

@@ -16,6 +16,8 @@
 
 @synthesize heightField;
 @synthesize widthField;
+@synthesize height;
+@synthesize width;
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -25,6 +27,11 @@
     }
     
     return self;
+}
+
+- (void) awakeFromNib {
+    [widthField setFloatValue:width];    
+    [heightField setFloatValue:height];
 }
 
 - (void)windowDidLoad
@@ -39,6 +46,9 @@
 }
 
 - (IBAction)okButton:(id)sender {
+    height = [heightField floatValue];
+    width = [widthField floatValue];
+    
     [NSApp stopModalWithCode:1];
 }
 
