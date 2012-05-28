@@ -16,6 +16,7 @@
     float opacity;
     NSPoint downPoint;
     NSPoint currentPoint;
+    
 }
 
 

@@ -21,5 +21,6 @@
 @property (weak) NSTextField *yPosition;
 
 - (IBAction)showOpenPanel:(id)sender;
+- (IBAction)resizeCanvas:(id)sender;
 
 @end

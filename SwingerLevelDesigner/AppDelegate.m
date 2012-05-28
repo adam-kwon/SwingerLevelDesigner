@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "StretchView.h"
 #import "GameObject.h"
+#import "SetCanvasSizeWindowController.h"
 
 @implementation AppDelegate
 
@@ -44,6 +45,31 @@
 //    if (textField == xPosition) {
 //    } else if (textField == yPosition) {
 //    }
+}
+
+- (IBAction)resizeCanvas:(id)sender {
+    SetCanvasSizeWindowController *w = [[SetCanvasSizeWindowController alloc] initWithWindowNibName:@"SetCanvasSizeWindowController"];
+    
+    // Show document sheet
+    [NSApp beginSheet:[w window] 
+       modalForWindow:[self window] 
+        modalDelegate:nil 
+       didEndSelector:nil 
+          contextInfo:nil];
+    
+    int acceptedModal = (int)[NSApp runModalForWindow:[w window]];
+    
+    [NSApp endSheet:[w window]];
+    [[w window] close];
+    
+    
+    if (acceptedModal) {
+        CGFloat width = [w.widthField floatValue];
+        CGFloat height = [w.heightField floatValue];
+        CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
+        [stretchView setFrame:newFrame];
+    }
+    
 }
 
 @end

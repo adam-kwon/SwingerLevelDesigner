@@ -46,7 +46,8 @@
     
     CGContextSaveGState(ctx);
     
-    for (int i = 1; i < 960/10; i++) {
+    CGRect frame = [self frame];
+    for (int i = 1; i < frame.size.width/10; i++) {
         CGContextTranslateCTM(ctx, 10, 0);
         [gridLinePath stroke];
     }

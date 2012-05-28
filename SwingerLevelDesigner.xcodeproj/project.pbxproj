@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390ADF5115733B9500A3F01A /* SetCanvasSizeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 390ADF4F15733B9500A3F01A /* SetCanvasSizeWindowController.m */; };
+		390ADF5215733B9500A3F01A /* SetCanvasSizeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF5015733B9500A3F01A /* SetCanvasSizeWindowController.xib */; };
 		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
 		39258DEF156F2E3600311702 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 39258DED156F2E3600311702 /* InfoPlist.strings */; };
 		39258DF1156F2E3600311702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF0156F2E3600311702 /* main.m */; };
@@ -18,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		390ADF4E15733B9500A3F01A /* SetCanvasSizeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCanvasSizeWindowController.h; sourceTree = "<group>"; };
+		390ADF4F15733B9500A3F01A /* SetCanvasSizeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCanvasSizeWindowController.m; sourceTree = "<group>"; };
+		390ADF5015733B9500A3F01A /* SetCanvasSizeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetCanvasSizeWindowController.xib; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39258DE4156F2E3600311702 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		39258DE7156F2E3600311702 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -95,6 +100,9 @@
 				39258E03156F2E9E00311702 /* StretchView.h */,
 				39258E04156F2E9E00311702 /* StretchView.m */,
 				39258DF9156F2E3600311702 /* MainMenu.xib */,
+				390ADF4E15733B9500A3F01A /* SetCanvasSizeWindowController.h */,
+				390ADF4F15733B9500A3F01A /* SetCanvasSizeWindowController.m */,
+				390ADF5015733B9500A3F01A /* SetCanvasSizeWindowController.xib */,
 				39258DEB156F2E3600311702 /* Supporting Files */,
 			);
 			path = SwingerLevelDesigner;
@@ -165,6 +173,7 @@
 				39258DEF156F2E3600311702 /* InfoPlist.strings in Resources */,
 				39258DF5156F2E3600311702 /* Credits.rtf in Resources */,
 				39258DFB156F2E3600311702 /* MainMenu.xib in Resources */,
+				390ADF5215733B9500A3F01A /* SetCanvasSizeWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +188,7 @@
 				39258DF8156F2E3600311702 /* AppDelegate.m in Sources */,
 				39258E05156F2E9E00311702 /* StretchView.m in Sources */,
 				39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */,
+				390ADF5115733B9500A3F01A /* SetCanvasSizeWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
