@@ -17,6 +17,7 @@
 }
 
 - (void) writeLevelToFile;
+- (void) loadLevelFromFile;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSTextField *position;
@@ -27,6 +28,7 @@
 @property (assign) IBOutlet NSTextField *yPosition;
 
 - (IBAction)showOpenPanel:(id)sender;
+- (IBAction)openLevel:(id)sender;
 - (IBAction)resizeCanvas:(id)sender;
 - (IBAction)addPole:(id)sender;
 - (IBAction)saveAs:(id)sender;

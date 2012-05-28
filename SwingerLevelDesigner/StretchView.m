@@ -141,9 +141,8 @@
 
 #pragma mark Accessors
 
-- (void) addGameObject:(GameObject*)gameObject {
-    gameObject.position = CGPointZero;
-    gameObject.selected = YES;
+- (void) addGameObject:(GameObject *)gameObject isSelected:(BOOL)selected {    
+    gameObject.selected = selected;
     [gameObjects addObject:gameObject];
     [self updateSelectedInfo];
     [self setNeedsDisplay:YES];
@@ -263,7 +262,7 @@
     
 }
  
-#pragma mark Serialization
+#pragma mark Level serialization and loading
 - (NSArray*) levelForSerialization {
     NSMutableArray *gameItems = [NSMutableArray array];
     for (GameObject *gameObject in gameObjects) {
@@ -291,6 +290,23 @@
     }];
 
     return sortedGameItems;
+}
+
+
+
+- (void) loadLevels:(NSDictionary*)levels {
+    NSArray *levelItems = [levels objectForKey:@"Level0"];
+    for (NSDictionary *level in levelItems) {
+        CGFloat position = [[level objectForKey:@"Position"] floatValue];
+        CGFloat swingSpeed = [[level objectForKey:@"Speed"] floatValue]; 
+        
+        GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
+        gameObject.gameObjectType = kGameObjectTypeSwinger;
+        gameObject.swingSpeed = swingSpeed;
+        gameObject.position = CGPointMake(position*deviceScreenWidth, 0);
+        [self addGameObject:gameObject isSelected:NO];
+    }
+    [self setNeedsDisplay:YES];
 }
 
 @end

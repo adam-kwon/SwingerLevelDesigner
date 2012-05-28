@@ -27,23 +27,73 @@
 }
 
 - (IBAction)showOpenPanel:(id)sender {
-    [stretchView unselectAllGameObjects];
+//    [stretchView unselectAllGameObjects];
+//    __block NSOpenPanel *panel = [NSOpenPanel openPanel];
+//    [panel setAllowedFileTypes:[NSImage imageFileTypes]];
+//    [panel beginSheetModalForWindow:[stretchView window] 
+//                  completionHandler:^ (NSInteger result) {
+//                      
+//        if (result == NSOKButton) {
+//            GameObject *image = [[GameObject alloc] initWithContentsOfURL:[panel URL]];
+//            [stretchView addGameObject:image];
+//        }
+//        panel = nil;
+//     }];
+}
+
+- (IBAction)openLevel:(id)sender {
     __block NSOpenPanel *panel = [NSOpenPanel openPanel];
-    [panel setAllowedFileTypes:[NSImage imageFileTypes]];
+    [panel setAllowedFileTypes:[NSArray arrayWithObject:@"plist"]];
+    
     [panel beginSheetModalForWindow:[stretchView window] 
                   completionHandler:^ (NSInteger result) {
                       
-        if (result == NSOKButton) {
-            GameObject *image = [[GameObject alloc] initWithContentsOfURL:[panel URL]];
-            [stretchView addGameObject:image];
-        }
-        panel = nil;
-     }];
+                      if (result == NSOKButton) {
+                          fileName = [[panel URL] copy];
+                          [self loadLevelFromFile];
+                      }
+                      panel = nil;
+                  }];
+    
 }
 
 - (void) awakeFromNib {
     CGRect frame = [stretchView frame];
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
+}
+
+- (void) loadLevelFromFile {
+    NSData *plistData = [NSData dataWithContentsOfURL:fileName];
+    NSString *error;
+    NSPropertyListFormat format;
+    
+    NSDictionary *levels = [NSPropertyListSerialization propertyListFromData:plistData
+                                                            mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                                      format:&format
+                                                            errorDescription:&error];
+
+
+    // Calculate canvas size
+    CGFloat maxPosition = 0.0;
+    NSArray *levelItems = [levels objectForKey:@"Level0"];
+    for (NSDictionary *level in levelItems) {
+        CGFloat pos = [[level objectForKey:@"Position"] floatValue];
+        maxPosition = MAX(pos, maxPosition);
+    }
+    
+    CGFloat lastItemPosition = maxPosition * stretchView.deviceScreenWidth;
+    int multiples = lastItemPosition / stretchView.deviceScreenWidth;
+    CGFloat remainder = lastItemPosition - (stretchView.deviceScreenWidth * multiples);
+    if (remainder > 0.f) {
+        multiples++;
+    }
+    
+    CGFloat width = stretchView.deviceScreenWidth * multiples;
+    CGFloat height = [stretchView frame].size.height;
+    CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
+    [stretchView setFrame:newFrame];
+    
+    [stretchView loadLevels:levels];
 }
 
 - (void) writeLevelToFile {
@@ -94,9 +144,12 @@
 
 - (IBAction)addPole:(id)sender {
     [stretchView unselectAllGameObjects];
-    GameObject *image = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
-    image.gameObjectType = kGameObjectTypeSwinger;
-    [stretchView addGameObject:image];
+    
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
+    gameObject.gameObjectType = kGameObjectTypeSwinger;
+    gameObject.position = CGPointZero;
+    
+    [stretchView addGameObject:gameObject isSelected:YES];
 }
 
 - (void) controlTextDidEndEditing:(NSNotification *)obj {
@@ -104,10 +157,10 @@
     
 
     if (textField == xPosition || textField == yPosition) {
-        NSLog(@"SETTING PSITIOn SPEED");
+        //NSLog(@"SETTING PSITIOn SPEED");
         [stretchView updateSelectedPosition:CGPointMake([xPosition floatValue], [yPosition floatValue])];
     } else if (textField == swingSpeed) {
-        NSLog(@"SETTING SWING SPEED");
+        //NSLog(@"SETTING SWING SPEED");
         [stretchView updateSelectedSwingSpeed:[swingSpeed floatValue]];
     }
 }

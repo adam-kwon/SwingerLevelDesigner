@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "GameObject.h"
 
-@class GameObject;
 
 @interface StretchView : NSView<NSTextDelegate> {
     NSBezierPath *path;
@@ -22,10 +22,12 @@
 }
 
 
-- (void) addGameObject:(GameObject*)gameObject;
+- (void) addGameObject:(GameObject*)gameObject isSelected:(BOOL)selected;
+
 - (void) updateSelectedPosition:(CGPoint)newPos;
 - (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed;
 - (void) unselectAllGameObjects;
+- (void) loadLevels:(NSDictionary*)levels;
 - (NSArray*) levelForSerialization;
 
 @property (assign) float opacity;
