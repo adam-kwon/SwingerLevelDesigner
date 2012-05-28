@@ -1290,7 +1290,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{335, 390}, {960, 588}}</string>
 				<int key="NSWTFlags">1954021376</int>
-				<string key="NSWindowTitle">SwingerLevelDesigner</string>
+				<string key="NSWindowTitle">Swinger Level Designer</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
@@ -1368,7 +1368,7 @@
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1011522955"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
-							<int key="NSsFlags">133362</int>
+							<int key="NSsFlags">133361</int>
 							<reference key="NSVScroller" ref="112575440"/>
 							<reference key="NSHScroller" ref="328836842"/>
 							<reference key="NSContentView" ref="1011522955"/>
@@ -1500,9 +1500,10 @@
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSScroller" id="376487228">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<string key="NSFrameSize">{202, 15}</string>
+				<reference key="NSSuperview"/>
 				<string key="NSReuseIdentifierKey">_NS:30</string>
 				<int key="NSsFlags">1</int>
 				<string key="NSAction">_doScroller:</string>

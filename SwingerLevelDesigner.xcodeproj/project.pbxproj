@@ -147,6 +147,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "GAMEPEONS, LLC";
 			};
 			buildConfigurationList = 39258DDA156F2E3600311702 /* Build configuration list for PBXProject "SwingerLevelDesigner" */;
 			compatibilityVersion = "Xcode 3.2";

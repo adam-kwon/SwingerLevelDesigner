@@ -3,7 +3,7 @@
 //  SwingerLevelDesigner
 //
 //  Created by Min Kwon on 5/24/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 GAMEPEONS, LLC. All rights reserved.
 //
 
 #import "StretchView.h"
@@ -32,12 +32,14 @@
 
 
 - (void) drawGrid:(CGContextRef)ctx {
+    CGRect frame = [self frame];
+
     // Origin is lower left corner
     NSBezierPath *gridLinePath = [NSBezierPath bezierPath];
     //CGFloat pattern[2] = {2, 2};
     //[gridLinePath setLineDash:pattern count:2 phase:0];
     [gridLinePath moveToPoint:CGPointMake(10, 0)];
-    [gridLinePath lineToPoint:CGPointMake(10, 640)];
+    [gridLinePath lineToPoint:CGPointMake(10, frame.size.height)];
     
     [[NSColor grayColor] set];
     [gridLinePath setLineWidth:0.2];
@@ -46,13 +48,35 @@
     
     CGContextSaveGState(ctx);
     
-    CGRect frame = [self frame];
     for (int i = 1; i < frame.size.width/10; i++) {
         CGContextTranslateCTM(ctx, 10, 0);
         [gridLinePath stroke];
     }
     
-    CGContextRestoreGState(ctx);    
+    CGContextRestoreGState(ctx);
+    
+
+    // Origin is lower left corner
+    gridLinePath = [NSBezierPath bezierPath];
+    //CGFloat pattern[2] = {2, 2};
+    //[gridLinePath setLineDash:pattern count:2 phase:0];
+    [gridLinePath moveToPoint:CGPointMake(0, 10)];
+    [gridLinePath lineToPoint:CGPointMake(frame.size.width, 10)];
+    
+    [[NSColor grayColor] set];
+    [gridLinePath setLineWidth:0.2];
+    [gridLinePath stroke];
+    
+    
+    CGContextSaveGState(ctx);
+    
+    for (int i = 1; i < frame.size.height/10; i++) {
+        CGContextTranslateCTM(ctx, 0, 10);
+        [gridLinePath stroke];
+    }
+    
+    CGContextRestoreGState(ctx);
+
 }
 
 - (void)drawRect:(NSRect)dirtyRect
