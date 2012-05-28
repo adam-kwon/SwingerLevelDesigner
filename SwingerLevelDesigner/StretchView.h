@@ -26,6 +26,7 @@
 - (void) updateSelectedPosition:(CGPoint)newPos;
 - (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed;
 - (void) unselectAllGameObjects;
+- (NSArray*) levelForSerialization;
 
 @property (assign) float opacity;
 @property (assign) CGFloat deviceScreenHeight;

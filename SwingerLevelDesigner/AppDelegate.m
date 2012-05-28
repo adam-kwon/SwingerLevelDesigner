@@ -45,6 +45,39 @@
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
 }
 
+- (IBAction)save:(id)sender {
+    NSSavePanel * savePanel = [NSSavePanel savePanel];
+    // Restrict the file type to whatever you like
+    [savePanel setAllowedFileTypes:[NSArray arrayWithObject:@"plist"]];
+
+    // Set the starting directory
+    [savePanel setDirectoryURL:[NSURL fileURLWithPath:@"~/Desktop"]];
+    
+    // Perform other setup
+    // Use a completion handler -- this is a block which takes one argument
+    // which corresponds to the button that was clicked
+    [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            // Close panel before handling errors
+            [savePanel orderOut:self]; 
+            //NSLog(@"Got URL: %@", [savePanel URL]);
+            // Do what you need to do with the selected path
+            
+            NSMutableDictionary *rootDict = [NSMutableDictionary dictionary];
+            
+            NSArray *levelsArray = [stretchView levelForSerialization];
+            
+            [rootDict setObject:levelsArray forKey:@"Level0"];
+            
+            NSString *error;
+            NSData *pList = [NSPropertyListSerialization dataFromPropertyList:rootDict 
+                                                                       format:NSPropertyListXMLFormat_v1_0 
+                                                             errorDescription:&error];
+            [pList writeToURL:[savePanel URL] atomically:NO];            
+        }
+    }];
+}
+
 - (IBAction)addPole:(id)sender {
     [stretchView unselectAllGameObjects];
     GameObject *image = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
@@ -57,8 +90,10 @@
     
 
     if (textField == xPosition || textField == yPosition) {
+        NSLog(@"SETTING PSITIOn SPEED");
         [stretchView updateSelectedPosition:CGPointMake([xPosition floatValue], [yPosition floatValue])];
     } else if (textField == swingSpeed) {
+        NSLog(@"SETTING SWING SPEED");
         [stretchView updateSelectedSwingSpeed:[swingSpeed floatValue]];
     }
 }

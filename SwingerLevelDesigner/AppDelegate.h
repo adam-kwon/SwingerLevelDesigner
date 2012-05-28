@@ -25,5 +25,6 @@
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)resizeCanvas:(id)sender;
 - (IBAction)addPole:(id)sender;
+- (IBAction)save:(id)sender;
 
 @end

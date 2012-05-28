@@ -101,6 +101,8 @@
 }
 
 
+#pragma mark Game Object selection and manipulation
+
 - (GameObject*) getSelectedGameObject {
     for (GameObject *gameObject in gameObjects) {
         if (gameObject.selected) {
@@ -161,6 +163,8 @@
     NSPoint p = [theEvent locationInWindow];
     downPoint = [self convertPoint:p fromView:nil];
     currentPoint = downPoint;
+
+    [self unselectAllGameObjects];
     
     for (GameObject *gameObject in gameObjects) {
         CGRect imageRect = [gameObject imageRect];
@@ -205,6 +209,7 @@
         }
     }
 
+    
     [self setNeedsDisplay:YES];
 }
 
@@ -257,5 +262,35 @@
 - (void)insertText:(NSString*)insertString {
     
 }
-     
+ 
+#pragma mark Serialization
+- (NSArray*) levelForSerialization {
+    NSMutableArray *gameItems = [NSMutableArray array];
+    for (GameObject *gameObject in gameObjects) {
+        NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
+        [levelDict setObject:@"Swinger" forKey:@"Type"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject swingSpeed]] forKey:@"Speed"];
+        [gameItems addObject:levelDict];
+    }
+    
+    NSArray *sortedGameItems = [gameItems sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2) {
+        NSDictionary *item1 = (NSDictionary*) obj1;
+        NSDictionary *item2 = (NSDictionary*) obj2;
+        CGFloat x1 = [[item1 objectForKey:@"Position"] floatValue];
+        CGFloat x2 = [[item2 objectForKey:@"Position"] floatValue];
+        NSLog(@"comparing values = %f %f", x1, x2);
+        if (x1 > x2) {
+            return (NSComparisonResult) NSOrderedDescending;
+        }
+        if (x1 < x2) {
+            return (NSComparisonResult) NSOrderedAscending;
+        }
+        
+        return (NSComparisonResult) NSOrderedSame;
+    }];
+
+    return sortedGameItems;
+}
+
 @end
