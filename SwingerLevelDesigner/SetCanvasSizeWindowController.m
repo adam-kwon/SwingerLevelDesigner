@@ -14,10 +14,14 @@
 
 @implementation SetCanvasSizeWindowController
 
+@synthesize deviceWidthField;
+@synthesize deviceHeightField;
 @synthesize heightField;
 @synthesize widthField;
 @synthesize height;
 @synthesize width;
+@synthesize deviceScreenHeight;
+@synthesize deviceScreenWidth;
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -32,6 +36,8 @@
 - (void) awakeFromNib {
     [widthField setFloatValue:width];    
     [heightField setFloatValue:height];
+    [deviceWidthField setFloatValue:deviceScreenWidth];
+    [deviceHeightField setFloatValue:deviceScreenHeight];
 }
 
 - (void)windowDidLoad

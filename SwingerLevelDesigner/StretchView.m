@@ -18,6 +18,9 @@
 
 @implementation StretchView
 
+@synthesize deviceScreenHeight;
+@synthesize deviceScreenWidth;
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -25,6 +28,9 @@
         gameObjects = [[NSMutableArray alloc] init];
         currentPoint = CGPointZero;
         opacity = 1.0;
+        
+        deviceScreenWidth = 480;
+        deviceScreenHeight = 320;
     }
     
     return self;
@@ -109,12 +115,26 @@
     AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
     [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x]];
     [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.y]];
+    
+    [appDelegate.position setFloatValue:gameObject.position.x / deviceScreenWidth];
+    [appDelegate.swingSpeed setFloatValue:gameObject.swingSpeed];
+}
+
+- (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.swingSpeed = newSwingSpeed;
 }
 
 - (void) updateSelectedPosition:(CGPoint)newPos {
     GameObject *gameObject = [self getSelectedGameObject];
     gameObject.position = newPos;
     [self setNeedsDisplay:YES];
+}
+
+- (void) unselectAllGameObjects {
+    for (GameObject *gameObject in gameObjects) {
+        gameObject.selected = NO;
+    }    
 }
 
 #pragma mark Accessors
@@ -149,6 +169,7 @@
         }
     }
 
+    [self updateSelectedInfo];
     
 //    NSLog(@"mouseDown: %f %f   imagepos: %f %f", downPoint.x, downPoint.y, image.position.x, image.position.y);
 

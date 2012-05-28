@@ -12,6 +12,8 @@
 
 @synthesize position;
 @synthesize selected;
+@synthesize gameObjectType;
+@synthesize swingSpeed;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x, position.y, self.size.width, self.size.height);

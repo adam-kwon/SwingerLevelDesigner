@@ -16,14 +16,20 @@
     float opacity;
     NSPoint downPoint;
     NSPoint currentPoint;
-    
+        
+    CGFloat deviceScreenHeight;
+    CGFloat deviceScreenWidth;
 }
 
 
 - (void) addGameObject:(GameObject*)gameObject;
 - (void) updateSelectedPosition:(CGPoint)newPos;
+- (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed;
+- (void) unselectAllGameObjects;
 
 @property (assign) float opacity;
+@property (assign) CGFloat deviceScreenHeight;
+@property (assign) CGFloat deviceScreenWidth;
 //@property (strong) NSMutableArray *gameObjects;
 
 @end

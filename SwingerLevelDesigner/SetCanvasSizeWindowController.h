@@ -14,8 +14,12 @@
 
 @property (assign) IBOutlet NSTextField *widthField;
 @property (assign) IBOutlet NSTextField *heightField;
+@property (assign) IBOutlet NSTextField *deviceWidthField;
+@property (assign) IBOutlet NSTextField *deviceHeightField;
 @property (assign) CGFloat width;
 @property (assign) CGFloat height;
+@property (assign) CGFloat deviceScreenWidth;
+@property (assign) CGFloat deviceScreenHeight;
 
 
 - (IBAction)cancelButton:(id)sender;

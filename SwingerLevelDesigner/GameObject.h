@@ -8,9 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum {
+    kGameObjectTypeNone,
+    kGameObjectTypeSwinger
+} GameObjectType;
+
 @interface GameObject : NSImage {
+    GameObjectType gameObjectType;
     BOOL selected;
     CGPoint position;
+    CGFloat swingSpeed;
 }
 
 - (CGRect) imageRect;
@@ -18,5 +25,7 @@
 
 @property (nonatomic, readwrite, assign) CGPoint position;
 @property (nonatomic, readwrite, assign) BOOL selected;
+@property (nonatomic, readwrite, assign) GameObjectType gameObjectType;
+@property (nonatomic, readwrite, assign) CGFloat swingSpeed;
 
 @end

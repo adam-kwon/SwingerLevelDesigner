@@ -12,15 +12,18 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet StretchView *stretchView;
-    IBOutlet __weak NSTextField *xPosition;
-    IBOutlet __weak NSTextField *yPosition;
 }
 
 @property (assign) IBOutlet NSWindow *window;
-@property (weak) NSTextField *xPosition;
-@property (weak) NSTextField *yPosition;
+@property (assign) IBOutlet NSTextField *position;
+@property (assign) IBOutlet NSTextField *swingSpeed;
+@property (assign) IBOutlet NSTextField *gameWorldSize;
+
+@property (assign) IBOutlet NSTextField *xPosition;
+@property (assign) IBOutlet NSTextField *yPosition;
 
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)resizeCanvas:(id)sender;
+- (IBAction)addPole:(id)sender;
 
 @end
