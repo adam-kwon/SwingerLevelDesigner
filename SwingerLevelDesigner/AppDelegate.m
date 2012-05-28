@@ -41,6 +41,16 @@
 //     }];
 }
 
+// Needed for open recent menu item
+- (BOOL) application:(NSApplication *)sender openFile:(NSString *)filename {
+
+    fileName = [NSURL fileURLWithPath:filename];
+    [stretchView clearCanvas];
+    [self loadLevelFromFile];
+
+    return YES;
+}
+
 - (IBAction)openLevel:(id)sender {
     __block NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setAllowedFileTypes:[NSArray arrayWithObject:@"plist"]];
@@ -50,6 +60,10 @@
                       
                       if (result == NSOKButton) {
                           fileName = [[panel URL] copy];
+                          
+                          // Add it to the open recent menu
+                          [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:fileName];
+                          
                           [stretchView clearCanvas];
                           [self loadLevelFromFile];
                       }
