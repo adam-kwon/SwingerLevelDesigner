@@ -12,7 +12,11 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet StretchView *stretchView;
+    
+    NSURL *fileName;
 }
+
+- (void) writeLevelToFile;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSTextField *position;
@@ -25,6 +29,6 @@
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)resizeCanvas:(id)sender;
 - (IBAction)addPole:(id)sender;
+- (IBAction)saveAs:(id)sender;
 - (IBAction)save:(id)sender;
-
 @end

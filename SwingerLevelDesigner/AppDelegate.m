@@ -22,6 +22,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    fileName = nil;
     // Insert code here to initialize your application
 }
 
@@ -45,7 +46,21 @@
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
 }
 
-- (IBAction)save:(id)sender {
+- (void) writeLevelToFile {
+    NSMutableDictionary *rootDict = [NSMutableDictionary dictionary];
+    
+    NSArray *levelsArray = [stretchView levelForSerialization];
+    
+    [rootDict setObject:levelsArray forKey:@"Level0"];
+    
+    NSString *error;
+    NSData *pList = [NSPropertyListSerialization dataFromPropertyList:rootDict 
+                                                               format:NSPropertyListXMLFormat_v1_0 
+                                                     errorDescription:&error];
+    [pList writeToURL:fileName atomically:NO];                
+}
+
+- (IBAction)saveAs:(id)sender {
     NSSavePanel * savePanel = [NSSavePanel savePanel];
     // Restrict the file type to whatever you like
     [savePanel setAllowedFileTypes:[NSArray arrayWithObject:@"plist"]];
@@ -60,22 +75,21 @@
         if (result == NSFileHandlingPanelOKButton) {
             // Close panel before handling errors
             [savePanel orderOut:self]; 
+            
             //NSLog(@"Got URL: %@", [savePanel URL]);
             // Do what you need to do with the selected path
-            
-            NSMutableDictionary *rootDict = [NSMutableDictionary dictionary];
-            
-            NSArray *levelsArray = [stretchView levelForSerialization];
-            
-            [rootDict setObject:levelsArray forKey:@"Level0"];
-            
-            NSString *error;
-            NSData *pList = [NSPropertyListSerialization dataFromPropertyList:rootDict 
-                                                                       format:NSPropertyListXMLFormat_v1_0 
-                                                             errorDescription:&error];
-            [pList writeToURL:[savePanel URL] atomically:NO];            
+            fileName = [[savePanel URL] copy];
+            [self writeLevelToFile];
         }
     }];
+}
+
+- (IBAction)save:(id)sender {
+    if (fileName != nil) {
+        [self writeLevelToFile];
+    } else {
+        [self saveAs:sender];
+    }
 }
 
 - (IBAction)addPole:(id)sender {
