@@ -116,8 +116,8 @@
     [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x]];
     [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.y]];
     
-    [appDelegate.position setFloatValue:gameObject.position.x / deviceScreenWidth];
-    [appDelegate.swingSpeed setFloatValue:gameObject.swingSpeed];
+    [appDelegate.position setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x / deviceScreenWidth]];
+    [appDelegate.swingSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.swingSpeed]];
 }
 
 - (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed {
