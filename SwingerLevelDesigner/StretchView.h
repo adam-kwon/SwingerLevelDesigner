@@ -28,6 +28,7 @@
 - (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed;
 - (void) unselectAllGameObjects;
 - (void) loadLevels:(NSDictionary*)levels;
+- (void) clearCanvas;
 - (NSArray*) levelForSerialization;
 
 @property (assign) float opacity;

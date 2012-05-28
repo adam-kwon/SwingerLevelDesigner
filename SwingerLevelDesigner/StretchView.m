@@ -14,6 +14,7 @@
 - (void) drawGrid:(CGContextRef)ctx;
 - (void) updateSelectedInfo;
 - (GameObject*)getSelectedGameObject;
+- (GameObject*) getMoveHandleSelectedGameObject;
 @end
 
 @implementation StretchView
@@ -60,7 +61,18 @@
     }
     
     CGContextRestoreGState(ctx);
+
     
+    CGContextSaveGState(ctx);
+    
+    [[NSColor blueColor] set];
+    for (int i = 0; i < frame.size.width; i++) {
+        CGContextTranslateCTM(ctx, deviceScreenWidth, 0);
+        [gridLinePath stroke];
+    }
+    
+    CGContextRestoreGState(ctx);
+
 
     // Origin is lower left corner
     gridLinePath = [NSBezierPath bezierPath];
@@ -103,6 +115,15 @@
 
 #pragma mark Game Object selection and manipulation
 
+- (GameObject*) getMoveHandleSelectedGameObject {
+    for (GameObject *gameObject in gameObjects) {
+        if (gameObject.moveHandleSelected) {
+            return gameObject;
+        }
+    }       
+    return nil;    
+}
+
 - (GameObject*) getSelectedGameObject {
     for (GameObject *gameObject in gameObjects) {
         if (gameObject.selected) {
@@ -136,6 +157,7 @@
 - (void) unselectAllGameObjects {
     for (GameObject *gameObject in gameObjects) {
         gameObject.selected = NO;
+        gameObject.moveHandleSelected = NO;
     }    
 }
 
@@ -166,9 +188,11 @@
     [self unselectAllGameObjects];
     
     for (GameObject *gameObject in gameObjects) {
-        CGRect imageRect = [gameObject imageRect];
-        if (CGRectContainsPoint(imageRect, downPoint)) {
+        if ([gameObject isPointInImage:downPoint] || [gameObject isPointInMoveHandle:downPoint]) {
             gameObject.selected = YES;
+            if ([gameObject isPointInMoveHandle:downPoint]) {
+                gameObject.moveHandleSelected = YES;
+            }
         }
     }
 
@@ -185,7 +209,7 @@
     currentPoint = [self convertPoint:p fromView:nil];
     [self autoscroll:theEvent];
     [self setNeedsDisplay:YES];
-    GameObject *gameObject = [self getSelectedGameObject];
+    GameObject *gameObject = [self getMoveHandleSelectedGameObject];
     if (gameObject != nil) {
         CGFloat deltaX = currentPoint.x - downPoint.x;
         CGFloat deltaY = currentPoint.y - downPoint.y;
@@ -202,9 +226,9 @@
     p = [self convertPoint:p fromView:nil];
     
     for (GameObject *gameObject in gameObjects) {
-        CGRect imageRect = [gameObject imageRect];
-        if (!CGRectContainsPoint(imageRect, p)) {
+        if (![gameObject isPointInImage:p] && ![gameObject isPointInMoveHandle:p]) {
             gameObject.selected = NO;
+            gameObject.moveHandleSelected = NO;
         }
     }
 
@@ -307,6 +331,10 @@
         [self addGameObject:gameObject isSelected:NO];
     }
     [self setNeedsDisplay:YES];
+}
+
+- (void) clearCanvas {
+    [gameObjects removeAllObjects];
 }
 
 @end

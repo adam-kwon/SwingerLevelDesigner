@@ -50,6 +50,7 @@
                       
                       if (result == NSOKButton) {
                           fileName = [[panel URL] copy];
+                          [stretchView clearCanvas];
                           [self loadLevelFromFile];
                       }
                       panel = nil;

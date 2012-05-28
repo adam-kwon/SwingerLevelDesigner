@@ -10,6 +10,7 @@
 		390ADF5115733B9500A3F01A /* SetCanvasSizeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 390ADF4F15733B9500A3F01A /* SetCanvasSizeWindowController.m */; };
 		390ADF5215733B9500A3F01A /* SetCanvasSizeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF5015733B9500A3F01A /* SetCanvasSizeWindowController.xib */; };
 		390ADF551573477500A3F01A /* SwingPole1.png in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF541573477500A3F01A /* SwingPole1.png */; };
+		390ADF5B15741BF500A3F01A /* btn-move-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF5A15741BF500A3F01A /* btn-move-hi.png */; };
 		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
 		39258DEF156F2E3600311702 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 39258DED156F2E3600311702 /* InfoPlist.strings */; };
 		39258DF1156F2E3600311702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF0156F2E3600311702 /* main.m */; };
@@ -25,6 +26,7 @@
 		390ADF4F15733B9500A3F01A /* SetCanvasSizeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCanvasSizeWindowController.m; sourceTree = "<group>"; };
 		390ADF5015733B9500A3F01A /* SetCanvasSizeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetCanvasSizeWindowController.xib; sourceTree = "<group>"; };
 		390ADF541573477500A3F01A /* SwingPole1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwingPole1.png; sourceTree = "<group>"; };
+		390ADF5A15741BF500A3F01A /* btn-move-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-move-hi.png"; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39258DE4156F2E3600311702 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		39258DE7156F2E3600311702 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -59,6 +61,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				390ADF5A15741BF500A3F01A /* btn-move-hi.png */,
 				390ADF541573477500A3F01A /* SwingPole1.png */,
 			);
 			name = Resources;
@@ -188,6 +191,7 @@
 				39258DFB156F2E3600311702 /* MainMenu.xib in Resources */,
 				390ADF5215733B9500A3F01A /* SetCanvasSizeWindowController.xib in Resources */,
 				390ADF551573477500A3F01A /* SwingPole1.png in Resources */,
+				390ADF5B15741BF500A3F01A /* btn-move-hi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
