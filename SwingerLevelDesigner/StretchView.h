@@ -17,6 +17,7 @@
     NSPoint downPoint;
     NSPoint currentPoint;
         
+    CGFloat scale;
     CGFloat deviceScreenHeight;
     CGFloat deviceScreenWidth;
 }
@@ -30,6 +31,9 @@
 - (void) loadLevels:(NSDictionary*)levels;
 - (void) clearCanvas;
 - (NSArray*) levelForSerialization;
+
+- (IBAction)zoomIn:(id)sender;
+- (IBAction)zoomOut:(id)sender;
 
 @property (assign) float opacity;
 @property (assign) CGFloat deviceScreenHeight;

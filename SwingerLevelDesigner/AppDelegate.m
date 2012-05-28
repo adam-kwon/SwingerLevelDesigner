@@ -209,6 +209,7 @@
         
         stretchView.deviceScreenWidth = [w.deviceWidthField floatValue];
         stretchView.deviceScreenHeight = [w.deviceHeightField floatValue];
+        [stretchView setNeedsDisplay:YES];
     }
     
 }

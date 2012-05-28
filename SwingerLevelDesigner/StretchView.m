@@ -29,9 +29,10 @@
         gameObjects = [[NSMutableArray alloc] init];
         currentPoint = CGPointZero;
         opacity = 1.0;
+        scale = 1.0;
         
-        deviceScreenWidth = 480;
-        deviceScreenHeight = 320;
+        deviceScreenWidth = 480*2;
+        deviceScreenHeight = 320*2;
     }
     
     return self;
@@ -66,7 +67,7 @@
     CGContextSaveGState(ctx);
     
     [[NSColor blueColor] set];
-    for (int i = 0; i < frame.size.width; i++) {
+    for (int i = 0; i < frame.size.width/deviceScreenWidth; i++) {
         CGContextTranslateCTM(ctx, deviceScreenWidth, 0);
         [gridLinePath stroke];
     }
@@ -112,6 +113,25 @@
     }
 }
 
+
+- (IBAction)zoomIn:(id)sender {
+    scale += 0.05;
+
+    NSSize s = [self convertSize:NSMakeSize(1,1) fromView:nil];
+    [self scaleUnitSquareToSize:s];    
+
+    [self scaleUnitSquareToSize:CGSizeMake(scale, scale)];
+    [self setNeedsDisplay:YES];
+}
+- (IBAction)zoomOut:(id)sender {
+    scale -= 0.05;
+    
+    NSSize s = [self convertSize:NSMakeSize(1,1) fromView:nil];
+    [self scaleUnitSquareToSize:s];    
+    
+    [self scaleUnitSquareToSize:CGSizeMake(scale, scale)];    
+    [self setNeedsDisplay:YES];
+}
 
 #pragma mark Game Object selection and manipulation
 
