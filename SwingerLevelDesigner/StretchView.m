@@ -13,8 +13,9 @@
 @interface StretchView(Private)
 - (void) drawGrid:(CGContextRef)ctx;
 - (void) updateSelectedInfo;
-- (GameObject*)getSelectedGameObject;
+- (GameObject*) getSelectedGameObject;
 - (GameObject*) getMoveHandleSelectedGameObject;
+- (GameObject*) getResizeHandleSelectedGameObject;
 @end
 
 @implementation StretchView
@@ -135,6 +136,15 @@
 
 #pragma mark Game Object selection and manipulation
 
+- (GameObject*) getResizeHandleSelectedGameObject {
+    for (GameObject *gameObject in gameObjects) {
+        if (gameObject.resizeHandleSelected) {
+            return gameObject;
+        }
+    }       
+    return nil;    
+}
+
 - (GameObject*) getMoveHandleSelectedGameObject {
     for (GameObject *gameObject in gameObjects) {
         if (gameObject.moveHandleSelected) {
@@ -178,6 +188,7 @@
     for (GameObject *gameObject in gameObjects) {
         gameObject.selected = NO;
         gameObject.moveHandleSelected = NO;
+        gameObject.resizeHandleSelected = NO;
     }    
 }
 
@@ -208,10 +219,17 @@
     [self unselectAllGameObjects];
     
     for (GameObject *gameObject in gameObjects) {
-        if ([gameObject isPointInImage:downPoint] || [gameObject isPointInMoveHandle:downPoint]) {
+        if ([gameObject isPointInImage:downPoint] 
+            || [gameObject isPointInMoveHandle:downPoint]
+            || [gameObject isPointInResizeHandle:downPoint]) {
+            
             gameObject.selected = YES;
             if ([gameObject isPointInMoveHandle:downPoint]) {
                 gameObject.moveHandleSelected = YES;
+            }
+            
+            if ([gameObject isPointInResizeHandle:downPoint]) {
+                gameObject.resizeHandleSelected = YES;
             }
         }
     }
@@ -239,6 +257,20 @@
         
         [self updateSelectedInfo];
     }
+    
+    gameObject = [self getResizeHandleSelectedGameObject];
+    if (gameObject != nil) {
+        //CGFloat deltaX = currentPoint.x - downPoint.x;
+        CGFloat deltaY = currentPoint.y - downPoint.y;
+
+        [gameObject setScalesWhenResized:YES];
+        CGSize newSize = CGSizeMake([gameObject size].width, [gameObject size].height+deltaY);
+        [gameObject setSize:newSize];
+
+        downPoint = currentPoint;
+        
+        [self updateSelectedInfo];        
+    }
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
@@ -246,9 +278,10 @@
     p = [self convertPoint:p fromView:nil];
     
     for (GameObject *gameObject in gameObjects) {
-        if (![gameObject isPointInImage:p] && ![gameObject isPointInMoveHandle:p]) {
+        if (![gameObject isPointInImage:p] && ![gameObject isPointInMoveHandle:p] && ![gameObject isPointInResizeHandle:p]) {
             gameObject.selected = NO;
             gameObject.moveHandleSelected = NO;
+            gameObject.resizeHandleSelected = NO;
         }
     }
 

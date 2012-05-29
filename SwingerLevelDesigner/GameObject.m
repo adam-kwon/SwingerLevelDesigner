@@ -15,6 +15,7 @@
 @synthesize gameObjectType;
 @synthesize swingSpeed;
 @synthesize moveHandleSelected;
+@synthesize resizeHandleSelected;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x, position.y, self.size.width, self.size.height);
@@ -29,10 +30,22 @@
     return rect;
 }
 
+- (CGRect) resizeHandleRect {
+    CGRect rect = CGRectMake(position.x + [self size].width, 
+                             position.y + [self size].height - [moveHandle size].height*2, 
+                             [moveHandle size].width, 
+                             [moveHandle size].height);
+    return rect;    
+}
+
 - (id) initWithContentsOfFile:(NSString *)fileName {
     self = [super initWithContentsOfFile:fileName];
     moveHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-move-hi" 
                                                                                          ofType:@"png"]];
+    
+    resizeHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-scale-hi" 
+                                                                                           ofType:@"png"]];
+
     return self;
 }
 
@@ -56,6 +69,14 @@
                       operation:NSCompositeSourceOver 
                        fraction:1.0];
 
+        
+        NSRect sizeHandleRect;
+        sizeHandleRect.origin = NSZeroPoint;
+        sizeHandleRect.size = [resizeHandle size];
+        [resizeHandle drawAtPoint:CGPointMake(self.position.x + [self size].width, self.position.y + [self size].height - [moveHandle size].height*2)
+                         fromRect:sizeHandleRect 
+                        operation:NSCompositeSourceOver 
+                         fraction:1.0];
     }
 }
 
@@ -71,6 +92,13 @@
         return YES;
     }
     return NO;
+}
+
+- (BOOL) isPointInResizeHandle:(CGPoint)point {
+    if (CGRectContainsPoint([self resizeHandleRect], point)) {
+        return YES;
+    }
+    return NO;    
 }
 
 @end

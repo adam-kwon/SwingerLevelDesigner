@@ -34,18 +34,19 @@
 }
 
 - (IBAction)showOpenPanel:(id)sender {
-//    [stretchView unselectAllGameObjects];
-//    __block NSOpenPanel *panel = [NSOpenPanel openPanel];
-//    [panel setAllowedFileTypes:[NSImage imageFileTypes]];
-//    [panel beginSheetModalForWindow:[stretchView window] 
-//                  completionHandler:^ (NSInteger result) {
-//                      
-//        if (result == NSOKButton) {
-//            GameObject *image = [[GameObject alloc] initWithContentsOfURL:[panel URL]];
-//            [stretchView addGameObject:image];
-//        }
-//        panel = nil;
-//     }];
+    [stretchView unselectAllGameObjects];
+    __block NSOpenPanel *panel = [NSOpenPanel openPanel];
+    [panel setAllowedFileTypes:[NSImage imageFileTypes]];
+    [panel beginSheetModalForWindow:[stretchView window] 
+                  completionHandler:^ (NSInteger result) {
+                      
+        if (result == NSOKButton) {
+            GameObject *image = [[GameObject alloc] initWithContentsOfURL:[panel URL]];
+            image.position = CGPointMake(50, 0);
+            [stretchView addGameObject:image isSelected:YES];
+        }
+        panel = nil;
+     }];
 }
 
 // Needed for open recent menu item
@@ -223,6 +224,11 @@
     GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
     gameObject.gameObjectType = kGameObjectTypeSwinger;
     gameObject.position = CGPointZero;
+
+    // Resizes
+//    [gameObject setScalesWhenResized:YES];
+//    CGSize newSize = CGSizeMake([gameObject size].width, [gameObject size].height/2);
+//    [gameObject setSize:newSize];
     
     [stretchView addGameObject:gameObject isSelected:YES];
 }
