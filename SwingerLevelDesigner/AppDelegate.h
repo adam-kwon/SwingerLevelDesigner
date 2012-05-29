@@ -12,20 +12,25 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet StretchView *stretchView;
-    
+
+    NSMutableDictionary *levels;
     NSURL *fileName;
 }
 
 - (void) writeLevelToFile;
 - (void) loadLevelFromFile;
+- (void) loadLevel:(int)levelNumber;
+- (void) synchronizeCurrentLevel;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSTextField *position;
 @property (assign) IBOutlet NSTextField *swingSpeed;
 @property (assign) IBOutlet NSTextField *gameWorldSize;
-
 @property (assign) IBOutlet NSTextField *xPosition;
 @property (assign) IBOutlet NSTextField *yPosition;
+@property (assign) IBOutlet NSTextField *levelField;
+@property (assign) IBOutlet NSTextField *maxLevelField;
+@property (assign) IBOutlet NSStepper *levelStepper;
 
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)openLevel:(id)sender;
@@ -33,4 +38,7 @@
 - (IBAction)addPole:(id)sender;
 - (IBAction)saveAs:(id)sender;
 - (IBAction)save:(id)sender;
+- (IBAction)stepperAction:(id)sender;
+- (IBAction)newDocument:(id)sender;
+- (IBAction)addLevel:(id)sender;
 @end

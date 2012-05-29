@@ -19,10 +19,17 @@
 @synthesize gameWorldSize;
 @synthesize position;
 @synthesize swingSpeed;
+@synthesize levelStepper;
+@synthesize levelField;
+@synthesize maxLevelField;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     fileName = nil;
+    levels = [NSMutableDictionary dictionary];
+    NSArray *levelArray = [NSArray array];
+    [levels setValue:levelArray forKey:@"Level0"];
+
     // Insert code here to initialize your application
 }
 
@@ -75,6 +82,40 @@
 - (void) awakeFromNib {
     CGRect frame = [stretchView frame];
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
+    [levelField setIntValue:0];
+    [maxLevelField setStringValue:@"of 0"];
+    
+}
+
+- (void) loadLevel:(int)levelNumber {
+    CGFloat maxPosition = 0.0;
+    NSArray *levelItems = [levels objectForKey:[NSString stringWithFormat:@"Level%d", levelNumber]];
+    if ([levelItems count] > 0) {
+        // Calculate canvas size
+        for (NSDictionary *level in levelItems) {
+            CGFloat pos = [[level objectForKey:@"Position"] floatValue];
+            maxPosition = MAX(pos, maxPosition);
+        }
+        
+        maxPosition = MAX(maxPosition, 1);
+        
+        CGFloat lastItemPosition = maxPosition * stretchView.deviceScreenWidth;
+        int multiples = lastItemPosition / stretchView.deviceScreenWidth;
+        CGFloat remainder = lastItemPosition - (stretchView.deviceScreenWidth * multiples);
+        if (remainder > 0.f) {
+            multiples++;
+        }
+        
+        CGFloat width = stretchView.deviceScreenWidth * multiples;
+        CGFloat height = [stretchView frame].size.height;
+        CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
+        [stretchView setFrame:newFrame];
+        
+        [stretchView clearCanvas];
+        [stretchView loadLevel:levelItems];    
+    } else {
+        [stretchView clearCanvas];
+    }
 }
 
 - (void) loadLevelFromFile {
@@ -82,44 +123,25 @@
     NSString *error;
     NSPropertyListFormat format;
     
-    NSDictionary *levels = [NSPropertyListSerialization propertyListFromData:plistData
+    levels = [NSPropertyListSerialization propertyListFromData:plistData
                                                             mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                                                       format:&format
                                                             errorDescription:&error];
 
-
-    // Calculate canvas size
-    CGFloat maxPosition = 0.0;
-    NSArray *levelItems = [levels objectForKey:@"Level0"];
-    for (NSDictionary *level in levelItems) {
-        CGFloat pos = [[level objectForKey:@"Position"] floatValue];
-        maxPosition = MAX(pos, maxPosition);
-    }
-    
-    CGFloat lastItemPosition = maxPosition * stretchView.deviceScreenWidth;
-    int multiples = lastItemPosition / stretchView.deviceScreenWidth;
-    CGFloat remainder = lastItemPosition - (stretchView.deviceScreenWidth * multiples);
-    if (remainder > 0.f) {
-        multiples++;
-    }
-    
-    CGFloat width = stretchView.deviceScreenWidth * multiples;
-    CGFloat height = [stretchView frame].size.height;
-    CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
-    [stretchView setFrame:newFrame];
-    
-    [stretchView loadLevels:levels];
+    [self loadLevel:0];
+    [levelStepper setIntValue:0];
+    [levelField setIntValue:0];
+    [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", [levels count]-1]];
 }
 
 - (void) writeLevelToFile {
-    NSMutableDictionary *rootDict = [NSMutableDictionary dictionary];
-    
     NSArray *levelsArray = [stretchView levelForSerialization];
-    
-    [rootDict setObject:levelsArray forKey:@"Level0"];
+
+    NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
+    [levels setValue:levelsArray forKey:currentLevel];
     
     NSString *error;
-    NSData *pList = [NSPropertyListSerialization dataFromPropertyList:rootDict 
+    NSData *pList = [NSPropertyListSerialization dataFromPropertyList:levels 
                                                                format:NSPropertyListXMLFormat_v1_0 
                                                      errorDescription:&error];
     [pList writeToURL:fileName atomically:NO];                
@@ -157,6 +179,44 @@
     }
 }
 
+- (void) synchronizeCurrentLevel {
+    NSArray *levelItems = [stretchView levelForSerialization];
+    NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
+    [levels setValue:levelItems forKey:currentLevel];    
+}
+
+
+- (IBAction)addLevel:(id)sender {
+    [self synchronizeCurrentLevel];
+    
+    // Add dummy level as place holder
+    int numLevels = [levels count];
+    NSArray *levelArray = [NSArray array];
+    [levels setValue:levelArray forKey:[NSString stringWithFormat:@"Level%d", numLevels]];
+
+    // Update level fields on screen
+    [levelField setIntValue:numLevels];
+    [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", numLevels]];
+    
+    [levelStepper setIntValue:numLevels];
+    [stretchView clearCanvas];
+}
+
+- (IBAction)newDocument:(id)sender {
+    if (levels == nil) {
+        levels = [NSMutableDictionary dictionary];
+    } else {
+        [levels removeAllObjects];
+    }
+    NSArray *levelArray = [NSArray array];
+    [levels setValue:levelArray forKey:@"Level0"];
+    [levelField setIntValue:0];
+    [maxLevelField setStringValue:@"of 0"];
+    [levelStepper setIntValue:0];
+    [stretchView clearCanvas];
+    [stretchView setNeedsDisplay:YES];
+}
+
 - (IBAction)addPole:(id)sender {
     [stretchView unselectAllGameObjects];
     
@@ -177,8 +237,25 @@
     } else if (textField == swingSpeed) {
         //NSLog(@"SETTING SWING SPEED");
         [stretchView updateSelectedSwingSpeed:[swingSpeed floatValue]];
+    } else if (textField == levelField) {
+        [levelStepper setIntValue:[levelField intValue]];
+        [self loadLevel:[levelField intValue]];
     }
 }
+
+- (IBAction)stepperAction:(id)sender {
+    if ([levelStepper intValue] < [levels count]) {
+        NSArray *levelItems = [stretchView levelForSerialization];
+        NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
+        [levels setValue:levelItems forKey:currentLevel];
+
+        [levelField setIntValue:[levelStepper intValue]];
+        [self loadLevel:[levelStepper intValue]];
+    } else {
+        [levelStepper setIntValue:[levels count]-1];
+    }
+}
+
 
 - (IBAction)resizeCanvas:(id)sender {
     SetCanvasSizeWindowController *w = [[SetCanvasSizeWindowController alloc] initWithWindowNibName:@"SetCanvasSizeWindowController"];

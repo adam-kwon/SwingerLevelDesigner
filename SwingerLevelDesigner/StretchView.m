@@ -338,8 +338,7 @@
 
 
 
-- (void) loadLevels:(NSDictionary*)levels {
-    NSArray *levelItems = [levels objectForKey:@"Level0"];
+- (void) loadLevel:(NSArray*)levelItems {
     for (NSDictionary *level in levelItems) {
         CGFloat position = [[level objectForKey:@"Position"] floatValue];
         CGFloat swingSpeed = [[level objectForKey:@"Speed"] floatValue]; 
@@ -355,6 +354,7 @@
 
 - (void) clearCanvas {
     [gameObjects removeAllObjects];
+    [self setNeedsDisplay:YES];
 }
 
 @end

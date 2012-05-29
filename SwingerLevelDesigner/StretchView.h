@@ -28,7 +28,7 @@
 - (void) updateSelectedPosition:(CGPoint)newPos;
 - (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed;
 - (void) unselectAllGameObjects;
-- (void) loadLevels:(NSDictionary*)levels;
+- (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;
 - (NSArray*) levelForSerialization;
 
