@@ -20,6 +20,7 @@
 		39258DFB156F2E3600311702 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39258DF9156F2E3600311702 /* MainMenu.xib */; };
 		39258E05156F2E9E00311702 /* StretchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258E04156F2E9E00311702 /* StretchView.m */; };
 		399C3A0615865419005537B6 /* Cannon.png in Resources */ = {isa = PBXBuildFile; fileRef = 399C3A0515865419005537B6 /* Cannon.png */; };
+		399C3A0E1586736C005537B6 /* finalPlatform.png in Resources */ = {isa = PBXBuildFile; fileRef = 399C3A0D1586736C005537B6 /* finalPlatform.png */; };
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		39258E03156F2E9E00311702 /* StretchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StretchView.h; sourceTree = "<group>"; };
 		39258E04156F2E9E00311702 /* StretchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StretchView.m; sourceTree = "<group>"; };
 		399C3A0515865419005537B6 /* Cannon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cannon.png; sourceTree = "<group>"; };
+		399C3A0D1586736C005537B6 /* finalPlatform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finalPlatform.png; sourceTree = "<group>"; };
 		39C05CCD1571C5EF007C0035 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		39C05CCE1571C5EF007C0035 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +70,7 @@
 				390ADF601574685200A3F01A /* btn-scale-hi.png */,
 				399C3A0515865419005537B6 /* Cannon.png */,
 				390ADF5A15741BF500A3F01A /* btn-move-hi.png */,
+				399C3A0D1586736C005537B6 /* finalPlatform.png */,
 				390ADF541573477500A3F01A /* SwingPole1.png */,
 			);
 			name = Resources;
@@ -200,6 +203,7 @@
 				390ADF5B15741BF500A3F01A /* btn-move-hi.png in Resources */,
 				390ADF611574685200A3F01A /* btn-scale-hi.png in Resources */,
 				399C3A0615865419005537B6 /* Cannon.png in Resources */,
+				399C3A0E1586736C005537B6 /* finalPlatform.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

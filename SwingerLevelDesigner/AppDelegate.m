@@ -117,7 +117,7 @@
             multiples++;
         }
         
-        CGFloat width = self.stretchView.deviceScreenWidth * multiples;
+        CGFloat width = self.stretchView.deviceScreenWidth * (multiples+1);
         CGFloat height = [self.stretchView frame].size.height;
         CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
         [self.stretchView setFrame:newFrame];
@@ -127,6 +127,8 @@
     } else {
         [self.stretchView clearCanvas];
     }
+    self.scrollView.verticalScroller.floatValue = 0;
+    
 }
 
 - (void) loadLevelFromFile {
@@ -228,17 +230,27 @@
     [self.stretchView setNeedsDisplay:YES];
 }
 
+- (IBAction)addFinalPlatform:(id)sender {
+    [self.stretchView unselectAllGameObjects];
+    
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]];
+    gameObject.gameObjectType = kGameObjectTypeFinalPlatform;    
+    
+    GameObject *last = [self.stretchView getLastGameObject];
+    gameObject.position = CGPointMake(last.position.x + [last size].width, 0);
+    
+    [self.stretchView addGameObject:gameObject isSelected:YES];    
+}
+
+
 - (IBAction)addCannon:(id)sender {
     [self.stretchView unselectAllGameObjects];
     
     GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]];
     gameObject.gameObjectType = kGameObjectTypeCannon;
-    gameObject.position = CGPointZero;
     
-    // Resizes
-    //    [gameObject setScalesWhenResized:YES];
-    //    CGSize newSize = CGSizeMake([gameObject size].width, [gameObject size].height/2);
-    //    [gameObject setSize:newSize];
+    GameObject *last = [self.stretchView getLastGameObject];
+    gameObject.position = CGPointMake(last.position.x + [last size].width, 0);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];    
 }
@@ -248,12 +260,9 @@
     
     GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
     gameObject.gameObjectType = kGameObjectTypeSwinger;
-    gameObject.position = CGPointZero;
 
-    // Resizes
-//    [gameObject setScalesWhenResized:YES];
-//    CGSize newSize = CGSizeMake([gameObject size].width, [gameObject size].height/2);
-//    [gameObject setSize:newSize];
+    GameObject *last = [self.stretchView getLastGameObject];
+    gameObject.position = CGPointMake(last.position.x + [last size].width, 0);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];
 }

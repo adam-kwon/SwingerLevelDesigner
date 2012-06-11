@@ -265,6 +265,18 @@
     [self setNeedsDisplay:YES];
 }
 
+- (GameObject*) getLastGameObject {
+    GameObject *maxGameObject = [gameObjects objectAtIndex:0];
+    for (int i = 1; i < [gameObjects count]; i++) {
+        GameObject *go = [gameObjects objectAtIndex:i];
+        if (go.position.x > maxGameObject.position.x) {
+            maxGameObject = go;
+        }
+    }
+    
+    return maxGameObject;
+}
+
 - (float) opacity {
     return opacity;
 }
@@ -415,6 +427,9 @@
             case kGameObjectTypeCannon:
                 [levelDict setObject:@"Cannon" forKey:@"Type"];
                 break;                
+            case kGameObjectTypeFinalPlatform:
+                [levelDict setObject:@"FinalPlatform" forKey:@"Type"];
+                break;                
             default:
                 break;
         }
@@ -464,6 +479,9 @@
         } else if ([@"Cannon" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]];
             gameObject.gameObjectType = kGameObjectTypeCannon;
+        } else if ([@"FinalPlatform" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]];
+            gameObject.gameObjectType = kGameObjectTypeFinalPlatform;
         }
         
         if (gameObject != nil) {
@@ -482,6 +500,7 @@
             [self addGameObject:gameObject isSelected:NO];
         }
     }
+    [self scrollPoint:CGPointMake(0, 0)];
     [self setNeedsDisplay:YES];
 }
 

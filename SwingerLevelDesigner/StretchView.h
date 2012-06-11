@@ -38,6 +38,7 @@
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;
+- (GameObject*) getLastGameObject;
 - (NSArray*) levelForSerialization;
 
 - (IBAction)zoomIn:(id)sender;

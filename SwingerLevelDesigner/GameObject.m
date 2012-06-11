@@ -90,6 +90,12 @@
         
         // divide by poleScale to keep length same regardless of whether pole is scaled
         y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/poleScale);
+        [linePath moveToPoint:CGPointMake(x1, y1)];
+        [linePath lineToPoint:CGPointMake(x2, y2)];
+        
+        [[NSColor blueColor] set];
+        [linePath setLineWidth:2.0];
+        [linePath stroke];
     } else if (gameObjectType == kGameObjectTypeCannon) {
         x1 = position.x + [self size].width/2;
         y1 = position.y;
@@ -98,14 +104,14 @@
         
         // divide by poleScale to keep length same regardless of whether pole is scaled
         y2 = position.y + (200*sin(cannonRotationAngle*M_PI/180)/poleScale);        
+        [linePath moveToPoint:CGPointMake(x1, y1)];
+        [linePath lineToPoint:CGPointMake(x2, y2)];
+        
+        [[NSColor blueColor] set];
+        [linePath setLineWidth:2.0];
+        [linePath stroke];
     }
-    
-    [linePath moveToPoint:CGPointMake(x1, y1)];
-    [linePath lineToPoint:CGPointMake(x2, y2)];
-    
-    [[NSColor blueColor] set];
-    [linePath setLineWidth:2.0];
-    [linePath stroke];
+
 
     
     

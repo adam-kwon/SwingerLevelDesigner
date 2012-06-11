@@ -11,7 +11,8 @@
 typedef enum {
     kGameObjectTypeNone,
     kGameObjectTypeSwinger,
-    kGameObjectTypeCannon
+    kGameObjectTypeCannon,
+    kGameObjectTypeFinalPlatform
 } GameObjectType;
 
 @interface GameObject : NSImage {
