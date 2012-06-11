@@ -24,6 +24,9 @@
 @synthesize windSpeed;
 @synthesize swingAngle;
 @synthesize windDirection;
+@synthesize cannonForce;
+@synthesize cannonSpeed;
+@synthesize cannonRotationAngle;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x, position.y, self.size.width, self.size.height);
@@ -147,5 +150,6 @@
     }
     return NO;    
 }
+
 
 @end

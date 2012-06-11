@@ -32,18 +32,23 @@
 @property (assign) IBOutlet NSTextField *grip;
 @property (assign) IBOutlet NSTextField *poleScale;
 @property (assign) IBOutlet NSTextField *windSpeed;
-@property (assign) IBOutlet NSTextField *windDirection;
+@property (assign) IBOutlet NSComboBox *windDirection;
 @property (assign) IBOutlet NSTextField *swingAngle;
 @property (assign) IBOutlet NSStepper *levelStepper;
 @property (assign) IBOutlet StretchView *stretchView;
+
+@property (assign) IBOutlet NSTextField *cannonSpeed;
+@property (assign) IBOutlet NSTextField *cannonForce;
+@property (assign) IBOutlet NSTextField *cannonRotationAngle;
 
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)openLevel:(id)sender;
 - (IBAction)resizeCanvas:(id)sender;
 - (IBAction)addPole:(id)sender;
+- (IBAction)addLevel:(id)sender;
+- (IBAction)addCannon:(id)sender;
 - (IBAction)saveAs:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)stepperAction:(id)sender;
 - (IBAction)newDocument:(id)sender;
-- (IBAction)addLevel:(id)sender;
 @end

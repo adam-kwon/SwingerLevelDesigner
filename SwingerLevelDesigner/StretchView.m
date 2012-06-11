@@ -182,6 +182,25 @@
     [appDelegate.grip setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.grip]];
     [appDelegate.windSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.windSpeed]];
     [appDelegate.windDirection setStringValue:gameObject == nil || gameObject.windDirection == nil ? @"" : gameObject.windDirection];
+    [appDelegate.cannonSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonSpeed]];
+    [appDelegate.cannonForce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonForce]];
+    [appDelegate.cannonRotationAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonRotationAngle]];
+
+}
+
+- (void) updateSelectedCannonSpeed:(CGFloat)speed {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.cannonSpeed = speed;    
+}
+
+- (void) updateSelectedCannonForce:(CGFloat)force {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.cannonForce = force;    
+}
+
+- (void) updateSelectedCannonRotationAngle:(CGFloat)angle {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.cannonRotationAngle = angle;    
 }
 
 - (void) updateSelectedPeriod:(CGFloat)newSwingSpeed {
@@ -388,8 +407,15 @@
     NSMutableArray *gameItems = [NSMutableArray array];
     for (GameObject *gameObject in gameObjects) {
         NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
-        if (gameObject.gameObjectType == kGameObjectTypeSwinger) {
-            [levelDict setObject:@"Catcher" forKey:@"Type"];
+        switch (gameObject.gameObjectType) {
+            case kGameObjectTypeSwinger:
+                [levelDict setObject:@"Catcher" forKey:@"Type"];
+                break;
+            case kGameObjectTypeCannon:
+                [levelDict setObject:@"Cannon" forKey:@"Type"];
+                break;                
+            default:
+                break;
         }
         [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
         [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
@@ -398,7 +424,10 @@
         [levelDict setObject:[NSNumber numberWithFloat:[gameObject swingAngle]] forKey:@"SwingAngle"];
         [levelDict setObject:[NSNumber numberWithFloat:[gameObject poleScale]] forKey:@"PoleScale"];
         [levelDict setObject:[NSNumber numberWithFloat:[gameObject windSpeed]] forKey:@"WindSpeed"];
-        [levelDict setObject:[gameObject windDirection] forKey:@"WindDirection"];
+        [levelDict setObject:[gameObject windDirection] == nil ? @"" : [gameObject windDirection] forKey:@"WindDirection"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonSpeed]] forKey:@"Speed"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonForce]] forKey:@"Force"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonRotationAngle]] forKey:@"RotationAngle"];
         [gameItems addObject:levelDict];
     }
     
@@ -424,31 +453,33 @@
 
 
 - (void) loadLevel:(NSArray*)levelItems {
-    for (NSDictionary *level in levelItems) {
-        CGFloat position = [[level objectForKey:@"Position"] floatValue];
-        CGFloat period = [[level objectForKey:@"Period"] floatValue]; 
-        CGFloat grip = [[level objectForKey:@"Grip"] floatValue]; 
-        CGFloat swingAngle = [[level objectForKey:@"SwingAngle"] floatValue]; 
-        CGFloat poleScale = [[level objectForKey:@"PoleScale"] floatValue]; 
-        CGFloat windSpeed = [[level objectForKey:@"WindSpeed"] floatValue]; 
-        CGFloat ropeLength = [[level objectForKey:@"RopeLength"] floatValue]; 
-        NSString *windDirection = [level objectForKey:@"WindDirection"]; 
+    for (NSDictionary *level in levelItems) {        
+        GameObject *gameObject = nil;
+
         NSString *type = [level objectForKey:@"Type"]; 
-        
-        GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
         if ([@"Catcher" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
             gameObject.gameObjectType = kGameObjectTypeSwinger;
+        } else if ([@"Cannon" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]];
+            gameObject.gameObjectType = kGameObjectTypeCannon;
         }
-        gameObject.period = period;
-        gameObject.position = CGPointMake(position*deviceScreenWidth, 0);
-        gameObject.ropeLength = ropeLength;
-        gameObject.grip = grip;
-        gameObject.swingAngle = swingAngle;
-        gameObject.poleScale = poleScale;
-        gameObject.windSpeed = windSpeed;
-        gameObject.windDirection = windDirection;
         
-        [self addGameObject:gameObject isSelected:NO];
+        if (gameObject != nil) {
+            gameObject.period = [[level objectForKey:@"Period"] floatValue];
+            gameObject.position = CGPointMake([[level objectForKey:@"Position"] floatValue]*deviceScreenWidth, 0);
+            gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
+            gameObject.grip = [[level objectForKey:@"Grip"] floatValue];
+            gameObject.swingAngle = [[level objectForKey:@"SwingAngle"] floatValue];
+            gameObject.poleScale = [[level objectForKey:@"PoleScale"] floatValue];
+            gameObject.windSpeed = [[level objectForKey:@"WindSpeed"] floatValue];
+            gameObject.windDirection = [level objectForKey:@"WindDirection"];
+            gameObject.cannonForce = [[level objectForKey:@"Force"] floatValue];
+            gameObject.cannonRotationAngle = [[level objectForKey:@"RotationAngle"] floatValue];
+            gameObject.cannonSpeed = [[level objectForKey:@"Speed"] floatValue];
+            
+            [self addGameObject:gameObject isSelected:NO];
+        }
     }
     [self setNeedsDisplay:YES];
 }

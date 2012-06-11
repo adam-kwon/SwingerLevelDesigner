@@ -29,6 +29,9 @@
 @synthesize grip;
 @synthesize poleScale;
 @synthesize stretchView;
+@synthesize cannonForce;
+@synthesize cannonRotationAngle;
+@synthesize cannonSpeed;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -225,6 +228,21 @@
     [self.stretchView setNeedsDisplay:YES];
 }
 
+- (IBAction)addCannon:(id)sender {
+    [self.stretchView unselectAllGameObjects];
+    
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]];
+    gameObject.gameObjectType = kGameObjectTypeCannon;
+    gameObject.position = CGPointZero;
+    
+    // Resizes
+    //    [gameObject setScalesWhenResized:YES];
+    //    CGSize newSize = CGSizeMake([gameObject size].width, [gameObject size].height/2);
+    //    [gameObject setSize:newSize];
+    
+    [self.stretchView addGameObject:gameObject isSelected:YES];    
+}
+
 - (IBAction)addPole:(id)sender {
     [self.stretchView unselectAllGameObjects];
     
@@ -272,6 +290,15 @@
             [levelStepper setIntValue:[levelField intValue]];
             [self loadLevel:[levelField intValue]];
         }
+    }
+    else if (textField == cannonSpeed) {
+        [self.stretchView updateSelectedCannonSpeed:[cannonSpeed floatValue]];
+    }
+    else if (textField == cannonForce) {
+        [self.stretchView updateSelectedCannonForce:[cannonForce floatValue]];
+    }
+    else if (textField == cannonRotationAngle) {
+        [self.stretchView updateSelectedCannonRotationAngle:[cannonRotationAngle floatValue]];
     }
 }
 

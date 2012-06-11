@@ -32,6 +32,9 @@
 - (void) updateSelectedGrip:(CGFloat)grip;
 - (void) updateSelectedWindSpeed:(CGFloat)windSpeed;
 - (void) updateSelectedWindDirection:(NSString*)windDirection;
+- (void) updateSelectedCannonSpeed:(CGFloat)speed;
+- (void) updateSelectedCannonForce:(CGFloat)force;
+- (void) updateSelectedCannonRotationAngle:(CGFloat)angle;
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;

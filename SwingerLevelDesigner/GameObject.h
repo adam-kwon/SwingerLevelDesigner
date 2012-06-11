@@ -10,7 +10,8 @@
 
 typedef enum {
     kGameObjectTypeNone,
-    kGameObjectTypeSwinger
+    kGameObjectTypeSwinger,
+    kGameObjectTypeCannon
 } GameObjectType;
 
 @interface GameObject : NSImage {
@@ -26,6 +27,9 @@ typedef enum {
     CGFloat swingAngle;
     CGFloat grip;
     CGFloat windSpeed;
+    CGFloat cannonSpeed;
+    CGFloat cannonRotationAngle;
+    CGFloat cannonForce;
     NSString *windDirection;
     
     NSImage *moveHandle;
@@ -51,6 +55,9 @@ typedef enum {
 @property (nonatomic, readwrite, assign) CGFloat swingAngle;
 @property (nonatomic, readwrite, assign) CGFloat grip;
 @property (nonatomic, readwrite, assign) CGFloat windSpeed;
+@property (nonatomic, readwrite, assign) CGFloat cannonSpeed;
+@property (nonatomic, readwrite, assign) CGFloat cannonRotationAngle;
+@property (nonatomic, readwrite, assign) CGFloat cannonForce;
 @property (retain) NSString *windDirection;
 
 @end
