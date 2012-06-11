@@ -127,8 +127,10 @@
     } else {
         [self.stretchView clearCanvas];
     }
-    self.scrollView.verticalScroller.floatValue = 0;
-    
+//    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
+//    [sv verticalScroller].floatValue = 0.f;
+//    [sv scrollPoint:CGPointMake(0, 0)];
+//    [sv.verticalScroller setFloatValue:0];
 }
 
 - (void) loadLevelFromFile {
@@ -236,8 +238,9 @@
     GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]];
     gameObject.gameObjectType = kGameObjectTypeFinalPlatform;    
     
-    GameObject *last = [self.stretchView getLastGameObject];
-    gameObject.position = CGPointMake(last.position.x + [last size].width, 0);
+    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
+    NSRect r = [sv documentVisibleRect];
+    gameObject.position = CGPointMake(r.origin.x, 0);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];    
 }
@@ -249,8 +252,9 @@
     GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]];
     gameObject.gameObjectType = kGameObjectTypeCannon;
     
-    GameObject *last = [self.stretchView getLastGameObject];
-    gameObject.position = CGPointMake(last.position.x + [last size].width, 0);
+    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
+    NSRect r = [sv documentVisibleRect];
+    gameObject.position = CGPointMake(r.origin.x, 0);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];    
 }
@@ -261,8 +265,9 @@
     GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
     gameObject.gameObjectType = kGameObjectTypeSwinger;
 
-    GameObject *last = [self.stretchView getLastGameObject];
-    gameObject.position = CGPointMake(last.position.x + [last size].width, 0);
+    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
+    NSRect r = [sv documentVisibleRect];
+    gameObject.position = CGPointMake(r.origin.x, 0);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];
 }

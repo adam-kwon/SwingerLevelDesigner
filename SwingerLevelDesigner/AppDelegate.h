@@ -41,8 +41,6 @@
 @property (assign) IBOutlet NSTextField *cannonForce;
 @property (assign) IBOutlet NSTextField *cannonRotationAngle;
 
-@property (assign) IBOutlet NSScrollView *scrollView;
-
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)openLevel:(id)sender;
 - (IBAction)resizeCanvas:(id)sender;
