@@ -28,6 +28,7 @@
 @synthesize swingAngle;
 @synthesize grip;
 @synthesize poleScale;
+@synthesize stretchView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -40,16 +41,16 @@
 }
 
 - (IBAction)showOpenPanel:(id)sender {
-    [stretchView unselectAllGameObjects];
+    [self.stretchView unselectAllGameObjects];
     __block NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setAllowedFileTypes:[NSImage imageFileTypes]];
-    [panel beginSheetModalForWindow:[stretchView window] 
+    [panel beginSheetModalForWindow:[self.stretchView window] 
                   completionHandler:^ (NSInteger result) {
                       
         if (result == NSOKButton) {
             GameObject *image = [[GameObject alloc] initWithContentsOfURL:[panel URL]];
             image.position = CGPointMake(50, 0);
-            [stretchView addGameObject:image isSelected:YES];
+            [self.stretchView addGameObject:image isSelected:YES];
         }
         panel = nil;
      }];
@@ -59,7 +60,7 @@
 - (BOOL) application:(NSApplication *)sender openFile:(NSString *)filename {
 
     fileName = [NSURL fileURLWithPath:filename];
-    [stretchView clearCanvas];
+    [self.stretchView clearCanvas];
     [self loadLevelFromFile];
 
     return YES;
@@ -69,7 +70,7 @@
     __block NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setAllowedFileTypes:[NSArray arrayWithObject:@"plist"]];
     
-    [panel beginSheetModalForWindow:[stretchView window] 
+    [panel beginSheetModalForWindow:[self.stretchView window] 
                   completionHandler:^ (NSInteger result) {
                       
                       if (result == NSOKButton) {
@@ -78,7 +79,7 @@
                           // Add it to the open recent menu
                           [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:fileName];
                           
-                          [stretchView clearCanvas];
+                          [self.stretchView clearCanvas];
                           [self loadLevelFromFile];
                       }
                       panel = nil;
@@ -87,7 +88,7 @@
 }
 
 - (void) awakeFromNib {
-    CGRect frame = [stretchView frame];
+    CGRect frame = [self.stretchView frame];
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
     [levelField setIntValue:0];
     [maxLevelField setStringValue:@"of 0"];
@@ -106,22 +107,22 @@
         
         maxPosition = MAX(maxPosition, 1);
         
-        CGFloat lastItemPosition = maxPosition * stretchView.deviceScreenWidth;
-        int multiples = lastItemPosition / stretchView.deviceScreenWidth;
-        CGFloat remainder = lastItemPosition - (stretchView.deviceScreenWidth * multiples);
+        CGFloat lastItemPosition = maxPosition * self.stretchView.deviceScreenWidth;
+        int multiples = lastItemPosition / self.stretchView.deviceScreenWidth;
+        CGFloat remainder = lastItemPosition - (self.stretchView.deviceScreenWidth * multiples);
         if (remainder > 0.f) {
             multiples++;
         }
         
-        CGFloat width = stretchView.deviceScreenWidth * multiples;
-        CGFloat height = [stretchView frame].size.height;
+        CGFloat width = self.stretchView.deviceScreenWidth * multiples;
+        CGFloat height = [self.stretchView frame].size.height;
         CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
-        [stretchView setFrame:newFrame];
+        [self.stretchView setFrame:newFrame];
         
-        [stretchView clearCanvas];
-        [stretchView loadLevel:levelItems];    
+        [self.stretchView clearCanvas];
+        [self.stretchView loadLevel:levelItems];    
     } else {
-        [stretchView clearCanvas];
+        [self.stretchView clearCanvas];
     }
 }
 
@@ -142,7 +143,7 @@
 }
 
 - (void) writeLevelToFile {
-    NSArray *levelsArray = [stretchView levelForSerialization];
+    NSArray *levelsArray = [self.stretchView levelForSerialization];
 
     NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
     [levels setValue:levelsArray forKey:currentLevel];
@@ -187,7 +188,7 @@
 }
 
 - (void) synchronizeCurrentLevel {
-    NSArray *levelItems = [stretchView levelForSerialization];
+    NSArray *levelItems = [self.stretchView levelForSerialization];
     NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
     [levels setValue:levelItems forKey:currentLevel];    
 }
@@ -206,7 +207,7 @@
     [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", numLevels]];
     
     [levelStepper setIntValue:numLevels];
-    [stretchView clearCanvas];
+    [self.stretchView clearCanvas];
 }
 
 - (IBAction)newDocument:(id)sender {
@@ -220,12 +221,12 @@
     [levelField setIntValue:0];
     [maxLevelField setStringValue:@"of 0"];
     [levelStepper setIntValue:0];
-    [stretchView clearCanvas];
-    [stretchView setNeedsDisplay:YES];
+    [self.stretchView clearCanvas];
+    [self.stretchView setNeedsDisplay:YES];
 }
 
 - (IBAction)addPole:(id)sender {
-    [stretchView unselectAllGameObjects];
+    [self.stretchView unselectAllGameObjects];
     
     GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
     gameObject.gameObjectType = kGameObjectTypeSwinger;
@@ -236,7 +237,7 @@
 //    CGSize newSize = CGSizeMake([gameObject size].width, [gameObject size].height/2);
 //    [gameObject setSize:newSize];
     
-    [stretchView addGameObject:gameObject isSelected:YES];
+    [self.stretchView addGameObject:gameObject isSelected:YES];
 }
 
 - (void) controlTextDidEndEditing:(NSNotification *)obj {
@@ -244,24 +245,39 @@
     
 
     if (textField == xPosition || textField == yPosition) {
-        //NSLog(@"SETTING PSITIOn SPEED");
-        [stretchView updateSelectedPosition:CGPointMake([xPosition floatValue], [yPosition floatValue])];
+        [self.stretchView updateSelectedPosition:CGPointMake([xPosition floatValue], [yPosition floatValue])];
     } else if (textField == period) {
-        //NSLog(@"SETTING SWING SPEED");
-        [stretchView updateSelectedPeriod:[period floatValue]];
+        [self.stretchView updateSelectedPeriod:[period floatValue]];
     } 
     else if (textField == ropeLength) {
-        [stretchView updateSelectedRopeLength:[ropeLength floatValue]];
+        [self.stretchView updateSelectedRopeLength:[ropeLength floatValue]];
+    }
+    else if (textField == grip) {
+        [self.stretchView updateSelectedGrip:[grip floatValue]];
+    }
+    else if (textField == poleScale) {
+        [self.stretchView updateSelectedPoleScale:[poleScale floatValue]];
+    }
+    else if (textField == windSpeed) {
+        [self.stretchView updateSelectedWindSpeed:[windSpeed floatValue]];
+    }
+    else if (textField == windDirection) {
+        [self.stretchView updateSelectedWindDirection:[windDirection stringValue]];
+    }
+    else if (textField == swingAngle) {
+        [self.stretchView updateSelectedSwingAngle:[swingAngle floatValue]];
     }
     else if (textField == levelField) {
-        [levelStepper setIntValue:[levelField intValue]];
-        [self loadLevel:[levelField intValue]];
+        if ([textField intValue] != [levelStepper intValue]) {
+            [levelStepper setIntValue:[levelField intValue]];
+            [self loadLevel:[levelField intValue]];
+        }
     }
 }
 
 - (IBAction)stepperAction:(id)sender {
     if ([levelStepper intValue] < [levels count]) {
-        NSArray *levelItems = [stretchView levelForSerialization];
+        NSArray *levelItems = [self.stretchView levelForSerialization];
         NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
         [levels setValue:levelItems forKey:currentLevel];
 
@@ -276,10 +292,10 @@
 - (IBAction)resizeCanvas:(id)sender {
     SetCanvasSizeWindowController *w = [[SetCanvasSizeWindowController alloc] initWithWindowNibName:@"SetCanvasSizeWindowController"];
     
-    w.width = [stretchView frame].size.width;
-    w.height = [stretchView frame].size.height;
-    w.deviceScreenWidth = stretchView.deviceScreenWidth;
-    w.deviceScreenHeight = stretchView.deviceScreenHeight;
+    w.width = [self.stretchView frame].size.width;
+    w.height = [self.stretchView frame].size.height;
+    w.deviceScreenWidth = self.stretchView.deviceScreenWidth;
+    w.deviceScreenHeight = self.stretchView.deviceScreenHeight;
 
     // Show document sheet
     [NSApp beginSheet:[w window] 
@@ -298,11 +314,11 @@
         CGFloat width = [w.widthField floatValue];
         CGFloat height = [w.heightField floatValue];
         CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
-        [stretchView setFrame:newFrame];
+        [self.stretchView setFrame:newFrame];
         
-        stretchView.deviceScreenWidth = [w.deviceWidthField floatValue];
-        stretchView.deviceScreenHeight = [w.deviceHeightField floatValue];
-        [stretchView setNeedsDisplay:YES];
+        self.stretchView.deviceScreenWidth = [w.deviceWidthField floatValue];
+        self.stretchView.deviceScreenHeight = [w.deviceHeightField floatValue];
+        [self.stretchView setNeedsDisplay:YES];
     }
     
 }

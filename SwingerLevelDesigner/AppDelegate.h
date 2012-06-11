@@ -11,8 +11,6 @@
 @class StretchView;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet StretchView *stretchView;
-
     NSMutableDictionary *levels;
     NSURL *fileName;
 }
@@ -36,8 +34,8 @@
 @property (assign) IBOutlet NSTextField *windSpeed;
 @property (assign) IBOutlet NSTextField *windDirection;
 @property (assign) IBOutlet NSTextField *swingAngle;
-
 @property (assign) IBOutlet NSStepper *levelStepper;
+@property (assign) IBOutlet StretchView *stretchView;
 
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)openLevel:(id)sender;

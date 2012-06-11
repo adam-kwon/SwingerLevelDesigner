@@ -7,6 +7,8 @@
 //
 
 #import "GameObject.h"
+#import "AppDelegate.h"
+#import "StretchView.h"
 
 @implementation GameObject
 
@@ -59,6 +61,10 @@
 
 // Origin is lower, left
 - (void) draw:(CGContextRef)ctx {
+    [self setScalesWhenResized:YES];
+    CGSize newSize = CGSizeMake(originalSize.width, originalSize.height*poleScale);
+    [self setSize:newSize];
+    
     NSRect imageRect;
     imageRect.origin = NSZeroPoint;
     imageRect.size = [self size];
@@ -76,7 +82,9 @@
     float y1 = position.y + [self size].height;
     
     float x2 = position.x + ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180);
-    float y2 = position.y + [self size].height-ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180);
+    
+    // divide by poleScale to keep length same regardless of whether pole is scaled
+    float y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/poleScale);
     
     [linePath moveToPoint:CGPointMake(x1, y1)];
     [linePath lineToPoint:CGPointMake(x2, y2)];
@@ -109,6 +117,9 @@
                         operation:NSCompositeSourceOver 
                          fraction:1.0];
     }
+    
+
+
 }
 
 - (void) setSize:(NSSize)aSize {
