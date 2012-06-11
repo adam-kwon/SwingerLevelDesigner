@@ -81,13 +81,24 @@
     //CGFloat pattern[2] = {2, 2};
     //[gridLinePath setLineDash:pattern count:2 phase:0];
     
-    float x1 = position.x + [self size].width/2;
-    float y1 = position.y + [self size].height;
-    
-    float x2 = position.x + ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180);
-    
-    // divide by poleScale to keep length same regardless of whether pole is scaled
-    float y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/poleScale);
+    float x1, x2, y1, y2;
+    if (gameObjectType == kGameObjectTypeSwinger) {
+        x1 = position.x + [self size].width/2;
+        y1 = position.y + [self size].height;
+        
+        x2 = position.x + [self size].width/2 + ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180);
+        
+        // divide by poleScale to keep length same regardless of whether pole is scaled
+        y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/poleScale);
+    } else if (gameObjectType == kGameObjectTypeCannon) {
+        x1 = position.x + [self size].width/2;
+        y1 = position.y;
+        
+        x2 = position.x + [self size].width/2 + 200*cos(cannonRotationAngle*M_PI/180);
+        
+        // divide by poleScale to keep length same regardless of whether pole is scaled
+        y2 = position.y + (200*sin(cannonRotationAngle*M_PI/180)/poleScale);        
+    }
     
     [linePath moveToPoint:CGPointMake(x1, y1)];
     [linePath lineToPoint:CGPointMake(x2, y2)];

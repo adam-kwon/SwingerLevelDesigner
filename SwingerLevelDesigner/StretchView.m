@@ -201,6 +201,7 @@
 - (void) updateSelectedCannonRotationAngle:(CGFloat)angle {
     GameObject *gameObject = [self getSelectedGameObject];
     gameObject.cannonRotationAngle = angle;    
+    [self setNeedsDisplay:YES];    
 }
 
 - (void) updateSelectedPeriod:(CGFloat)newSwingSpeed {
