@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "GameObject.h"
 
-
 @interface StretchView : NSView<NSTextDelegate> {
     NSBezierPath *path;
     NSMutableArray *gameObjects;
@@ -26,7 +25,13 @@
 - (void) addGameObject:(GameObject*)gameObject isSelected:(BOOL)selected;
 
 - (void) updateSelectedPosition:(CGPoint)newPos;
-- (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed;
+- (void) updateSelectedPeriod:(CGFloat)newSwingSpeed;
+- (void) updateSelectedRopeLength:(CGFloat)ropeLength;
+- (void) updateSelectedSwingAngle:(CGFloat)swingAngle;
+- (void) updateSelectedPoleScale:(CGFloat)poleScale;
+- (void) updateSelectedGrip:(CGFloat)grip;
+- (void) updateSelectedWindSpeed:(CGFloat)windSpeed;
+- (void) updateSelectedWindDirection:(NSString*)windDirection;
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;

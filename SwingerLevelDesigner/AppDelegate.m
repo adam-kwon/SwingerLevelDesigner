@@ -18,10 +18,16 @@
 @synthesize yPosition;
 @synthesize gameWorldSize;
 @synthesize position;
-@synthesize swingSpeed;
+@synthesize period;
 @synthesize levelStepper;
 @synthesize levelField;
 @synthesize maxLevelField;
+@synthesize ropeLength;
+@synthesize windDirection;
+@synthesize windSpeed;
+@synthesize swingAngle;
+@synthesize grip;
+@synthesize poleScale;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -240,10 +246,14 @@
     if (textField == xPosition || textField == yPosition) {
         //NSLog(@"SETTING PSITIOn SPEED");
         [stretchView updateSelectedPosition:CGPointMake([xPosition floatValue], [yPosition floatValue])];
-    } else if (textField == swingSpeed) {
+    } else if (textField == period) {
         //NSLog(@"SETTING SWING SPEED");
-        [stretchView updateSelectedSwingSpeed:[swingSpeed floatValue]];
-    } else if (textField == levelField) {
+        [stretchView updateSelectedPeriod:[period floatValue]];
+    } 
+    else if (textField == ropeLength) {
+        [stretchView updateSelectedRopeLength:[ropeLength floatValue]];
+    }
+    else if (textField == levelField) {
         [levelStepper setIntValue:[levelField intValue]];
         [self loadLevel:[levelField intValue]];
     }

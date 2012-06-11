@@ -18,8 +18,16 @@ typedef enum {
     BOOL selected;
     BOOL moveHandleSelected;
     BOOL resizeHandleSelected;
+    CGSize originalSize;
     CGPoint position;
-    CGFloat swingSpeed;
+    CGFloat ropeLength;
+    CGFloat period;
+    CGFloat poleScale;
+    CGFloat swingAngle;
+    CGFloat grip;
+    CGFloat windSpeed;
+    NSString *windDirection;
+    
     NSImage *moveHandle;
     NSImage *resizeHandle;
 }
@@ -37,6 +45,12 @@ typedef enum {
 @property (nonatomic, readwrite, assign) BOOL moveHandleSelected;
 @property (nonatomic, readwrite, assign) BOOL resizeHandleSelected;
 @property (nonatomic, readwrite, assign) GameObjectType gameObjectType;
-@property (nonatomic, readwrite, assign) CGFloat swingSpeed;
+@property (nonatomic, readwrite, assign) CGFloat period;
+@property (nonatomic, readwrite, assign) CGFloat ropeLength;
+@property (nonatomic, readwrite, assign) CGFloat poleScale;
+@property (nonatomic, readwrite, assign) CGFloat swingAngle;
+@property (nonatomic, readwrite, assign) CGFloat grip;
+@property (nonatomic, readwrite, assign) CGFloat windSpeed;
+@property (retain) NSString *windDirection;
 
 @end

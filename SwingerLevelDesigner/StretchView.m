@@ -13,6 +13,7 @@
 @interface StretchView(Private)
 - (void) drawGrid:(CGContextRef)ctx;
 - (void) updateSelectedInfo;
+- (void) updateDisplay:(id)p;
 - (GameObject*) getSelectedGameObject;
 - (GameObject*) getMoveHandleSelectedGameObject;
 - (GameObject*) getResizeHandleSelectedGameObject;
@@ -34,11 +35,15 @@
         
         deviceScreenWidth = 480*2;
         deviceScreenHeight = 320*2;
+        
+        //[NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(updateDisplay:) userInfo:nil repeats:YES];
     }
     
     return self;
 }
 
+- (void) updateDisplay:(id)p {
+}
 
 - (void) drawGrid:(CGContextRef)ctx {
     CGRect frame = [self frame];
@@ -170,12 +175,18 @@
     [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.y]];
     
     [appDelegate.position setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x / deviceScreenWidth]];
-    [appDelegate.swingSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.swingSpeed]];
+    [appDelegate.period setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.period]];
+    [appDelegate.ropeLength setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.ropeLength]];
+    [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.poleScale]];
+    [appDelegate.swingAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.swingAngle]];
+    [appDelegate.grip setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.grip]];
+    [appDelegate.windSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.windSpeed]];
+    [appDelegate.windDirection setStringValue:gameObject == nil || gameObject.windDirection == nil ? @"" : gameObject.windDirection];
 }
 
-- (void) updateSelectedSwingSpeed:(CGFloat)newSwingSpeed {
+- (void) updateSelectedPeriod:(CGFloat)newSwingSpeed {
     GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.swingSpeed = newSwingSpeed;
+    gameObject.period = newSwingSpeed;
 }
 
 - (void) updateSelectedPosition:(CGPoint)newPos {
@@ -184,12 +195,45 @@
     [self setNeedsDisplay:YES];
 }
 
+- (void) updateSelectedRopeLength:(CGFloat)ropeLength {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.ropeLength = ropeLength;
+    [self setNeedsDisplay:YES];    
+}
+
 - (void) unselectAllGameObjects {
     for (GameObject *gameObject in gameObjects) {
         gameObject.selected = NO;
         gameObject.moveHandleSelected = NO;
         gameObject.resizeHandleSelected = NO;
     }    
+}
+
+- (void) updateSelectedSwingAngle:(CGFloat)swingAngle {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.swingAngle = swingAngle;
+    [self setNeedsDisplay:YES];        
+}
+
+- (void) updateSelectedPoleScale:(CGFloat)poleScale {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.poleScale = poleScale;
+    [self setNeedsDisplay:YES];        
+}
+
+- (void) updateSelectedGrip:(CGFloat)grip {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.grip = grip;
+}
+
+- (void) updateSelectedWindSpeed:(CGFloat)windSpeed {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.windSpeed = windSpeed;
+}
+
+- (void) updateSelectedWindDirection:(NSString*)windDirection {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.windDirection = windDirection;
 }
 
 #pragma mark Accessors
@@ -344,9 +388,17 @@
     NSMutableArray *gameItems = [NSMutableArray array];
     for (GameObject *gameObject in gameObjects) {
         NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
-        [levelDict setObject:@"Swinger" forKey:@"Type"];
+        if (gameObject.gameObjectType == kGameObjectTypeSwinger) {
+            [levelDict setObject:@"Catcher" forKey:@"Type"];
+        }
         [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject swingSpeed]] forKey:@"Speed"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject swingAngle]] forKey:@"SwingAngle"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject poleScale]] forKey:@"PoleScale"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject windSpeed]] forKey:@"WindSpeed"];
+        [levelDict setObject:[gameObject windDirection] forKey:@"WindDirection"];
         [gameItems addObject:levelDict];
     }
     
@@ -374,12 +426,28 @@
 - (void) loadLevel:(NSArray*)levelItems {
     for (NSDictionary *level in levelItems) {
         CGFloat position = [[level objectForKey:@"Position"] floatValue];
-        CGFloat swingSpeed = [[level objectForKey:@"Speed"] floatValue]; 
+        CGFloat period = [[level objectForKey:@"Period"] floatValue]; 
+        CGFloat grip = [[level objectForKey:@"Grip"] floatValue]; 
+        CGFloat swingAngle = [[level objectForKey:@"SwingAngle"] floatValue]; 
+        CGFloat poleScale = [[level objectForKey:@"PoleScale"] floatValue]; 
+        CGFloat windSpeed = [[level objectForKey:@"WindSpeed"] floatValue]; 
+        CGFloat ropeLength = [[level objectForKey:@"RopeLength"] floatValue]; 
+        NSString *windDirection = [level objectForKey:@"WindDirection"]; 
+        NSString *type = [level objectForKey:@"Type"]; 
         
         GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
-        gameObject.gameObjectType = kGameObjectTypeSwinger;
-        gameObject.swingSpeed = swingSpeed;
+        if ([@"Catcher" isEqualToString:type]) {
+            gameObject.gameObjectType = kGameObjectTypeSwinger;
+        }
+        gameObject.period = period;
         gameObject.position = CGPointMake(position*deviceScreenWidth, 0);
+        gameObject.ropeLength = ropeLength;
+        gameObject.grip = grip;
+        gameObject.swingAngle = swingAngle;
+        gameObject.poleScale = poleScale;
+        gameObject.windSpeed = windSpeed;
+        gameObject.windDirection = windDirection;
+        
         [self addGameObject:gameObject isSelected:NO];
     }
     [self setNeedsDisplay:YES];

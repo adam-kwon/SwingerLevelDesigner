@@ -13,9 +13,15 @@
 @synthesize position;
 @synthesize selected;
 @synthesize gameObjectType;
-@synthesize swingSpeed;
+@synthesize period;
 @synthesize moveHandleSelected;
 @synthesize resizeHandleSelected;
+@synthesize ropeLength;
+@synthesize grip;
+@synthesize poleScale;
+@synthesize windSpeed;
+@synthesize swingAngle;
+@synthesize windDirection;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x, position.y, self.size.width, self.size.height);
@@ -40,20 +46,45 @@
 
 - (id) initWithContentsOfFile:(NSString *)fileName {
     self = [super initWithContentsOfFile:fileName];
+    self.windDirection = @"";
+    self.poleScale = 1.0;
     moveHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-move-hi" 
                                                                                          ofType:@"png"]];
     
     resizeHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-scale-hi" 
                                                                                            ofType:@"png"]];
-
+    originalSize = [self size];
     return self;
 }
 
+// Origin is lower, left
 - (void) draw:(CGContextRef)ctx {
     NSRect imageRect;
     imageRect.origin = NSZeroPoint;
     imageRect.size = [self size];
     [self drawAtPoint:position fromRect:imageRect operation:NSCompositeSourceOver fraction:1.0];
+    
+    // Factor used to scale rope length so that it matches length seen in game.
+    // This is just eye-balled. Saw what the ratio of rope length to pole length was in game.
+    float ropeHeightConversionFactor = [self size].height / 300;
+
+    NSBezierPath *linePath = [NSBezierPath bezierPath];
+    //CGFloat pattern[2] = {2, 2};
+    //[gridLinePath setLineDash:pattern count:2 phase:0];
+    
+    float x1 = position.x + [self size].width/2;
+    float y1 = position.y + [self size].height;
+    
+    float x2 = position.x + ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180);
+    float y2 = position.y + [self size].height-ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180);
+    
+    [linePath moveToPoint:CGPointMake(x1, y1)];
+    [linePath lineToPoint:CGPointMake(x2, y2)];
+    
+    [[NSColor blueColor] set];
+    [linePath setLineWidth:2.0];
+    [linePath stroke];
+
     
     
     if (selected) {
@@ -78,6 +109,11 @@
                         operation:NSCompositeSourceOver 
                          fraction:1.0];
     }
+}
+
+- (void) setSize:(NSSize)aSize {
+    [super setSize:aSize];
+    poleScale = aSize.height / originalSize.height;
 }
 
 - (BOOL) isPointInImage:(CGPoint)point {

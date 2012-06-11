@@ -24,12 +24,19 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSTextField *position;
-@property (assign) IBOutlet NSTextField *swingSpeed;
+@property (assign) IBOutlet NSTextField *ropeLength;
+@property (assign) IBOutlet NSTextField *period;
 @property (assign) IBOutlet NSTextField *gameWorldSize;
 @property (assign) IBOutlet NSTextField *xPosition;
 @property (assign) IBOutlet NSTextField *yPosition;
 @property (assign) IBOutlet NSTextField *levelField;
 @property (assign) IBOutlet NSTextField *maxLevelField;
+@property (assign) IBOutlet NSTextField *grip;
+@property (assign) IBOutlet NSTextField *poleScale;
+@property (assign) IBOutlet NSTextField *windSpeed;
+@property (assign) IBOutlet NSTextField *windDirection;
+@property (assign) IBOutlet NSTextField *swingAngle;
+
 @property (assign) IBOutlet NSStepper *levelStepper;
 
 - (IBAction)showOpenPanel:(id)sender;
