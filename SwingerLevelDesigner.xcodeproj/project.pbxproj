@@ -13,6 +13,7 @@
 		390ADF5B15741BF500A3F01A /* btn-move-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF5A15741BF500A3F01A /* btn-move-hi.png */; };
 		390ADF611574685200A3F01A /* btn-scale-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF601574685200A3F01A /* btn-scale-hi.png */; };
 		391D412D1586D9A500F80DE6 /* Swing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 391D412C1586D9A500F80DE6 /* Swing1.png */; };
+		391D41321586DBA700F80DE6 /* Swing1.icns in Resources */ = {isa = PBXBuildFile; fileRef = 391D41311586DBA700F80DE6 /* Swing1.icns */; };
 		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
 		39258DEF156F2E3600311702 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 39258DED156F2E3600311702 /* InfoPlist.strings */; };
 		39258DF1156F2E3600311702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF0156F2E3600311702 /* main.m */; };
@@ -33,6 +34,7 @@
 		390ADF5A15741BF500A3F01A /* btn-move-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-move-hi.png"; sourceTree = "<group>"; };
 		390ADF601574685200A3F01A /* btn-scale-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-scale-hi.png"; sourceTree = "<group>"; };
 		391D412C1586D9A500F80DE6 /* Swing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Swing1.png; path = ../Swing1.png; sourceTree = "<group>"; };
+		391D41311586DBA700F80DE6 /* Swing1.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Swing1.icns; path = resources/macos/Swing1.icns; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39258DE4156F2E3600311702 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		39258DE7156F2E3600311702 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -69,6 +71,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				391D41311586DBA700F80DE6 /* Swing1.icns */,
 				390ADF601574685200A3F01A /* btn-scale-hi.png */,
 				391D412C1586D9A500F80DE6 /* Swing1.png */,
 				399C3A0515865419005537B6 /* Cannon.png */,
@@ -208,6 +211,7 @@
 				399C3A0615865419005537B6 /* Cannon.png in Resources */,
 				399C3A0E1586736C005537B6 /* finalPlatform.png in Resources */,
 				391D412D1586D9A500F80DE6 /* Swing1.png in Resources */,
+				391D41321586DBA700F80DE6 /* Swing1.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
