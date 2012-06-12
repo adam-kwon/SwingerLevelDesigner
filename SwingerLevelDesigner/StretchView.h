@@ -42,6 +42,7 @@
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
+- (IBAction)resetZoom:(id)sender;
 
 @property (assign) float opacity;
 @property (assign) CGFloat deviceScreenHeight;

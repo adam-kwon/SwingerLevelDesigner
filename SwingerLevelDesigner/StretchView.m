@@ -149,6 +149,17 @@
     [self setNeedsDisplay:YES];
 }
 
+- (IBAction)resetZoom:(id)sender {
+    scale = 1.0;
+    
+    NSSize s = [self convertSize:NSMakeSize(1,1) fromView:nil];
+    [self scaleUnitSquareToSize:s];    
+    
+    [self scaleUnitSquareToSize:CGSizeMake(scale, scale)];    
+    [self setNeedsDisplay:YES];    
+}
+
+
 #pragma mark Game Object selection and manipulation
 
 - (GameObject*) getResizeHandleSelectedGameObject {
