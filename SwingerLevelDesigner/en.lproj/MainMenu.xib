@@ -1352,7 +1352,7 @@
 										<object class="NSCustomView" id="1012778650">
 											<reference key="NSNextResponder" ref="1011522955"/>
 											<int key="NSvFlags">8493</int>
-											<string key="NSFrameSize">{960, 1280}</string>
+											<string key="NSFrameSize">{2048, 1280}</string>
 											<reference key="NSSuperview" ref="1011522955"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="112575440"/>
@@ -1403,7 +1403,7 @@
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="872728037"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSPercent">0.984375</double>
+									<double key="NSPercent">0.46142578125</double>
 								</object>
 							</array>
 							<string key="NSFrameSize">{960, 640}</string>

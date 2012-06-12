@@ -71,10 +71,20 @@
 
     
     CGContextSaveGState(ctx);
-    
     [[NSColor blueColor] set];
     for (int i = 0; i < frame.size.width/deviceScreenWidth; i++) {
         CGContextTranslateCTM(ctx, deviceScreenWidth, 0);
+        [gridLinePath stroke];
+    }    
+    CGContextRestoreGState(ctx);
+
+    
+    CGContextSaveGState(ctx);    
+    [gridLinePath moveToPoint:CGPointMake(0, 0)];
+    [gridLinePath lineToPoint:CGPointMake(frame.size.width, 0)];
+    [[NSColor blueColor] set];
+    for (int i = 0; i < frame.size.height/deviceScreenHeight; i++) {
+        CGContextTranslateCTM(ctx, 0, deviceScreenHeight);
         [gridLinePath stroke];
     }
     
