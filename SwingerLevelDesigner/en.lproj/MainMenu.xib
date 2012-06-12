@@ -2349,7 +2349,7 @@
 											<object class="NSButtonCell" key="NSCell" id="986395914">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134217728</int>
-												<string key="NSContents">Add Pole</string>
+												<string key="NSContents">Pole</string>
 												<reference key="NSSupport" ref="900326200"/>
 												<string key="NSCellIdentifier">_NS:9</string>
 												<reference key="NSControlView" ref="725030794"/>
@@ -2373,7 +2373,7 @@
 											<object class="NSButtonCell" key="NSCell" id="953654925">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134217728</int>
-												<string key="NSContents">Add Cannon</string>
+												<string key="NSContents">Cannon</string>
 												<reference key="NSSupport" ref="900326200"/>
 												<string key="NSCellIdentifier">_NS:9</string>
 												<reference key="NSControlView" ref="405518284"/>
@@ -2397,7 +2397,7 @@
 											<object class="NSButtonCell" key="NSCell" id="493254656">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134217728</int>
-												<string key="NSContents">Add Final Platform</string>
+												<string key="NSContents">Final Platform</string>
 												<reference key="NSSupport" ref="900326200"/>
 												<string key="NSCellIdentifier">_NS:9</string>
 												<reference key="NSControlView" ref="400970305"/>
@@ -2426,7 +2426,7 @@
 							<object class="NSTextFieldCell" key="NSTitleCell">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">0</int>
-								<string key="NSContents">Game Objects</string>
+								<string key="NSContents">Add Game Objects</string>
 								<reference key="NSSupport" ref="26"/>
 								<reference key="NSBackgroundColor" ref="248818949"/>
 								<object class="NSColor" key="NSTextColor">
@@ -5096,8 +5096,8 @@
 						<reference key="object" ref="479207430"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="400970305"/>
-							<reference ref="405518284"/>
 							<reference ref="725030794"/>
+							<reference ref="405518284"/>
 						</array>
 						<reference key="parent" ref="439893737"/>
 					</object>
