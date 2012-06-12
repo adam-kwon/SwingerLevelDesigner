@@ -131,7 +131,7 @@
 
 
 - (IBAction)zoomIn:(id)sender {
-    scale += 0.05;
+    scale += 0.025;
 
     NSSize s = [self convertSize:NSMakeSize(1,1) fromView:nil];
     [self scaleUnitSquareToSize:s];    
@@ -140,7 +140,7 @@
     [self setNeedsDisplay:YES];
 }
 - (IBAction)zoomOut:(id)sender {
-    scale -= 0.05;
+    scale -= 0.025;
     
     NSSize s = [self convertSize:NSMakeSize(1,1) fromView:nil];
     [self scaleUnitSquareToSize:s];    
