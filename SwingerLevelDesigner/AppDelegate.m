@@ -194,6 +194,12 @@
     }
 }
 
+- (IBAction)showHelp:(id)sender {
+    NSURL * helpFile = [[NSBundle mainBundle] URLForResource:@"help" withExtension:@"html"];
+    [[NSWorkspace sharedWorkspace] openURL:helpFile];
+}
+
+
 - (void) synchronizeCurrentLevel {
     NSArray *levelItems = [self.stretchView levelForSerialization];
     NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
