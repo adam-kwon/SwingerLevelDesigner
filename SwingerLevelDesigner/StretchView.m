@@ -383,32 +383,56 @@
 
 - (void)keyDown:(NSEvent *)theEvent {
     GameObject *gameObject = [self getSelectedGameObject];
-    switch ([theEvent keyCode]) {
-        case 126:       // up arrow
-            gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y + 1);
-            [self updateSelectedInfo];
-            break;
-        case 125:       // down arrow
-            gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y - 1);
-            [self updateSelectedInfo];
-            break;
-        case 124:       // right arrow
-            gameObject.position = CGPointMake(gameObject.position.x + 1, gameObject.position.y);
-            [self updateSelectedInfo];
-            break;
-        case 123:       // left arrow
-            gameObject.position = CGPointMake(gameObject.position.x - 1, gameObject.position.y);
-            [self updateSelectedInfo];
-            break;
-        case 51:        // delete key
-            [gameObjects removeObject:gameObject];
-            break;
-        default:
-            NSLog(@"Key pressed: %@", theEvent);
-            break;
+    if ([theEvent modifierFlags] & NSShiftKeyMask) {
+        switch ([theEvent keyCode]) {
+            case 126:       // up arrow
+                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y + 10);
+                [self updateSelectedInfo];
+                break;
+            case 125:       // down arrow
+                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y - 10);
+                [self updateSelectedInfo];
+                break;
+            case 124:       // right arrow
+                gameObject.position = CGPointMake(gameObject.position.x + 10, gameObject.position.y);
+                [self updateSelectedInfo];
+                break;
+            case 123:       // left arrow
+                gameObject.position = CGPointMake(gameObject.position.x - 10, gameObject.position.y);
+                [self updateSelectedInfo];
+                break;
+            default:
+                NSLog(@"Key pressed: %@", theEvent);
+                break;
+        }        
+    } else {
+        switch ([theEvent keyCode]) {
+            case 126:       // up arrow
+                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y + 1);
+                [self updateSelectedInfo];
+                break;
+            case 125:       // down arrow
+                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y - 1);
+                [self updateSelectedInfo];
+                break;
+            case 124:       // right arrow
+                gameObject.position = CGPointMake(gameObject.position.x + 1, gameObject.position.y);
+                [self updateSelectedInfo];
+                break;
+            case 123:       // left arrow
+                gameObject.position = CGPointMake(gameObject.position.x - 1, gameObject.position.y);
+                [self updateSelectedInfo];
+                break;
+            case 51:        // delete key
+                [gameObjects removeObject:gameObject];
+                break;
+            default:
+                NSLog(@"Key pressed: %@", theEvent);
+                break;
+        }
+    //    [self interpretKeyEvents:[NSArray arrayWithObject:theEvent]];
     }
     [self setNeedsDisplay:YES];
-//    [self interpretKeyEvents:[NSArray arrayWithObject:theEvent]];
 }
 
 - (void)insertText:(NSString*)insertString {
