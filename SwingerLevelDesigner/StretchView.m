@@ -326,7 +326,10 @@
     GameObject *gameObject = [self getMoveHandleSelectedGameObject];
     if (gameObject != nil) {
         CGFloat deltaX = currentPoint.x - downPoint.x;
-        CGFloat deltaY = currentPoint.y - downPoint.y;
+        CGFloat deltaY = 0;
+        if (!([theEvent modifierFlags] & NSShiftKeyMask)) {
+            deltaY = currentPoint.y - downPoint.y;
+        }
         
         gameObject.position = CGPointMake(gameObject.position.x + deltaX, gameObject.position.y + deltaY);
         downPoint = currentPoint;
@@ -380,6 +383,7 @@
     [self setNeedsDisplay:YES];
     return YES;
 }
+
 
 - (void)keyDown:(NSEvent *)theEvent {
     GameObject *gameObject = [self getSelectedGameObject];

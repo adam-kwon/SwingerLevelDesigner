@@ -15,7 +15,6 @@
     float opacity;
     NSPoint downPoint;
     NSPoint currentPoint;
-        
     CGFloat scale;
     CGFloat deviceScreenHeight;
     CGFloat deviceScreenWidth;
