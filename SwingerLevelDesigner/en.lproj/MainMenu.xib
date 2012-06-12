@@ -1808,7 +1808,7 @@
 												<object class="NSComboTableView" key="NSTableView" id="189437869">
 													<reference key="NSNextResponder"/>
 													<int key="NSvFlags">274</int>
-													<string key="NSFrameSize">{13, 21}</string>
+													<string key="NSFrameSize">{13, 168}</string>
 													<reference key="NSSuperview"/>
 													<reference key="NSWindow"/>
 													<string key="NSReuseIdentifierKey">_NS:24</string>
@@ -2347,14 +2347,14 @@
 											</object>
 										</object>
 									</array>
-									<string key="NSFrame">{{1, 1}, {217, 119}}</string>
+									<string key="NSFrame">{{1, 1}, {181, 119}}</string>
 									<reference key="NSSuperview" ref="188116458"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="496244158"/>
 									<string key="NSReuseIdentifierKey">_NS:11</string>
 								</object>
 							</array>
-							<string key="NSFrame">{{473, 704}, {219, 135}}</string>
+							<string key="NSFrame">{{473, 704}, {183, 135}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="529405167"/>
@@ -3995,8 +3995,8 @@
 							<reference ref="53478473"/>
 							<reference ref="378733104"/>
 							<reference ref="274033838"/>
-							<reference ref="188116458"/>
 							<reference ref="400970305"/>
+							<reference ref="188116458"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -5376,7 +5376,6 @@
 						<string key="poleScale">NSTextField</string>
 						<string key="position">NSTextField</string>
 						<string key="ropeLength">NSTextField</string>
-						<string key="scrollView">NSScrollView</string>
 						<string key="stretchView">StretchView</string>
 						<string key="swingAngle">NSTextField</string>
 						<string key="windDirection">NSComboBox</string>
@@ -5433,10 +5432,6 @@
 						<object class="IBToOneOutletInfo" key="ropeLength">
 							<string key="name">ropeLength</string>
 							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="scrollView">
-							<string key="name">scrollView</string>
-							<string key="candidateClassName">NSScrollView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="stretchView">
 							<string key="name">stretchView</string>
