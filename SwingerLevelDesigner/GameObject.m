@@ -53,6 +53,10 @@
     self = [super initWithContentsOfFile:fileName];
     self.windDirection = @"";
     self.poleScale = 1.0;
+    self.grip = 2.0;
+    self.period = 2.0;
+    self.swingAngle = 55;
+    self.ropeLength = 150;
     moveHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-move-hi" 
                                                                                          ofType:@"png"]];
     
