@@ -90,7 +90,7 @@
         x1 = position.x + [self size].width/2;
         y1 = position.y + [self size].height;
         
-        x2 = position.x + [self size].width/2 + ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180);
+        x2 = position.x + [self size].width/2 + (ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180))/poleScale;
         
         // divide by poleScale to keep length same regardless of whether pole is scaled
         y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/poleScale);
