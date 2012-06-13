@@ -195,5 +195,7 @@
     return NO;    
 }
 
-
+- (void) dealloc {
+    [lbl removeFromSuperview];
+}
 @end
