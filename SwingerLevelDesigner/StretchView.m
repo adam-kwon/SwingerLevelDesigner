@@ -523,13 +523,16 @@
 
         NSString *type = [level objectForKey:@"Type"]; 
         if ([@"Catcher" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]
+                                                             parent:self];
             gameObject.gameObjectType = kGameObjectTypeSwinger;
         } else if ([@"Cannon" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]];
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]
+                                                             parent:self];
             gameObject.gameObjectType = kGameObjectTypeCannon;
         } else if ([@"FinalPlatform" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]];
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]
+                                                             parent:self];
             gameObject.gameObjectType = kGameObjectTypeFinalPlatform;
         }
         

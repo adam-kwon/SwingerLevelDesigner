@@ -18,6 +18,7 @@
     CGFloat scale;
     CGFloat deviceScreenHeight;
     CGFloat deviceScreenWidth;
+    
 }
 
 

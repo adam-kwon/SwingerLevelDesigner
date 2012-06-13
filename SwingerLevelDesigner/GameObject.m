@@ -49,7 +49,7 @@
     return rect;    
 }
 
-- (id) initWithContentsOfFile:(NSString *)fileName {
+- (id) initWithContentsOfFile:(NSString *)fileName parent:(NSView*)parentView {
     self = [super initWithContentsOfFile:fileName];
     self.windDirection = @"";
     self.poleScale = 1.0;
@@ -63,11 +63,22 @@
     resizeHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-scale-hi" 
                                                                                            ofType:@"png"]];
     originalSize = [self size];
+
+    parent = parentView;
+    
+    lbl = [[NSTextView alloc] initWithFrame:CGRectMake(0, 40, 400, 60)];
+    [lbl setString:@""];
+    [lbl setDrawsBackground:NO];
+    [lbl setFont:[NSFont fontWithName:@"Courier New" size:11]];
+    [parent addSubview:lbl];
+    
     return self;
 }
 
+
 // Origin is lower, left
 - (void) draw:(CGContextRef)ctx {
+    
     [self setScalesWhenResized:YES];
     CGSize newSize = CGSizeMake(originalSize.width, originalSize.height*poleScale);
     [self setSize:newSize];
@@ -142,8 +153,20 @@
                          fraction:1.0];
     }
     
-
-
+    if (gameObjectType == kGameObjectTypeSwinger) {
+        NSString *str;
+        
+        str = [NSString stringWithFormat:@"%15s %.2f secs\n%15s %.2f\n%15s %.2f\n%15s %@", 
+                         "Period:", "Grip:", "Wind speed:", "Wind direction:", period, grip, windSpeed, windDirection];
+        
+        [lbl setString:str];
+        [lbl setFrameOrigin:CGPointMake(position.x + [self size].width, position.y)];
+    } else {
+        if (lbl != nil) {
+            [lbl removeFromSuperview];
+            lbl = nil;
+        }
+    }
 }
 
 - (void) setSize:(NSSize)aSize {

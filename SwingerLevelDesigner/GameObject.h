@@ -33,10 +33,14 @@ typedef enum {
     CGFloat cannonForce;
     NSString *windDirection;
     
+    NSView *parent;
+    NSTextView *lbl;
+
     NSImage *moveHandle;
     NSImage *resizeHandle;
 }
 
+- (id) initWithContentsOfFile:(NSString *)fileName parent:(NSView*)parentView;
 - (CGRect) imageRect;
 - (CGRect) moveHandleRect;
 - (CGRect) resizeHandleRect;

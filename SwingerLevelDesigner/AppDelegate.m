@@ -241,7 +241,8 @@
 - (IBAction)addFinalPlatform:(id)sender {
     [self.stretchView unselectAllGameObjects];
     
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]];
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"] 
+                                                                 parent:self.stretchView];
     gameObject.gameObjectType = kGameObjectTypeFinalPlatform;    
     
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
@@ -255,7 +256,8 @@
 - (IBAction)addCannon:(id)sender {
     [self.stretchView unselectAllGameObjects];
     
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]];
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]
+                                                                 parent:self.stretchView];
     gameObject.gameObjectType = kGameObjectTypeCannon;
     
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
@@ -268,7 +270,8 @@
 - (IBAction)addPole:(id)sender {
     [self.stretchView unselectAllGameObjects];
     
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]];
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]
+                                                                 parent:self.stretchView];
     gameObject.gameObjectType = kGameObjectTypeSwinger;
 
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
