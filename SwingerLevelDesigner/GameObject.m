@@ -112,13 +112,13 @@
         [linePath setLineWidth:2.0];
         [linePath stroke];
     } else if (gameObjectType == kGameObjectTypeCannon) {
-        x1 = position.x + [self size].width/2;
-        y1 = position.y;
+        x1 = position.x + [self size].width/2 + 30;
+        y1 = position.y + 190;
         
-        x2 = position.x + [self size].width/2 + 200*cos(cannonRotationAngle*M_PI/180);
+        x2 = position.x + [self size].width/2 + 30 + 200*cos((90-cannonRotationAngle)*M_PI/180);
         
         // divide by poleScale to keep length same regardless of whether pole is scaled
-        y2 = position.y + (200*sin(cannonRotationAngle*M_PI/180)/poleScale);        
+        y2 = position.y + 190 + (200*sin((90-cannonRotationAngle)*M_PI/180)/poleScale);        
         [linePath moveToPoint:CGPointMake(x1, y1)];
         [linePath lineToPoint:CGPointMake(x2, y2)];
         
