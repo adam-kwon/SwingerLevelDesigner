@@ -48,6 +48,7 @@
 - (IBAction)addPole:(id)sender;
 - (IBAction)addLevel:(id)sender;
 - (IBAction)addCannon:(id)sender;
+- (IBAction)addDummy:(id)sender;
 - (IBAction)addFinalPlatform:(id)sender;
 - (IBAction)saveAs:(id)sender;
 - (IBAction)save:(id)sender;

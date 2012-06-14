@@ -479,6 +479,9 @@
             case kGameObjectTypeFinalPlatform:
                 [levelDict setObject:@"FinalPlatform" forKey:@"Type"];
                 break;                
+            case kGameObjectTypeDummy:
+                [levelDict setObject:@"Dummy" forKey:@"Type"];
+                break;                                
             default:
                 break;
         }
@@ -534,6 +537,10 @@
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]
                                                              parent:self];
             gameObject.gameObjectType = kGameObjectTypeFinalPlatform;
+        } else if ([@"Dummy" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dummy" ofType:@"png"]
+                                                             parent:self];
+            gameObject.gameObjectType = kGameObjectTypeDummy;            
         }
         
         if (gameObject != nil) {
