@@ -466,6 +466,7 @@
  
 #pragma mark Level serialization and loading
 - (NSArray*) levelForSerialization {
+    BOOL addCatcherProperties = YES;
     NSMutableArray *gameItems = [NSMutableArray array];
     for (GameObject *gameObject in gameObjects) {
         NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
@@ -482,20 +483,27 @@
             case kGameObjectTypeDummy:
                 [levelDict setObject:@"Dummy" forKey:@"Type"];
                 break;                                
+            case kGameObjectTypeStar:
+                [levelDict setObject:@"Star" forKey:@"Type"];
+                [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
+                addCatcherProperties = NO;
+                break;                                
             default:
                 break;
         }
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject swingAngle]] forKey:@"SwingAngle"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject poleScale]] forKey:@"PoleScale"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject windSpeed]] forKey:@"WindSpeed"];
-        [levelDict setObject:[gameObject windDirection] == nil ? @"" : [gameObject windDirection] forKey:@"WindDirection"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonSpeed]] forKey:@"Speed"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonForce]] forKey:@"Force"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonRotationAngle]] forKey:@"RotationAngle"];
+        if (addCatcherProperties) {
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject swingAngle]] forKey:@"SwingAngle"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject poleScale]] forKey:@"PoleScale"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject windSpeed]] forKey:@"WindSpeed"];
+            [levelDict setObject:[gameObject windDirection] == nil ? @"" : [gameObject windDirection] forKey:@"WindDirection"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonSpeed]] forKey:@"Speed"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonForce]] forKey:@"Force"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonRotationAngle]] forKey:@"RotationAngle"];
+        }
         [gameItems addObject:levelDict];
     }
     
@@ -541,20 +549,27 @@
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dummy" ofType:@"png"]
                                                              parent:self];
             gameObject.gameObjectType = kGameObjectTypeDummy;            
+        } else if ([@"Star" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]
+                                                             parent:self];
+            gameObject.gameObjectType = kGameObjectTypeStar;
         }
         
         if (gameObject != nil) {
-            gameObject.period = [[level objectForKey:@"Period"] floatValue];
             gameObject.position = CGPointMake([[level objectForKey:@"Position"] floatValue]*deviceScreenWidth, 0);
-            gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
-            gameObject.grip = [[level objectForKey:@"Grip"] floatValue];
-            gameObject.swingAngle = [[level objectForKey:@"SwingAngle"] floatValue];
-            gameObject.poleScale = [[level objectForKey:@"PoleScale"] floatValue];
-            gameObject.windSpeed = [[level objectForKey:@"WindSpeed"] floatValue];
-            gameObject.windDirection = [level objectForKey:@"WindDirection"];
-            gameObject.cannonForce = [[level objectForKey:@"Force"] floatValue];
-            gameObject.cannonRotationAngle = [[level objectForKey:@"RotationAngle"] floatValue];
-            gameObject.cannonSpeed = [[level objectForKey:@"Speed"] floatValue];
+
+            if (gameObject.gameObjectType != kGameObjectTypeStar) {
+                gameObject.period = [[level objectForKey:@"Period"] floatValue];
+                gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
+                gameObject.grip = [[level objectForKey:@"Grip"] floatValue];
+                gameObject.swingAngle = [[level objectForKey:@"SwingAngle"] floatValue];
+                gameObject.poleScale = [[level objectForKey:@"PoleScale"] floatValue];
+                gameObject.windSpeed = [[level objectForKey:@"WindSpeed"] floatValue];
+                gameObject.windDirection = [level objectForKey:@"WindDirection"];
+                gameObject.cannonForce = [[level objectForKey:@"Force"] floatValue];
+                gameObject.cannonRotationAngle = [[level objectForKey:@"RotationAngle"] floatValue];
+                gameObject.cannonSpeed = [[level objectForKey:@"Speed"] floatValue];
+            }
             
             [self addGameObject:gameObject isSelected:NO];
         }

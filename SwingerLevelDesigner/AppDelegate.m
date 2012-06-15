@@ -281,6 +281,20 @@
     [self.stretchView addGameObject:gameObject isSelected:YES];
 }
 
+- (IBAction)addStar:(id)sender {
+    [self.stretchView unselectAllGameObjects];
+    
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]
+                                                                 parent:self.stretchView];
+    gameObject.gameObjectType = kGameObjectTypeStar;
+    
+    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
+    NSRect r = [sv documentVisibleRect];
+    gameObject.position = CGPointMake(r.origin.x, 0);
+    
+    [self.stretchView addGameObject:gameObject isSelected:YES];
+}
+
 
 - (IBAction)addPole:(id)sender {
     [self.stretchView unselectAllGameObjects];

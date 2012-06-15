@@ -50,6 +50,7 @@
 - (IBAction)addCannon:(id)sender;
 - (IBAction)addDummy:(id)sender;
 - (IBAction)addFinalPlatform:(id)sender;
+- (IBAction)addStar:(id)sender;
 - (IBAction)saveAs:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)stepperAction:(id)sender;
