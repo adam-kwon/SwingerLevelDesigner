@@ -311,7 +311,6 @@
     NSPoint p = [theEvent locationInWindow];
     downPoint = [self convertPoint:p fromView:nil];
     currentPoint = downPoint;
-
     [self unselectAllGameObjects];
     
     for (GameObject *gameObject in gameObjects) {

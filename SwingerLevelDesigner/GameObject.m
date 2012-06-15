@@ -69,6 +69,8 @@
     lbl = [[NSTextView alloc] initWithFrame:CGRectMake(0, 40, 400, 60)];
     [lbl setString:@""];
     [lbl setDrawsBackground:NO];
+    [lbl setSelectable:NO];
+    [lbl setEditable:NO];
     [lbl setFont:[NSFont fontWithName:@"Courier New" size:11]];
     [parent addSubview:lbl];
     
