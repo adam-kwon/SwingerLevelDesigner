@@ -195,7 +195,6 @@
     [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x]];
     [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.y]];
     
-    [appDelegate.position setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x / deviceScreenWidth]];
     [appDelegate.period setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.period]];
     [appDelegate.ropeLength setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.ropeLength]];
     [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.poleScale]];
@@ -466,7 +465,6 @@
  
 #pragma mark Level serialization and loading
 - (NSArray*) levelForSerialization {
-    BOOL addCatcherProperties = YES;
     NSMutableArray *gameItems = [NSMutableArray array];
     for (GameObject *gameObject in gameObjects) {
         NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
@@ -485,14 +483,15 @@
                 break;                                
             case kGameObjectTypeStar:
                 [levelDict setObject:@"Star" forKey:@"Type"];
-                [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
-                addCatcherProperties = NO;
                 break;                                
             default:
                 break;
         }
-        if (addCatcherProperties) {
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x / deviceScreenWidth] forKey:@"Position"];
+        
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x] forKey:@"XPosition"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].y] forKey:@"YPosition"];
+        
+        if (gameObject.gameObjectType != kGameObjectTypeStar) {
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
@@ -510,8 +509,8 @@
     NSArray *sortedGameItems = [gameItems sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2) {
         NSDictionary *item1 = (NSDictionary*) obj1;
         NSDictionary *item2 = (NSDictionary*) obj2;
-        CGFloat x1 = [[item1 objectForKey:@"Position"] floatValue];
-        CGFloat x2 = [[item2 objectForKey:@"Position"] floatValue];
+        CGFloat x1 = [[item1 objectForKey:@"XPosition"] floatValue];
+        CGFloat x2 = [[item2 objectForKey:@"XPosition"] floatValue];
         NSLog(@"comparing values = %f %f", x1, x2);
         if (x1 > x2) {
             return (NSComparisonResult) NSOrderedDescending;
@@ -556,7 +555,8 @@
         }
         
         if (gameObject != nil) {
-            gameObject.position = CGPointMake([[level objectForKey:@"Position"] floatValue]*deviceScreenWidth, 0);
+            gameObject.position = CGPointMake([[level objectForKey:@"XPosition"] floatValue],
+                                              [[level objectForKey:@"YPosition"] floatValue]);
 
             if (gameObject.gameObjectType != kGameObjectTypeStar) {
                 gameObject.period = [[level objectForKey:@"Period"] floatValue];

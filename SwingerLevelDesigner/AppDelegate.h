@@ -21,7 +21,6 @@
 - (void) synchronizeCurrentLevel;
 
 @property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSTextField *position;
 @property (assign) IBOutlet NSTextField *ropeLength;
 @property (assign) IBOutlet NSTextField *period;
 @property (assign) IBOutlet NSTextField *gameWorldSize;

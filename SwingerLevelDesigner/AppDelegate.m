@@ -17,7 +17,6 @@
 @synthesize xPosition;
 @synthesize yPosition;
 @synthesize gameWorldSize;
-@synthesize position;
 @synthesize period;
 @synthesize levelStepper;
 @synthesize levelField;
