@@ -98,26 +98,35 @@
 }
 
 - (void) loadLevel:(int)levelNumber {
-    CGFloat maxPosition = 0.0;
+    CGFloat maxXPosition = 0.0;
+    CGFloat maxYPosition = 0.0;
     NSArray *levelItems = [levels objectForKey:[NSString stringWithFormat:@"Level%d", levelNumber]];
     if ([levelItems count] > 0) {
         // Calculate canvas size
         for (NSDictionary *level in levelItems) {
-            CGFloat pos = [[level objectForKey:@"Position"] floatValue];
-            maxPosition = MAX(pos, maxPosition);
+            CGFloat xpos = [[level objectForKey:@"XPosition"] floatValue];
+            CGFloat ypos = [[level objectForKey:@"YPosition"] floatValue];
+            maxXPosition = MAX(xpos, maxXPosition);
+            maxYPosition = MAX(ypos, maxYPosition);
         }
         
-        maxPosition = MAX(maxPosition, 1);
+        maxXPosition = MAX(maxXPosition, 1);
+        maxYPosition = MAX(maxYPosition, 1);
         
-        CGFloat lastItemPosition = maxPosition * self.stretchView.deviceScreenWidth;
-        int multiples = lastItemPosition / self.stretchView.deviceScreenWidth;
-        CGFloat remainder = lastItemPosition - (self.stretchView.deviceScreenWidth * multiples);
-        if (remainder > 0.f) {
-            multiples++;
+        int xmultiples = maxXPosition / self.stretchView.deviceScreenWidth;
+        CGFloat remainderx = maxXPosition - (self.stretchView.deviceScreenWidth * xmultiples);
+        if (remainderx > 0.f) {
+            xmultiples++;
+        }
+
+        int ymultiples = maxYPosition / self.stretchView.deviceScreenHeight;
+        CGFloat remaindery = maxYPosition - (self.stretchView.deviceScreenHeight * ymultiples);
+        if (remaindery > 0.f) {
+            ymultiples++;
         }
         
-        CGFloat width = self.stretchView.deviceScreenWidth * (multiples+1);
-        CGFloat height = [self.stretchView frame].size.height;
+        CGFloat width = self.stretchView.deviceScreenWidth * (xmultiples+1);
+        CGFloat height = MAX([self.stretchView frame].size.height, self.stretchView.deviceScreenHeight * (ymultiples+1));
         CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
         [self.stretchView setFrame:newFrame];
         
@@ -289,7 +298,7 @@
     
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
     NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x, 0);
+    gameObject.position = CGPointMake(r.origin.x, 50);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];
 }
