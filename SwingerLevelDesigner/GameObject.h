@@ -33,6 +33,8 @@ typedef enum {
     CGFloat cannonSpeed;
     CGFloat cannonRotationAngle;
     CGFloat cannonForce;
+    CGFloat anchorXOffset;
+    CGFloat anchorYOffset;
     NSString *windDirection;
     
     NSView *parent;

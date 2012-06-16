@@ -29,21 +29,21 @@
 @synthesize cannonRotationAngle;
 
 - (CGRect) imageRect {
-    CGRect rect = CGRectMake(position.x, position.y, self.size.width, self.size.height);
+    CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
     return rect;
 }
 
 - (CGRect) moveHandleRect {
-    CGRect rect = CGRectMake(position.x + [self size].width, 
-                             position.y + [self size].height - [moveHandle size].height, 
+    CGRect rect = CGRectMake(position.x + [self size].width - anchorXOffset, 
+                             position.y + [self size].height - [moveHandle size].height - anchorYOffset, 
                              [moveHandle size].width, 
                              [moveHandle size].height);
     return rect;
 }
 
 - (CGRect) resizeHandleRect {
-    CGRect rect = CGRectMake(position.x + [self size].width, 
-                             position.y + [self size].height - [moveHandle size].height*2, 
+    CGRect rect = CGRectMake(position.x + [self size].width - anchorXOffset, 
+                             position.y + [self size].height - [moveHandle size].height*2 - anchorYOffset, 
                              [moveHandle size].width, 
                              [moveHandle size].height);
     return rect;    
@@ -88,7 +88,10 @@
     NSRect imageRect;
     imageRect.origin = NSZeroPoint;
     imageRect.size = [self size];
-    [self drawAtPoint:position fromRect:imageRect operation:NSCompositeSourceOver fraction:1.0];
+    [self drawAtPoint:CGPointMake(position.x - anchorXOffset, position.y - anchorYOffset) 
+             fromRect:imageRect 
+            operation:NSCompositeSourceOver 
+             fraction:1.0];        
     
     // Factor used to scale rope length so that it matches length seen in game.
     // This is just eye-balled. Saw what the ratio of rope length to pole length was in game.
@@ -133,14 +136,26 @@
     
     
     if (selected) {
-        NSBezierPath *box = [NSBezierPath bezierPathWithRect:[self imageRect]];
-        [[NSColor redColor] set];
-        [box stroke];
+        if (gameObjectType == kGameObjectTypeStar) {
+            anchorXOffset = [self size].width/2;
+            anchorYOffset = [self size].height/2;
+            NSBezierPath *box = [NSBezierPath bezierPathWithRect:CGRectMake(self.position.x - [self size].width/2, 
+                                                                            self.position.y - [self size].height/2,
+                                                                            [self size].width, 
+                                                                            [self size].height)];
+            [[NSColor redColor] set];
+            [box stroke];            
+        } else {
+            NSBezierPath *box = [NSBezierPath bezierPathWithRect:[self imageRect]];
+            [[NSColor redColor] set];
+            [box stroke];            
+        }
 
         NSRect moveHandleRect;
         moveHandleRect.origin = NSZeroPoint;
         moveHandleRect.size = [moveHandle size];
-        [moveHandle drawAtPoint:CGPointMake(self.position.x + [self size].width, self.position.y + [self size].height - [moveHandle size].height) 
+        [moveHandle drawAtPoint:CGPointMake(self.position.x + [self size].width - anchorXOffset, 
+                                            self.position.y + [self size].height - [moveHandle size].height - anchorYOffset) 
                        fromRect:moveHandleRect 
                       operation:NSCompositeSourceOver 
                        fraction:1.0];
@@ -149,7 +164,8 @@
         NSRect sizeHandleRect;
         sizeHandleRect.origin = NSZeroPoint;
         sizeHandleRect.size = [resizeHandle size];
-        [resizeHandle drawAtPoint:CGPointMake(self.position.x + [self size].width, self.position.y + [self size].height - [moveHandle size].height*2)
+        [resizeHandle drawAtPoint:CGPointMake(self.position.x + [self size].width - anchorXOffset, 
+                                              self.position.y + [self size].height - [moveHandle size].height*2 - anchorYOffset)
                          fromRect:sizeHandleRect 
                         operation:NSCompositeSourceOver 
                          fraction:1.0];
@@ -168,6 +184,14 @@
             [lbl removeFromSuperview];
             lbl = nil;
         }
+    }
+}
+
+- (void) setGameObjectType:(GameObjectType)type {
+    gameObjectType = type;
+    if (gameObjectType == kGameObjectTypeStar) {
+        anchorXOffset = [self size].width/2;
+        anchorYOffset = [self size].height/2;
     }
 }
 
