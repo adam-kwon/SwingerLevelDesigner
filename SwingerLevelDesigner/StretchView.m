@@ -487,8 +487,8 @@
                 break;
         }
         
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x] forKey:@"XPosition"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].y] forKey:@"YPosition"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x/2] forKey:@"XPosition"];
+        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].y/2] forKey:@"YPosition"];
         
         if (gameObject.gameObjectType != kGameObjectTypeStar) {
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
@@ -554,8 +554,8 @@
         }
         
         if (gameObject != nil) {
-            gameObject.position = CGPointMake([[level objectForKey:@"XPosition"] floatValue],
-                                              [[level objectForKey:@"YPosition"] floatValue]);
+            gameObject.position = CGPointMake([[level objectForKey:@"XPosition"] floatValue]*2,
+                                              [[level objectForKey:@"YPosition"] floatValue]*2);
 
             if (gameObject.gameObjectType != kGameObjectTypeStar) {
                 gameObject.period = [[level objectForKey:@"Period"] floatValue];

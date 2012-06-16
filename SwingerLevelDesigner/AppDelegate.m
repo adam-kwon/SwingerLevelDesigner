@@ -104,8 +104,8 @@
     if ([levelItems count] > 0) {
         // Calculate canvas size
         for (NSDictionary *level in levelItems) {
-            CGFloat xpos = [[level objectForKey:@"XPosition"] floatValue];
-            CGFloat ypos = [[level objectForKey:@"YPosition"] floatValue];
+            CGFloat xpos = [[level objectForKey:@"XPosition"] floatValue]*2;
+            CGFloat ypos = [[level objectForKey:@"YPosition"] floatValue]*2;
             maxXPosition = MAX(xpos, maxXPosition);
             maxYPosition = MAX(ypos, maxYPosition);
         }
