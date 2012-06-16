@@ -298,7 +298,7 @@
     
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
     NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x, 50);
+    gameObject.position = CGPointMake(r.origin.x + [gameObject size].width/2, 50);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];
 }
