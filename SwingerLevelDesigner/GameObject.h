@@ -67,6 +67,8 @@ typedef enum {
 @property (nonatomic, readwrite, assign) CGFloat cannonSpeed;
 @property (nonatomic, readwrite, assign) CGFloat cannonRotationAngle;
 @property (nonatomic, readwrite, assign) CGFloat cannonForce;
+@property (nonatomic, readwrite, assign) CGFloat anchorXOffset;
+@property (nonatomic, readwrite, assign) CGFloat anchorYOffset;
 @property (retain) NSString *windDirection;
 
 @end

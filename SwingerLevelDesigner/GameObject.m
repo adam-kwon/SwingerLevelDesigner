@@ -27,6 +27,8 @@
 @synthesize cannonForce;
 @synthesize cannonSpeed;
 @synthesize cannonRotationAngle;
+@synthesize anchorYOffset;
+@synthesize anchorXOffset;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
