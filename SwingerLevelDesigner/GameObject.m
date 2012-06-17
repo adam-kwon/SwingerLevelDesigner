@@ -107,10 +107,10 @@
     
     float x1, x2, y1, y2;
     if (gameObjectType == kGameObjectTypeSwinger) {
-        x1 = position.x + [self size].width/2;
+        x1 = position.x + [self size].width/2 - anchorXOffset;
         y1 = position.y + [self size].height;
         
-        x2 = position.x + [self size].width/2 + (ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180))/poleScale;
+        x2 = position.x + [self size].width/2 - anchorXOffset + (ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180))/poleScale;
         
         // divide by poleScale to keep length same regardless of whether pole is scaled
         y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/poleScale);
@@ -193,9 +193,17 @@
 
 - (void) setGameObjectType:(GameObjectType)type {
     gameObjectType = type;
-    if (gameObjectType == kGameObjectTypeStar) {
-        anchorXOffset = [self size].width/2;
-        anchorYOffset = [self size].height/2;
+    switch (gameObjectType) {
+        case kGameObjectTypeStar:
+            anchorXOffset = [self size].width/2;
+            anchorYOffset = [self size].height/2;
+            break;
+        case kGameObjectTypeSwinger:
+            anchorXOffset = [self size].width/2;
+            break;
+            
+        default:
+            break;
     }
 }
 
