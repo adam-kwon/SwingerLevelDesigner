@@ -29,6 +29,7 @@
 @synthesize cannonRotationAngle;
 @synthesize anchorYOffset;
 @synthesize anchorXOffset;
+@synthesize zOrder;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -59,6 +60,7 @@
     self.period = 2.0;
     self.swingAngle = 55;
     self.ropeLength = 150;
+    self.zOrder = 0;
     moveHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-move-hi" 
                                                                                          ofType:@"png"]];
     

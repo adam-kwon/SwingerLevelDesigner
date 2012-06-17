@@ -31,6 +31,8 @@
 @synthesize cannonForce;
 @synthesize cannonRotationAngle;
 @synthesize cannonSpeed;
+@synthesize zOrderStepper;
+@synthesize zOrder;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -360,18 +362,27 @@
     else if (textField == cannonRotationAngle) {
         [self.stretchView updateSelectedCannonRotationAngle:[cannonRotationAngle floatValue]];
     }
+    else if (textField == zOrder) {
+        [self.stretchView updateSelectedZOrder:[zOrder intValue]];
+        [zOrderStepper setIntValue:[zOrder intValue]];
+    }
 }
 
 - (IBAction)stepperAction:(id)sender {
-    if ([levelStepper intValue] < [levels count]) {
-        NSArray *levelItems = [self.stretchView levelForSerialization];
-        NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
-        [levels setValue:levelItems forKey:currentLevel];
+    if (sender == levelStepper) {
+        if ([levelStepper intValue] < [levels count]) {
+            NSArray *levelItems = [self.stretchView levelForSerialization];
+            NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
+            [levels setValue:levelItems forKey:currentLevel];
 
-        [levelField setIntValue:[levelStepper intValue]];
-        [self loadLevel:[levelStepper intValue]];
-    } else {
-        [levelStepper setIntValue:[levels count]-1];
+            [levelField setIntValue:[levelStepper intValue]];
+            [self loadLevel:[levelStepper intValue]];
+        } else {
+            [levelStepper setIntValue:[levels count]-1];
+        }
+    } else if (sender == zOrderStepper) {
+        [zOrder setIntValue:[zOrderStepper intValue]];
+        [self.stretchView updateSelectedZOrder:[zOrder intValue]];        
     }
 }
 

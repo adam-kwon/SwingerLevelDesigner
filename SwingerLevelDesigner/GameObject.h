@@ -35,6 +35,7 @@ typedef enum {
     CGFloat cannonForce;
     CGFloat anchorXOffset;
     CGFloat anchorYOffset;
+    int zOrder;
     NSString *windDirection;
     
     NSView *parent;
@@ -54,6 +55,7 @@ typedef enum {
 - (BOOL) isPointInResizeHandle:(CGPoint)point;
 
 @property (nonatomic, readwrite, assign) CGPoint position;
+@property (nonatomic, readwrite, assign) int zOrder;
 @property (nonatomic, readwrite, assign) BOOL selected;
 @property (nonatomic, readwrite, assign) BOOL moveHandleSelected;
 @property (nonatomic, readwrite, assign) BOOL resizeHandleSelected;

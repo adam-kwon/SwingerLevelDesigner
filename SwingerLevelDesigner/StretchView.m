@@ -205,12 +205,39 @@
     [appDelegate.cannonSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonSpeed]];
     [appDelegate.cannonForce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonForce]];
     [appDelegate.cannonRotationAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonRotationAngle]];
-
+    [appDelegate.zOrder setIntValue:gameObject.zOrder];
 }
 
 - (void) updateSelectedCannonSpeed:(CGFloat)speed {
     GameObject *gameObject = [self getSelectedGameObject];
     gameObject.cannonSpeed = speed;    
+}
+
+- (void) updateSelectedZOrder:(int)zOrder {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.zOrder = zOrder;   
+    
+    NSArray *sortedGameItems = [gameObjects sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2) {
+        GameObject *item1 = (GameObject*) obj1;
+        GameObject *item2 = (GameObject*) obj2;
+        CGFloat x1 = item1.zOrder;
+        CGFloat x2 = item2.zOrder;
+        NSLog(@"comparing values = %f %f", x1, x2);
+        if (x1 > x2) {
+            return (NSComparisonResult) NSOrderedDescending;
+        }
+        if (x1 < x2) {
+            return (NSComparisonResult) NSOrderedAscending;
+        }
+        
+        return (NSComparisonResult) NSOrderedSame;
+    }];
+    
+    [gameObjects removeAllObjects];
+    
+    NSMutableArray *sortedArray = [NSMutableArray arrayWithArray:sortedGameItems];
+    gameObjects = sortedArray;
+    [self setNeedsDisplay:YES];
 }
 
 - (void) updateSelectedCannonForce:(CGFloat)force {

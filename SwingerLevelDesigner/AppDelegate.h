@@ -34,6 +34,8 @@
 @property (assign) IBOutlet NSComboBox *windDirection;
 @property (assign) IBOutlet NSTextField *swingAngle;
 @property (assign) IBOutlet NSStepper *levelStepper;
+@property (assign) IBOutlet NSStepper *zOrderStepper;
+@property (assign) IBOutlet NSTextField *zOrder;
 @property (assign) IBOutlet StretchView *stretchView;
 
 @property (assign) IBOutlet NSTextField *cannonSpeed;

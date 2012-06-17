@@ -35,6 +35,7 @@
 - (void) updateSelectedCannonSpeed:(CGFloat)speed;
 - (void) updateSelectedCannonForce:(CGFloat)force;
 - (void) updateSelectedCannonRotationAngle:(CGFloat)angle;
+- (void) updateSelectedZOrder:(int)zOrder;
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;
