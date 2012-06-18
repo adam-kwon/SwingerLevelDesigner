@@ -14,7 +14,14 @@ typedef enum {
     kGameObjectTypeSwinger,
     kGameObjectTypeCannon,
     kGameObjectTypeFinalPlatform,
-    kGameObjectTypeStar
+    kGameObjectTypeStar,
+    kGameObjectTypeTreeClump1,
+    kGameObjectTypeTreeClump2,
+    kGameObjectTypeTreeClump3,
+    kGameObjectTypeTent1,
+    kGameObjectTypeTent2,
+    kGameObjectTypeBalloonCart,
+    kGameObjectTypePopcornCart
 } GameObjectType;
 
 @interface GameObject : NSImage {
@@ -33,6 +40,7 @@ typedef enum {
     CGFloat cannonSpeed;
     CGFloat cannonRotationAngle;
     CGFloat cannonForce;
+    CGPoint anchorPoint;
     CGFloat anchorXOffset;
     CGFloat anchorYOffset;
     int zOrder;
@@ -45,7 +53,7 @@ typedef enum {
     NSImage *resizeHandle;
 }
 
-- (id) initWithContentsOfFile:(NSString *)fileName parent:(NSView*)parentView;
+- (id) initWithContentsOfFile:(NSString *)fileName anchorPoint:(CGPoint)ap parent:(NSView*)parentView;
 - (CGRect) imageRect;
 - (CGRect) moveHandleRect;
 - (CGRect) resizeHandleRect;
@@ -71,6 +79,7 @@ typedef enum {
 @property (nonatomic, readwrite, assign) CGFloat cannonForce;
 @property (nonatomic, readwrite, assign) CGFloat anchorXOffset;
 @property (nonatomic, readwrite, assign) CGFloat anchorYOffset;
+@property (nonatomic, readwrite, assign) CGPoint anchorPoint;
 @property (retain) NSString *windDirection;
 
 @end

@@ -30,6 +30,7 @@
 @synthesize anchorYOffset;
 @synthesize anchorXOffset;
 @synthesize zOrder;
+@synthesize anchorPoint;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -52,7 +53,7 @@
     return rect;    
 }
 
-- (id) initWithContentsOfFile:(NSString *)fileName parent:(NSView*)parentView {
+- (id) initWithContentsOfFile:(NSString *)fileName anchorPoint:(CGPoint)ap parent:(NSView *)parentView {
     self = [super initWithContentsOfFile:fileName];
     self.windDirection = @"";
     self.poleScale = 1.0;
@@ -61,6 +62,7 @@
     self.swingAngle = 55;
     self.ropeLength = 150;
     self.zOrder = 0;
+    self.anchorPoint = ap;
     moveHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-move-hi" 
                                                                                          ofType:@"png"]];
     
@@ -193,18 +195,8 @@
 
 - (void) setGameObjectType:(GameObjectType)type {
     gameObjectType = type;
-    switch (gameObjectType) {
-        case kGameObjectTypeStar:
-            anchorXOffset = [self size].width/2;
-            anchorYOffset = [self size].height/2;
-            break;
-        case kGameObjectTypeSwinger:
-            anchorXOffset = [self size].width/2;
-            break;
-            
-        default:
-            break;
-    }
+    anchorXOffset = [self size].width * anchorPoint.x;
+    anchorYOffset = [self size].height * anchorPoint.y;
 }
 
 - (void) setSize:(NSSize)aSize {

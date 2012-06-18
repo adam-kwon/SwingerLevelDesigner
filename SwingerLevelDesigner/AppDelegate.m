@@ -33,6 +33,7 @@
 @synthesize cannonSpeed;
 @synthesize zOrderStepper;
 @synthesize zOrder;
+@synthesize gameObjects;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -248,77 +249,100 @@
     [self.stretchView setNeedsDisplay:YES];
 }
 
-- (IBAction)addFinalPlatform:(id)sender {
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification {
+    NSComboBox *comboBox = (NSComboBox *)[notification object];
+    if (comboBox == self.gameObjects) {
+        NSString *str = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
+        NSLog(@"seleted %@", str);
+    }
+}
+
+- (IBAction)addGameObject:(id)sender {
     [self.stretchView unselectAllGameObjects];
+    NSString *resourceName = nil;
+    CGPoint anchorPoint = CGPointZero;
+    GameObjectType type = kGameObjectTypeNone;
+    int z = 0;
     
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"] 
+    NSString *val = [self.gameObjects stringValue];
+    if ([@"Pole" isEqualToString:val]) {
+        resourceName = @"SwingPole1";
+        type = kGameObjectTypeSwinger;
+    }
+    else if ([@"Cannon" isEqualToString:val]) {
+        resourceName = @"Cannon";
+        anchorPoint = CGPointMake(0, 0);
+        type = kGameObjectTypeCannon;        
+    }
+    else if ([@"Final Platform" isEqualToString:val]) {
+        resourceName = @"finalPlatform";
+        type = kGameObjectTypeFinalPlatform;                
+    }
+    else if ([@"Tree Clump 1" isEqualToString:val]) {
+        resourceName = @"L1aTreeClump1";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeTreeClump1;
+        z = -1;
+    }
+    else if ([@"Tree Clump 2" isEqualToString:val]) {
+        resourceName = @"L1aTreeClump2";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeTreeClump2;        
+        z = -1;
+    }
+    else if ([@"Tree Clump 3" isEqualToString:val]) {
+        resourceName = @"L1aTreeClump3";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeTreeClump3;
+        z = -1;
+    }
+    else if ([@"Tent 1" isEqualToString:val]) {
+        resourceName = @"L1a_Tent1";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeTent1;
+        z = -1;
+    }
+    else if ([@"Tent 2" isEqualToString:val]) {
+        resourceName = @"L1a_Tent2";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeTent2;        
+        z = -1;
+    }
+    else if ([@"Balloon Cart" isEqualToString:val]) {
+        resourceName = @"L1a_BalloonCart";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeBalloonCart;        
+        z = -1;
+    }
+    else if ([@"Popcorn Cart" isEqualToString:val]) {
+        anchorPoint = CGPointMake(0.5, 0.5);
+        resourceName = @"L1a_PopcornCart";
+        type = kGameObjectTypePopcornCart;                
+        z = -1;
+    }
+    else if ([@"Star" isEqualToString:val]) {
+        resourceName = @"star";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeStar;
+    }
+    else if ([@"Dummy" isEqualToString:val]) {
+        resourceName = @"dummy";
+        type = kGameObjectTypeDummy;
+    }
+
+    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"png"] 
+                                                            anchorPoint:anchorPoint
                                                                  parent:self.stretchView];
-    gameObject.gameObjectType = kGameObjectTypeFinalPlatform;    
+    gameObject.gameObjectType = type;    
+    gameObject.zOrder = z;
     
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
     NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x, 0);
+    gameObject.position = CGPointMake(r.origin.x + gameObject.anchorXOffset, 0 + gameObject.anchorYOffset);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];    
 }
 
-
-- (IBAction)addCannon:(id)sender {
-    [self.stretchView unselectAllGameObjects];
-    
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]
-                                                                 parent:self.stretchView];
-    gameObject.gameObjectType = kGameObjectTypeCannon;
-    
-    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
-    NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x, 0);
-    
-    [self.stretchView addGameObject:gameObject isSelected:YES];    
-}
-
-- (IBAction)addDummy:(id)sender {
-    [self.stretchView unselectAllGameObjects];
-    
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dummy" ofType:@"png"]
-                                                                 parent:self.stretchView];
-    gameObject.gameObjectType = kGameObjectTypeDummy;
-    
-    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
-    NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x, 0);
-    
-    [self.stretchView addGameObject:gameObject isSelected:YES];
-}
-
-- (IBAction)addStar:(id)sender {
-    [self.stretchView unselectAllGameObjects];
-    
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]
-                                                                 parent:self.stretchView];
-    gameObject.gameObjectType = kGameObjectTypeStar;
-    
-    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
-    NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x + gameObject.anchorXOffset, 50 + gameObject.anchorYOffset);
-    
-    [self.stretchView addGameObject:gameObject isSelected:YES];
-}
-
-
-- (IBAction)addPole:(id)sender {
-    [self.stretchView unselectAllGameObjects];
-    
-    GameObject *gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]
-                                                                 parent:self.stretchView];
-    gameObject.gameObjectType = kGameObjectTypeSwinger;
-
-    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
-    NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x, 0);
-    
-    [self.stretchView addGameObject:gameObject isSelected:YES];
-}
 
 - (void) controlTextDidEndEditing:(NSNotification *)obj {
     NSTextField *textField = (NSTextField*)[obj object];

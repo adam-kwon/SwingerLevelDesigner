@@ -37,7 +37,7 @@
 @property (assign) IBOutlet NSStepper *zOrderStepper;
 @property (assign) IBOutlet NSTextField *zOrder;
 @property (assign) IBOutlet StretchView *stretchView;
-
+@property (assign) IBOutlet NSComboBox *gameObjects;
 @property (assign) IBOutlet NSTextField *cannonSpeed;
 @property (assign) IBOutlet NSTextField *cannonForce;
 @property (assign) IBOutlet NSTextField *cannonRotationAngle;
@@ -46,12 +46,8 @@
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)openLevel:(id)sender;
 - (IBAction)resizeCanvas:(id)sender;
-- (IBAction)addPole:(id)sender;
+- (IBAction)addGameObject:(id)sender;
 - (IBAction)addLevel:(id)sender;
-- (IBAction)addCannon:(id)sender;
-- (IBAction)addDummy:(id)sender;
-- (IBAction)addFinalPlatform:(id)sender;
-- (IBAction)addStar:(id)sender;
 - (IBAction)saveAs:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)stepperAction:(id)sender;

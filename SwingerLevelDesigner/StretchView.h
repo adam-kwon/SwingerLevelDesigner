@@ -39,6 +39,7 @@
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;
+- (void) sortGameObjectsByZOrder;
 - (GameObject*) getLastGameObject;
 - (NSArray*) levelForSerialization;
 
