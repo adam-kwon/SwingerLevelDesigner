@@ -21,7 +21,8 @@ typedef enum {
     kGameObjectTypeTent1,
     kGameObjectTypeTent2,
     kGameObjectTypeBalloonCart,
-    kGameObjectTypePopcornCart
+    kGameObjectTypePopcornCart,
+    kGameObjectTypeBoxes
 } GameObjectType;
 
 @interface GameObject : NSImage {

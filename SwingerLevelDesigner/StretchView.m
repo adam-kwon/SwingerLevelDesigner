@@ -514,6 +514,9 @@
             case kGameObjectTypePopcornCart:
                 [levelDict setObject:@"L1a_PopcornCart.png" forKey:@"Type"];
                 break;                                
+            case kGameObjectTypeBoxes:
+                [levelDict setObject:@"L1a_Boxes1.png" forKey:@"Type"];
+                break;                                
             default:
                 break;
         }
@@ -529,7 +532,8 @@
             && gameObject.gameObjectType != kGameObjectTypeTent1
             && gameObject.gameObjectType != kGameObjectTypeTent2
             && gameObject.gameObjectType != kGameObjectTypeBalloonCart
-            && gameObject.gameObjectType != kGameObjectTypePopcornCart) {
+            && gameObject.gameObjectType != kGameObjectTypePopcornCart
+            && gameObject.gameObjectType != kGameObjectTypeBoxes) {
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
@@ -630,6 +634,11 @@
                                                         anchorPoint:CGPointMake(0.5, 0.5)
                                                              parent:self];
             gameObject.gameObjectType = kGameObjectTypePopcornCart;
+        } else if ([@"L1a_Boxes1.png" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_Boxes1" ofType:@"png"]
+                                                        anchorPoint:CGPointMake(0.5, 0.5)
+                                                             parent:self];
+            gameObject.gameObjectType = kGameObjectTypeBoxes;
         }
         
         
@@ -646,7 +655,8 @@
                 && gameObject.gameObjectType != kGameObjectTypeTent1
                 && gameObject.gameObjectType != kGameObjectTypeTent2
                 && gameObject.gameObjectType != kGameObjectTypePopcornCart
-                && gameObject.gameObjectType != kGameObjectTypeBalloonCart) 
+                && gameObject.gameObjectType != kGameObjectTypeBalloonCart
+                && gameObject.gameObjectType != kGameObjectTypeBoxes) 
             {
                 gameObject.period = [[level objectForKey:@"Period"] floatValue];
                 gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];

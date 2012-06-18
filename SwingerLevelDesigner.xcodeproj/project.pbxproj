@@ -33,6 +33,7 @@
 		39BE5E40158FBC8800C7D79E /* L1a_BalloonCart.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E3F158FBC8800C7D79E /* L1a_BalloonCart.png */; };
 		39BE5E43158FBC9500C7D79E /* L1a_Tent1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E41158FBC9500C7D79E /* L1a_Tent1.png */; };
 		39BE5E44158FBC9500C7D79E /* L1a_Tent2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E42158FBC9500C7D79E /* L1a_Tent2.png */; };
+		39BE5E46158FE05700C7D79E /* L1a_Boxes1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E45158FE05700C7D79E /* L1a_Boxes1.png */; };
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		39BE5E3F158FBC8800C7D79E /* L1a_BalloonCart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1a_BalloonCart.png; sourceTree = "<group>"; };
 		39BE5E41158FBC9500C7D79E /* L1a_Tent1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1a_Tent1.png; sourceTree = "<group>"; };
 		39BE5E42158FBC9500C7D79E /* L1a_Tent2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1a_Tent2.png; sourceTree = "<group>"; };
+		39BE5E45158FE05700C7D79E /* L1a_Boxes1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1a_Boxes1.png; sourceTree = "<group>"; };
 		39C05CCD1571C5EF007C0035 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		39C05CCE1571C5EF007C0035 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39BE5E45158FE05700C7D79E /* L1a_Boxes1.png */,
 				39BE5E41158FBC9500C7D79E /* L1a_Tent1.png */,
 				39BE5E42158FBC9500C7D79E /* L1a_Tent2.png */,
 				39BE5E3F158FBC8800C7D79E /* L1a_BalloonCart.png */,
@@ -252,6 +255,7 @@
 				39BE5E40158FBC8800C7D79E /* L1a_BalloonCart.png in Resources */,
 				39BE5E43158FBC9500C7D79E /* L1a_Tent1.png in Resources */,
 				39BE5E44158FBC9500C7D79E /* L1a_Tent2.png in Resources */,
+				39BE5E46158FE05700C7D79E /* L1a_Boxes1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

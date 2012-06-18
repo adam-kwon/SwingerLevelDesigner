@@ -97,7 +97,17 @@
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
     [levelField setIntValue:0];
     [maxLevelField setStringValue:@"of 0"];
-    
+    [gameObjects addItemWithObjectValue:@"Pole"];
+    [gameObjects addItemWithObjectValue:@"Cannon"];
+    [gameObjects addItemWithObjectValue:@"Final Platform"];
+    [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
+    [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
+    [gameObjects addItemWithObjectValue:@"Tent 1"];
+    [gameObjects addItemWithObjectValue:@"Tent 2"];
+    [gameObjects addItemWithObjectValue:@"Balloon Cart"];
+    [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
+    [gameObjects addItemWithObjectValue:@"Boxes"];
+    [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 
 - (void) loadLevel:(int)levelNumber {
@@ -324,6 +334,11 @@
         resourceName = @"star";
         anchorPoint = CGPointMake(0.5, 0.5);
         type = kGameObjectTypeStar;
+    }
+    else if ([@"Boxes" isEqualToString:val]) {
+        resourceName = @"L1a_Boxes1";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeBoxes;
     }
     else if ([@"Dummy" isEqualToString:val]) {
         resourceName = @"dummy";
