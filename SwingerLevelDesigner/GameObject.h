@@ -63,6 +63,7 @@ typedef enum {
 - (BOOL) isPointInImage:(CGPoint)point;
 - (BOOL) isPointInMoveHandle:(CGPoint)point;
 - (BOOL) isPointInResizeHandle:(CGPoint)point;
+- (BOOL) isRectIntersectImage:(CGRect)rect;
 
 @property (nonatomic, readwrite, assign) CGPoint position;
 @property (nonatomic, readwrite, assign) int zOrder;

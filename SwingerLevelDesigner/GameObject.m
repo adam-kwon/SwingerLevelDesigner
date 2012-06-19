@@ -205,6 +205,13 @@
     poleScale = aSize.height / originalSize.height;
 }
 
+- (BOOL) isRectIntersectImage:(CGRect)rect {
+    if (CGRectContainsRect(rect, [self imageRect])) {
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL) isPointInImage:(CGPoint)point {
     if (CGRectContainsPoint([self imageRect], point)) {
         return YES;
@@ -225,6 +232,7 @@
     }
     return NO;    
 }
+
 
 - (void) dealloc {
     [lbl removeFromSuperview];

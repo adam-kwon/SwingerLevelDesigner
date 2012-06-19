@@ -19,6 +19,8 @@
     CGFloat deviceScreenHeight;
     CGFloat deviceScreenWidth;
     
+    CGRect selectionRect;
+    BOOL startSelection;
 }
 
 

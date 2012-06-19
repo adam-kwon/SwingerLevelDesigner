@@ -36,6 +36,7 @@
         deviceScreenWidth = 480*2;
         deviceScreenHeight = 320*2;
         
+        selectionRect = CGRectMake(0, 0, 0, 0);
         //[NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(updateDisplay:) userInfo:nil repeats:YES];
     }
     
@@ -128,6 +129,13 @@
     for (GameObject *gameObject in gameObjects) {
         [gameObject draw:ctx];
     }
+    
+    if (startSelection) {
+        NSBezierPath *box = [NSBezierPath bezierPathWithRect:selectionRect];
+        [[NSColor redColor] set];
+        [box stroke];            
+    }
+
 }
 
 
@@ -327,11 +335,13 @@
         [self unselectAllGameObjects];        
     }
     
+    startSelection = YES;
     for (GameObject *gameObject in gameObjects) {
         if ([gameObject isPointInImage:downPoint] 
             || [gameObject isPointInMoveHandle:downPoint]
             || [gameObject isPointInResizeHandle:downPoint]) {
             
+            startSelection = NO;
             gameObject.selected = YES;
             if ([gameObject isPointInMoveHandle:downPoint]) {
                 gameObject.moveHandleSelected = YES;
@@ -355,7 +365,6 @@
     NSPoint p = [theEvent locationInWindow];
     currentPoint = [self convertPoint:p fromView:nil];
     [self autoscroll:theEvent];
-    [self setNeedsDisplay:YES];
     GameObject *gameObject = [self getMoveHandleSelectedGameObject];
     if (gameObject != nil) {
         CGFloat deltaX = currentPoint.x - downPoint.x;
@@ -383,6 +392,22 @@
         
         [self updateSelectedInfo];        
     }
+
+    if (startSelection) {
+        CGFloat w = currentPoint.x - downPoint.x;
+        CGFloat h = (currentPoint.y - downPoint.y);
+        //NSLog(@"down=(%f %f) cur=(%f %f) w=%f h=%f", downPoint.x, downPoint.y, currentPoint.x, currentPoint.y, w, h);
+        selectionRect = CGRectMake(downPoint.x, downPoint.y, w, h);
+
+        for (GameObject *go in gameObjects) {
+            if ([go isRectIntersectImage:selectionRect]) {
+                go.selected = YES;
+            }
+        }
+    }
+    
+    [self setNeedsDisplay:YES];
+
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
@@ -390,15 +415,18 @@
     p = [self convertPoint:p fromView:nil];
     
     if (!([theEvent modifierFlags] & NSShiftKeyMask)) {
-        for (GameObject *gameObject in gameObjects) {
-            if (![gameObject isPointInImage:p] && ![gameObject isPointInMoveHandle:p] && ![gameObject isPointInResizeHandle:p]) {
-                gameObject.selected = NO;
-                gameObject.moveHandleSelected = NO;
-                gameObject.resizeHandleSelected = NO;
+        if (!startSelection) {
+            for (GameObject *gameObject in gameObjects) {
+                if (![gameObject isPointInImage:p] && ![gameObject isPointInMoveHandle:p] && ![gameObject isPointInResizeHandle:p]) {
+                    gameObject.selected = NO;
+                    gameObject.moveHandleSelected = NO;
+                    gameObject.resizeHandleSelected = NO;
+                }
             }
         }
     }
 
+    selectionRect = CGRectMake(0, 0, 0, 0);
     
     [self setNeedsDisplay:YES];
 }
@@ -452,7 +480,7 @@
                 [self updateSelectedInfo];
                 break;
             case 123:       // left arrow
-                [self moveSelectedGameObjectsByX:-10 andY:10];
+                [self moveSelectedGameObjectsByX:-10 andY:0];
                 [self updateSelectedInfo];
                 break;
             default:
@@ -584,7 +612,6 @@
         NSDictionary *item2 = (NSDictionary*) obj2;
         CGFloat x1 = [[item1 objectForKey:@"XPosition"] floatValue];
         CGFloat x2 = [[item2 objectForKey:@"XPosition"] floatValue];
-        NSLog(@"comparing values = %f %f", x1, x2);
         if (x1 > x2) {
             return (NSComparisonResult) NSOrderedDescending;
         }
