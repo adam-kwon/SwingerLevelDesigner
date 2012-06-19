@@ -336,7 +336,9 @@
     }
     
     startSelection = YES;
-    for (GameObject *gameObject in gameObjects) {
+    // Loop in reverse so that one closest to user is selected first
+    for (int i = [gameObjects count] - 1; i >= 0; i--) {
+        GameObject *gameObject = [gameObjects objectAtIndex:i];
         if ([gameObject isPointInImage:downPoint] 
             || [gameObject isPointInMoveHandle:downPoint]
             || [gameObject isPointInResizeHandle:downPoint]) {
@@ -350,6 +352,7 @@
             if ([gameObject isPointInResizeHandle:downPoint]) {
                 gameObject.resizeHandleSelected = YES;
             }
+            break;
         }
     }
 
