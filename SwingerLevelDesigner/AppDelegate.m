@@ -99,6 +99,7 @@
     [maxLevelField setStringValue:@"of 0"];
     [gameObjects addItemWithObjectValue:@"Pole"];
     [gameObjects addItemWithObjectValue:@"Cannon"];
+    [gameObjects addItemWithObjectValue:@"Star"];
     [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
