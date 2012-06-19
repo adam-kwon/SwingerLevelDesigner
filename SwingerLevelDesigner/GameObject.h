@@ -45,6 +45,7 @@ typedef enum {
     CGFloat anchorXOffset;
     CGFloat anchorYOffset;
     int zOrder;
+    NSString *name;
     NSString *windDirection;
     
     NSView *parent;
@@ -82,5 +83,6 @@ typedef enum {
 @property (nonatomic, readwrite, assign) CGFloat anchorYOffset;
 @property (nonatomic, readwrite, assign) CGPoint anchorPoint;
 @property (retain) NSString *windDirection;
+@property (retain) NSString *name;
 
 @end

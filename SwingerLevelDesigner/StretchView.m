@@ -42,6 +42,7 @@
     return self;
 }
 
+
 - (void) updateDisplay:(id)p {
 }
 
@@ -321,7 +322,10 @@
     NSPoint p = [theEvent locationInWindow];
     downPoint = [self convertPoint:p fromView:nil];
     currentPoint = downPoint;
-    [self unselectAllGameObjects];
+    
+    if (!([theEvent modifierFlags] & NSShiftKeyMask)) {
+        [self unselectAllGameObjects];        
+    }
     
     for (GameObject *gameObject in gameObjects) {
         if ([gameObject isPointInImage:downPoint] 
@@ -385,11 +389,13 @@
     NSPoint p = [theEvent locationInWindow];
     p = [self convertPoint:p fromView:nil];
     
-    for (GameObject *gameObject in gameObjects) {
-        if (![gameObject isPointInImage:p] && ![gameObject isPointInMoveHandle:p] && ![gameObject isPointInResizeHandle:p]) {
-            gameObject.selected = NO;
-            gameObject.moveHandleSelected = NO;
-            gameObject.resizeHandleSelected = NO;
+    if (!([theEvent modifierFlags] & NSShiftKeyMask)) {
+        for (GameObject *gameObject in gameObjects) {
+            if (![gameObject isPointInImage:p] && ![gameObject isPointInMoveHandle:p] && ![gameObject isPointInResizeHandle:p]) {
+                gameObject.selected = NO;
+                gameObject.moveHandleSelected = NO;
+                gameObject.resizeHandleSelected = NO;
+            }
         }
     }
 
@@ -413,51 +419,76 @@
     return YES;
 }
 
+- (void) moveSelectedGameObjectsByX:(int)xDelta andY:(int)yDelta {
+    for (GameObject *go in gameObjects) {
+        if (go.selected) {
+            go.position = CGPointMake(go.position.x + xDelta, go.position.y + yDelta);
+        }
+    }
+}
+
+- (void) deleteSelectedGameObjects {
+    for (int i = [gameObjects count] - 1; i >= 0; i--) {
+        GameObject *go = [gameObjects objectAtIndex:i];
+        if (go.selected) {
+            [gameObjects removeObjectAtIndex:i];
+        }
+    }
+}
 
 - (void)keyDown:(NSEvent *)theEvent {
-    GameObject *gameObject = [self getSelectedGameObject];
     if ([theEvent modifierFlags] & NSShiftKeyMask) {
         switch ([theEvent keyCode]) {
             case 126:       // up arrow
-                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y + 10);
+                [self moveSelectedGameObjectsByX:0 andY:10];
                 [self updateSelectedInfo];
                 break;
             case 125:       // down arrow
-                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y - 10);
+                [self moveSelectedGameObjectsByX:0 andY:-10];
                 [self updateSelectedInfo];
                 break;
             case 124:       // right arrow
-                gameObject.position = CGPointMake(gameObject.position.x + 10, gameObject.position.y);
+                [self moveSelectedGameObjectsByX:10 andY:0];
                 [self updateSelectedInfo];
                 break;
             case 123:       // left arrow
-                gameObject.position = CGPointMake(gameObject.position.x - 10, gameObject.position.y);
+                [self moveSelectedGameObjectsByX:-10 andY:10];
                 [self updateSelectedInfo];
                 break;
             default:
                 NSLog(@"Key pressed: %@", theEvent);
                 break;
         }        
-    } else {
+    }
+    else if ([theEvent modifierFlags] & NSCommandKeyMask) {
+        switch ([theEvent keyCode]) {
+            case 0: // select all
+                for (GameObject *go in gameObjects) {
+                    go.selected = YES;
+                }
+                break;
+        }
+    }
+    else {
         switch ([theEvent keyCode]) {
             case 126:       // up arrow
-                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y + 1);
+                [self moveSelectedGameObjectsByX:0 andY:1];
                 [self updateSelectedInfo];
                 break;
             case 125:       // down arrow
-                gameObject.position = CGPointMake(gameObject.position.x, gameObject.position.y - 1);
+                [self moveSelectedGameObjectsByX:0 andY:-1];
                 [self updateSelectedInfo];
                 break;
             case 124:       // right arrow
-                gameObject.position = CGPointMake(gameObject.position.x + 1, gameObject.position.y);
+                [self moveSelectedGameObjectsByX:1 andY:0];
                 [self updateSelectedInfo];
                 break;
             case 123:       // left arrow
-                gameObject.position = CGPointMake(gameObject.position.x - 1, gameObject.position.y);
+                [self moveSelectedGameObjectsByX:-1 andY:0];
                 [self updateSelectedInfo];
                 break;
             case 51:        // delete key
-                [gameObjects removeObject:gameObject];
+                [self deleteSelectedGameObjects];
                 break;
             default:
                 NSLog(@"Key pressed: %@", theEvent);

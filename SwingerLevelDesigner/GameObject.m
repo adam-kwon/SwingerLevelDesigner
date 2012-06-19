@@ -31,6 +31,7 @@
 @synthesize anchorXOffset;
 @synthesize zOrder;
 @synthesize anchorPoint;
+@synthesize name;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);

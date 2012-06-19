@@ -350,6 +350,7 @@
                                                                  parent:self.stretchView];
     gameObject.gameObjectType = type;    
     gameObject.zOrder = z;
+    gameObject.name = val;
     
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
     NSRect r = [sv documentVisibleRect];

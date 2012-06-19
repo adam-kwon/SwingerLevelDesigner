@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "GameObject.h"
 
-@interface StretchView : NSView<NSTextDelegate> {
+@interface StretchView : NSView<NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate> {
     NSBezierPath *path;
     NSMutableArray *gameObjects;
     float opacity;
@@ -42,6 +42,7 @@
 - (void) sortGameObjectsByZOrder;
 - (GameObject*) getLastGameObject;
 - (NSArray*) levelForSerialization;
+
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
