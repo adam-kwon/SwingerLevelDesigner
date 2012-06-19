@@ -99,6 +99,7 @@
     [maxLevelField setStringValue:@"of 0"];
     [gameObjects addItemWithObjectValue:@"Pole"];
     [gameObjects addItemWithObjectValue:@"Cannon"];
+    [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
     [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
@@ -335,6 +336,11 @@
         resourceName = @"star";
         anchorPoint = CGPointMake(0.5, 0.5);
         type = kGameObjectTypeStar;
+    }
+    else if ([@"Coin" isEqualToString:val]) {
+        resourceName = @"Coin1";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeCoin;
     }
     else if ([@"Boxes" isEqualToString:val]) {
         resourceName = @"L1a_Boxes1";

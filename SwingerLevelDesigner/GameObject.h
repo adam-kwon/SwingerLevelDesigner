@@ -15,6 +15,7 @@ typedef enum {
     kGameObjectTypeCannon,
     kGameObjectTypeFinalPlatform,
     kGameObjectTypeStar,
+    kGameObjectTypeCoin,
     kGameObjectTypeTreeClump1,
     kGameObjectTypeTreeClump2,
     kGameObjectTypeTreeClump3,

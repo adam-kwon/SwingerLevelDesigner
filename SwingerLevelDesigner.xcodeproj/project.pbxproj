@@ -34,6 +34,7 @@
 		39BE5E43158FBC9500C7D79E /* L1a_Tent1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E41158FBC9500C7D79E /* L1a_Tent1.png */; };
 		39BE5E44158FBC9500C7D79E /* L1a_Tent2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E42158FBC9500C7D79E /* L1a_Tent2.png */; };
 		39BE5E46158FE05700C7D79E /* L1a_Boxes1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E45158FE05700C7D79E /* L1a_Boxes1.png */; };
+		39BE5E4C1590344200C7D79E /* Coin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E4B1590344200C7D79E /* Coin1.png */; };
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		39BE5E41158FBC9500C7D79E /* L1a_Tent1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1a_Tent1.png; sourceTree = "<group>"; };
 		39BE5E42158FBC9500C7D79E /* L1a_Tent2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1a_Tent2.png; sourceTree = "<group>"; };
 		39BE5E45158FE05700C7D79E /* L1a_Boxes1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1a_Boxes1.png; sourceTree = "<group>"; };
+		39BE5E4B1590344200C7D79E /* Coin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coin1.png; sourceTree = "<group>"; };
 		39C05CCD1571C5EF007C0035 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		39C05CCE1571C5EF007C0035 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +103,7 @@
 				39BE5E36158FB6C200C7D79E /* L1aTreeClump1.png */,
 				39BE5E37158FB6C200C7D79E /* L1aTreeClump2.png */,
 				39BE5E38158FB6C200C7D79E /* L1aTreeClump3.png */,
+				39BE5E4B1590344200C7D79E /* Coin1.png */,
 				396F5E14158ADD12004CD17E /* star.png */,
 				396F5E11158A9F7C004CD17E /* dummy.png */,
 				3953383B1586E203001A2C12 /* help.html */,
@@ -256,6 +259,7 @@
 				39BE5E43158FBC9500C7D79E /* L1a_Tent1.png in Resources */,
 				39BE5E44158FBC9500C7D79E /* L1a_Tent2.png in Resources */,
 				39BE5E46158FE05700C7D79E /* L1a_Boxes1.png in Resources */,
+				39BE5E4C1590344200C7D79E /* Coin1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

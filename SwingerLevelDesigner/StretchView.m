@@ -552,6 +552,11 @@
             case kGameObjectTypeStar:
                 [levelDict setObject:@"Star" forKey:@"Type"];
                 break;                                
+            case kGameObjectTypeCoin:
+                [levelDict setObject:@"Coin" forKey:@"Type"];
+                break;
+            // From here on out, these are foreground parallax layer objects.
+            // Store the file name of the image directly as the Type
             case kGameObjectTypeTreeClump1:
                 [levelDict setObject:@"L1aTreeClump1.png" forKey:@"Type"];
                 break;                                
@@ -592,7 +597,8 @@
             && gameObject.gameObjectType != kGameObjectTypeTent2
             && gameObject.gameObjectType != kGameObjectTypeBalloonCart
             && gameObject.gameObjectType != kGameObjectTypePopcornCart
-            && gameObject.gameObjectType != kGameObjectTypeBoxes) {
+            && gameObject.gameObjectType != kGameObjectTypeBoxes
+            && gameObject.gameObjectType != kGameObjectTypeCoin) {
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
@@ -657,7 +663,15 @@
                                                         anchorPoint:CGPointMake(0.5, 0.5)
                                                              parent:self];
             gameObject.gameObjectType = kGameObjectTypeStar;
-        } else if ([@"L1aTreeClump1.png" isEqualToString:type]) {
+        } else if ([@"Coin" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Coin1" ofType:@"png"]
+                                                        anchorPoint:CGPointMake(0.5, 0.5)
+                                                             parent:self];
+            gameObject.gameObjectType = kGameObjectTypeCoin;
+        }
+        // From here on out, these are foreground parallax layer objects.
+        // Check if the type is the file name of the image.
+        else if ([@"L1aTreeClump1.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1aTreeClump1" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
                                                              parent:self];
@@ -714,7 +728,8 @@
                 && gameObject.gameObjectType != kGameObjectTypeTent2
                 && gameObject.gameObjectType != kGameObjectTypePopcornCart
                 && gameObject.gameObjectType != kGameObjectTypeBalloonCart
-                && gameObject.gameObjectType != kGameObjectTypeBoxes) 
+                && gameObject.gameObjectType != kGameObjectTypeBoxes
+                && gameObject.gameObjectType != kGameObjectTypeCoin) 
             {
                 gameObject.period = [[level objectForKey:@"Period"] floatValue];
                 gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
@@ -742,7 +757,6 @@
         GameObject *item2 = (GameObject*) obj2;
         CGFloat x1 = item1.zOrder;
         CGFloat x2 = item2.zOrder;
-        NSLog(@"comparing values = %f %f", x1, x2);
         if (x1 > x2) {
             return (NSComparisonResult) NSOrderedDescending;
         }
