@@ -34,6 +34,7 @@
 @synthesize zOrderStepper;
 @synthesize zOrder;
 @synthesize gameObjects;
+@synthesize bounce;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -399,6 +400,9 @@
     }
     else if (textField == swingAngle) {
         [self.stretchView updateSelectedSwingAngle:[swingAngle floatValue]];
+    }
+    else if (textField == bounce) {
+        [self.stretchView updateSelectedBounce:[bounce floatValue]];
     }
     else if (textField == levelField) {
         if ([textField intValue] != [levelStepper intValue]) {

@@ -214,8 +214,14 @@
     [appDelegate.cannonSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonSpeed]];
     [appDelegate.cannonForce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonForce]];
     [appDelegate.cannonRotationAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonRotationAngle]];
+    [appDelegate.bounce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.bounce]];
     [appDelegate.zOrder setIntValue:gameObject.zOrder];
     [appDelegate.zOrderStepper setIntValue:gameObject.zOrder];
+}
+
+- (void) updateSelectedBounce:(CGFloat)bounce {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.bounce = bounce;        
 }
 
 - (void) updateSelectedCannonSpeed:(CGFloat)speed {
@@ -604,8 +610,8 @@
             && gameObject.gameObjectType != kGameObjectTypeBalloonCart
             && gameObject.gameObjectType != kGameObjectTypePopcornCart
             && gameObject.gameObjectType != kGameObjectTypeBoxes
-            && gameObject.gameObjectType != kGameObjectTypeCoin
-            && gameObject.gameObjectType != kGameObjectTypeSpring) {
+            && gameObject.gameObjectType != kGameObjectTypeCoin) 
+        {
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
@@ -616,6 +622,7 @@
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonSpeed]] forKey:@"Speed"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonForce]] forKey:@"Force"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonRotationAngle]] forKey:@"RotationAngle"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject bounce]] forKey:@"Bounce"];
         }
         [gameItems addObject:levelDict];
     }
@@ -741,8 +748,7 @@
                 && gameObject.gameObjectType != kGameObjectTypePopcornCart
                 && gameObject.gameObjectType != kGameObjectTypeBalloonCart
                 && gameObject.gameObjectType != kGameObjectTypeBoxes
-                && gameObject.gameObjectType != kGameObjectTypeCoin
-                && gameObject.gameObjectType != kGameObjectTypeSpring) 
+                && gameObject.gameObjectType != kGameObjectTypeCoin) 
             {
                 gameObject.period = [[level objectForKey:@"Period"] floatValue];
                 gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
@@ -754,6 +760,7 @@
                 gameObject.cannonForce = [[level objectForKey:@"Force"] floatValue];
                 gameObject.cannonRotationAngle = [[level objectForKey:@"RotationAngle"] floatValue];
                 gameObject.cannonSpeed = [[level objectForKey:@"Speed"] floatValue];
+                gameObject.bounce = [[level objectForKey:@"Bounce"] floatValue];
             }
             
             [self addGameObject:gameObject isSelected:NO];

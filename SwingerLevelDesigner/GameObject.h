@@ -44,6 +44,7 @@ typedef enum {
     CGFloat cannonRotationAngle;
     CGFloat cannonForce;
     CGPoint anchorPoint;
+    CGFloat bounce;
     CGFloat anchorXOffset;
     CGFloat anchorYOffset;
     int zOrder;
@@ -84,6 +85,7 @@ typedef enum {
 @property (nonatomic, readwrite, assign) CGFloat cannonForce;
 @property (nonatomic, readwrite, assign) CGFloat anchorXOffset;
 @property (nonatomic, readwrite, assign) CGFloat anchorYOffset;
+@property (nonatomic, readwrite, assign) CGFloat bounce;
 @property (nonatomic, readwrite, assign) CGPoint anchorPoint;
 @property (retain) NSString *windDirection;
 @property (retain) NSString *name;
