@@ -99,6 +99,7 @@
     [maxLevelField setStringValue:@"of 0"];
     [gameObjects addItemWithObjectValue:@"Pole"];
     [gameObjects addItemWithObjectValue:@"Cannon"];
+    [gameObjects addItemWithObjectValue:@"Spring"];    
     [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
     [gameObjects addItemWithObjectValue:@"Final Platform"];
@@ -264,8 +265,8 @@
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification {
     NSComboBox *comboBox = (NSComboBox *)[notification object];
     if (comboBox == self.gameObjects) {
-        NSString *str = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
-        NSLog(@"seleted %@", str);
+        //NSString *str = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
+        //NSLog(@"seleted %@", str);
     }
 }
 
@@ -286,6 +287,11 @@
         anchorPoint = CGPointMake(0, 0);
         type = kGameObjectTypeCannon;        
     }
+    else if ([@"Spring" isEqualToString:val]) {
+        resourceName = @"spring";
+        anchorPoint = CGPointMake(0.5, 0);
+        type = kGameObjectTypeSpring;
+    }    
     else if ([@"Final Platform" isEqualToString:val]) {
         resourceName = @"finalPlatform";
         type = kGameObjectTypeFinalPlatform;                

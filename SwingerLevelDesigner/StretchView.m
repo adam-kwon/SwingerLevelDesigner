@@ -558,6 +558,9 @@
             case kGameObjectTypeCoin:
                 [levelDict setObject:@"Coin" forKey:@"Type"];
                 break;
+            case kGameObjectTypeSpring:
+                [levelDict setObject:@"Spring" forKey:@"Type"];
+                break;
             // From here on out, these are foreground parallax layer objects.
             // Store the file name of the image directly as the Type
             case kGameObjectTypeTreeClump1:
@@ -601,7 +604,8 @@
             && gameObject.gameObjectType != kGameObjectTypeBalloonCart
             && gameObject.gameObjectType != kGameObjectTypePopcornCart
             && gameObject.gameObjectType != kGameObjectTypeBoxes
-            && gameObject.gameObjectType != kGameObjectTypeCoin) {
+            && gameObject.gameObjectType != kGameObjectTypeCoin
+            && gameObject.gameObjectType != kGameObjectTypeSpring) {
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
@@ -671,6 +675,11 @@
                                                         anchorPoint:CGPointMake(0.5, 0.5)
                                                              parent:self];
             gameObject.gameObjectType = kGameObjectTypeCoin;
+        } else if ([@"Spring" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spring" ofType:@"png"]
+                                                        anchorPoint:CGPointMake(0.5, 0)
+                                                             parent:self];
+            gameObject.gameObjectType = kGameObjectTypeSpring;
         }
         // From here on out, these are foreground parallax layer objects.
         // Check if the type is the file name of the image.
@@ -732,7 +741,8 @@
                 && gameObject.gameObjectType != kGameObjectTypePopcornCart
                 && gameObject.gameObjectType != kGameObjectTypeBalloonCart
                 && gameObject.gameObjectType != kGameObjectTypeBoxes
-                && gameObject.gameObjectType != kGameObjectTypeCoin) 
+                && gameObject.gameObjectType != kGameObjectTypeCoin
+                && gameObject.gameObjectType != kGameObjectTypeSpring) 
             {
                 gameObject.period = [[level objectForKey:@"Period"] floatValue];
                 gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];

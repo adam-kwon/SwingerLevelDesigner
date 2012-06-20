@@ -13,6 +13,7 @@ typedef enum {
     kGameObjectTypeDummy,
     kGameObjectTypeSwinger,
     kGameObjectTypeCannon,
+    kGameObjectTypeSpring,
     kGameObjectTypeFinalPlatform,
     kGameObjectTypeStar,
     kGameObjectTypeCoin,
