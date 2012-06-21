@@ -42,6 +42,9 @@
 @property (assign) IBOutlet NSTextField *cannonForce;
 @property (assign) IBOutlet NSTextField *cannonRotationAngle;
 @property (assign) IBOutlet NSTextField *bounce;
+@property (assign) IBOutlet NSTextField *leftEdge;
+@property (assign) IBOutlet NSTextField *rightEdge;
+@property (assign) IBOutlet NSTextField *walkVelocity;
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showOpenPanel:(id)sender;

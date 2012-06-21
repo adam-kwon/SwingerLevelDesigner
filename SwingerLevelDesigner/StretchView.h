@@ -39,6 +39,9 @@
 - (void) updateSelectedCannonRotationAngle:(CGFloat)angle;
 - (void) updateSelectedZOrder:(int)zOrder;
 - (void) updateSelectedBounce:(CGFloat)bounce;
+- (void) updateSelectedElephantLeftEdge:(CGFloat)v;
+- (void) updateSelectedElephantRightEdge:(CGFloat)v;
+- (void) updateSelectedElephantWalkVelocity:(CGFloat)v;
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;

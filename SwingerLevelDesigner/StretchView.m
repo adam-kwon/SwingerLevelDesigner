@@ -118,6 +118,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    //NSLog(@"HERHEREHRE");
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
 
     NSRect bounds = [self bounds];
@@ -217,6 +218,24 @@
     [appDelegate.bounce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.bounce]];
     [appDelegate.zOrder setIntValue:gameObject.zOrder];
     [appDelegate.zOrderStepper setIntValue:gameObject.zOrder];
+    [appDelegate.leftEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.leftEdge]];
+    [appDelegate.rightEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.rightEdge]];
+    [appDelegate.walkVelocity setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.walkVelocity]];
+}
+
+- (void) updateSelectedElephantLeftEdge:(CGFloat)v {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.leftEdge = v;
+}
+
+- (void) updateSelectedElephantRightEdge:(CGFloat)v {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.rightEdge = v;
+}
+
+- (void) updateSelectedElephantWalkVelocity:(CGFloat)v {
+    GameObject *gameObject = [self getSelectedGameObject];
+    gameObject.walkVelocity = v;
 }
 
 - (void) updateSelectedBounce:(CGFloat)bounce {
@@ -567,6 +586,9 @@
             case kGameObjectTypeSpring:
                 [levelDict setObject:@"Spring" forKey:@"Type"];
                 break;
+            case kGameObjectTypeElephant:
+                [levelDict setObject:@"Elephant" forKey:@"Type"];
+                break;
             // From here on out, these are foreground parallax layer objects.
             // Store the file name of the image directly as the Type
             case kGameObjectTypeTreeClump1:
@@ -623,6 +645,9 @@
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonForce]] forKey:@"Force"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonRotationAngle]] forKey:@"RotationAngle"];
             [levelDict setObject:[NSNumber numberWithFloat:[gameObject bounce]] forKey:@"Bounce"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject leftEdge]] forKey:@"LeftEdge"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject rightEdge]] forKey:@"RightEdge"];
+            [levelDict setObject:[NSNumber numberWithFloat:[gameObject walkVelocity]] forKey:@"WalkVelocity"];
         }
         [gameItems addObject:levelDict];
     }
@@ -687,6 +712,11 @@
                                                         anchorPoint:CGPointMake(0.5, 0)
                                                              parent:self];
             gameObject.gameObjectType = kGameObjectTypeSpring;
+        } else if ([@"Elephant" isEqualToString:type]) {
+            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ElephantWalk6" ofType:@"png"]
+                                                        anchorPoint:CGPointMake(0.5, 0.5)
+                                                             parent:self];
+            gameObject.gameObjectType = kGameObjectTypeElephant;
         }
         // From here on out, these are foreground parallax layer objects.
         // Check if the type is the file name of the image.
@@ -761,6 +791,9 @@
                 gameObject.cannonRotationAngle = [[level objectForKey:@"RotationAngle"] floatValue];
                 gameObject.cannonSpeed = [[level objectForKey:@"Speed"] floatValue];
                 gameObject.bounce = [[level objectForKey:@"Bounce"] floatValue];
+                gameObject.leftEdge = [[level objectForKey:@"LeftEdge"] floatValue];
+                gameObject.rightEdge = [[level objectForKey:@"RightEdge"] floatValue];
+                gameObject.walkVelocity = [[level objectForKey:@"WalkVelocity"] floatValue];
             }
             
             [self addGameObject:gameObject isSelected:NO];

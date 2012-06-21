@@ -33,6 +33,9 @@
 @synthesize anchorPoint;
 @synthesize name;
 @synthesize bounce;
+@synthesize leftEdge;
+@synthesize rightEdge;
+@synthesize walkVelocity;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);

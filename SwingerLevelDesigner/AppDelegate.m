@@ -35,6 +35,9 @@
 @synthesize zOrder;
 @synthesize gameObjects;
 @synthesize bounce;
+@synthesize leftEdge;
+@synthesize rightEdge;
+@synthesize walkVelocity;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -45,6 +48,7 @@
 
     // Insert code here to initialize your application
 }
+
 
 - (IBAction)showOpenPanel:(id)sender {
     [self.stretchView unselectAllGameObjects];
@@ -101,6 +105,7 @@
     [gameObjects addItemWithObjectValue:@"Pole"];
     [gameObjects addItemWithObjectValue:@"Cannon"];
     [gameObjects addItemWithObjectValue:@"Spring"];    
+    [gameObjects addItemWithObjectValue:@"Elephant"];
     [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
     [gameObjects addItemWithObjectValue:@"Final Platform"];
@@ -283,6 +288,11 @@
         resourceName = @"SwingPole1";
         type = kGameObjectTypeSwinger;
     }
+    else if ([@"Elephant" isEqualToString:val]) {
+        resourceName = @"ElephantWalk6";
+        anchorPoint = CGPointMake(0.5, 0.5);
+        type = kGameObjectTypeElephant;        
+    }    
     else if ([@"Cannon" isEqualToString:val]) {
         resourceName = @"Cannon";
         anchorPoint = CGPointMake(0, 0);
@@ -423,7 +433,17 @@
         [self.stretchView updateSelectedZOrder:[zOrder intValue]];
         [zOrderStepper setIntValue:[zOrder intValue]];
     }
+    else if (textField == leftEdge) {
+        [self.stretchView updateSelectedElephantLeftEdge:[leftEdge floatValue]];        
+    }
+    else if (textField == rightEdge) {
+        [self.stretchView updateSelectedElephantRightEdge:[rightEdge floatValue]];                
+    }
+    else if (textField == walkVelocity) {
+        [self.stretchView updateSelectedElephantWalkVelocity:[walkVelocity floatValue]];                
+    }
 }
+
 
 - (IBAction)stepperAction:(id)sender {
     if (sender == levelStepper) {
