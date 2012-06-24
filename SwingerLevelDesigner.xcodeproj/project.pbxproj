@@ -24,6 +24,8 @@
 		39104B3915977C2100C80A13 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3815977C2100C80A13 /* Coin.m */; };
 		39104B3C15977C2B00C80A13 /* Boxes.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3B15977C2B00C80A13 /* Boxes.m */; };
 		39104B3F15977C4100C80A13 /* Dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3E15977C4100C80A13 /* Dummy.m */; };
+		39104B4215978A9100C80A13 /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B4115978A9100C80A13 /* Wheel.m */; };
+		39104B4415978BCD00C80A13 /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 39104B4315978BCD00C80A13 /* wheel.png */; };
 		391D412D1586D9A500F80DE6 /* Swing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 391D412C1586D9A500F80DE6 /* Swing1.png */; };
 		391D41321586DBA700F80DE6 /* Swing1.icns in Resources */ = {isa = PBXBuildFile; fileRef = 391D41311586DBA700F80DE6 /* Swing1.icns */; };
 		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
@@ -84,6 +86,9 @@
 		39104B3B15977C2B00C80A13 /* Boxes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boxes.m; sourceTree = "<group>"; };
 		39104B3D15977C4100C80A13 /* Dummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dummy.h; sourceTree = "<group>"; };
 		39104B3E15977C4100C80A13 /* Dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dummy.m; sourceTree = "<group>"; };
+		39104B4015978A9100C80A13 /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
+		39104B4115978A9100C80A13 /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
+		39104B4315978BCD00C80A13 /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
 		391D412C1586D9A500F80DE6 /* Swing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Swing1.png; path = ../Swing1.png; sourceTree = "<group>"; };
 		391D41311586DBA700F80DE6 /* Swing1.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Swing1.icns; path = resources/macos/Swing1.icns; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +143,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39104B4315978BCD00C80A13 /* wheel.png */,
 				39BE5E5F1591A3A300C7D79E /* spring.png */,
 				39B966701592E51700D4BF00 /* ElephantWalk6.png */,
 				39BE5E45158FE05700C7D79E /* L1a_Boxes1.png */,
@@ -171,6 +177,8 @@
 				39C05CCE1571C5EF007C0035 /* GameObject.m */,
 				39104B241597763C00C80A13 /* FinalPlatform.h */,
 				39104B251597763C00C80A13 /* FinalPlatform.m */,
+				39104B4015978A9100C80A13 /* Wheel.h */,
+				39104B4115978A9100C80A13 /* Wheel.m */,
 				39104B271597777D00C80A13 /* TreeClump.h */,
 				39104B281597777D00C80A13 /* TreeClump.m */,
 				39104B1A15971EF700C80A13 /* Cannon.h */,
@@ -341,6 +349,7 @@
 				39BE5E4C1590344200C7D79E /* Coin1.png in Resources */,
 				39BE5E601591A3A300C7D79E /* spring.png in Resources */,
 				39B966711592E51700D4BF00 /* ElephantWalk6.png in Resources */,
+				39104B4415978BCD00C80A13 /* wheel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +378,7 @@
 				39104B3915977C2100C80A13 /* Coin.m in Sources */,
 				39104B3C15977C2B00C80A13 /* Boxes.m in Sources */,
 				39104B3F15977C4100C80A13 /* Dummy.m in Sources */,
+				39104B4215978A9100C80A13 /* Wheel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

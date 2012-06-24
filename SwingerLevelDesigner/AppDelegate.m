@@ -39,6 +39,7 @@
 @synthesize leftEdge;
 @synthesize rightEdge;
 @synthesize walkVelocity;
+@synthesize wheelSpeed;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -107,9 +108,10 @@
     [gameObjects addItemWithObjectValue:@"Cannon"];
     [gameObjects addItemWithObjectValue:@"Spring"];    
     [gameObjects addItemWithObjectValue:@"Elephant"];
+    [gameObjects addItemWithObjectValue:@"Wheel"];
+    [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
-    [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 3"];
@@ -299,61 +301,6 @@
 //    NSTextField *textField = (NSTextField*)[obj object];
     
     [self.stretchView updateSelectedGameObject];
-
-//    if (textField == xPosition || textField == yPosition) {
-//        [self.stretchView updateSelectedPosition:CGPointMake([xPosition floatValue], [yPosition floatValue])];
-//    } else if (textField == period) {
-//        [self.stretchView updateSelectedPeriod:[period floatValue]];
-//    } 
-//    else if (textField == ropeLength) {
-//        [self.stretchView updateSelectedRopeLength:[ropeLength floatValue]];
-//    }
-//    else if (textField == grip) {
-//        [self.stretchView updateSelectedGrip:[grip floatValue]];
-//    }
-//    else if (textField == poleScale) {
-//        [self.stretchView updateSelectedPoleScale:[poleScale floatValue]];
-//    }
-//    else if (textField == windSpeed) {
-//        [self.stretchView updateSelectedWindSpeed:[windSpeed floatValue]];
-//    }
-//    else if (textField == windDirection) {
-//        [self.stretchView updateSelectedWindDirection:[windDirection stringValue]];
-//    }
-//    else if (textField == swingAngle) {
-//        [self.stretchView updateSelectedSwingAngle:[swingAngle floatValue]];
-//    }
-//    else if (textField == bounce) {
-//        [self.stretchView updateSelectedBounce:[bounce floatValue]];
-//    }
-//    else if (textField == levelField) {
-//        if ([textField intValue] != [levelStepper intValue]) {
-//            [levelStepper setIntValue:[levelField intValue]];
-//            [self loadLevel:[levelField intValue]];
-//        }
-//    }
-//    else if (textField == cannonSpeed) {
-//        [self.stretchView updateSelectedCannonSpeed:[cannonSpeed floatValue]];
-//    }
-//    else if (textField == cannonForce) {
-//        [self.stretchView updateSelectedCannonForce:[cannonForce floatValue]];
-//    }
-//    else if (textField == cannonRotationAngle) {
-//        [self.stretchView updateSelectedCannonRotationAngle:[cannonRotationAngle floatValue]];
-//    }
-//    else if (textField == zOrder) {
-//        [self.stretchView updateSelectedZOrder:[zOrder intValue]];
-//        [zOrderStepper setIntValue:[zOrder intValue]];
-//    }
-//    else if (textField == leftEdge) {
-//        [self.stretchView updateSelectedElephantLeftEdge:[leftEdge floatValue]];        
-//    }
-//    else if (textField == rightEdge) {
-//        [self.stretchView updateSelectedElephantRightEdge:[rightEdge floatValue]];                
-//    }
-//    else if (textField == walkVelocity) {
-//        [self.stretchView updateSelectedElephantWalkVelocity:[walkVelocity floatValue]];                
-//    }
 }
 
 

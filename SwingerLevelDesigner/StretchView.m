@@ -209,27 +209,6 @@
     for (GameObject *go in gameObjects) {
         [go  updateInfo];
     }
-//    GameObject *gameObject = [self getSelectedGameObject];
-//    AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
-//    [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x]];
-//    [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.y]];
-//    
-//    [appDelegate.period setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.period]];
-//    [appDelegate.ropeLength setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.ropeLength]];
-//    [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.poleScale]];
-//    [appDelegate.swingAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.swingAngle]];
-//    [appDelegate.grip setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.grip]];
-//    [appDelegate.windSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.windSpeed]];
-//    [appDelegate.windDirection setStringValue:gameObject == nil || gameObject.windDirection == nil ? @"" : gameObject.windDirection];
-//    [appDelegate.cannonSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonSpeed]];
-//    [appDelegate.cannonForce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonForce]];
-//    [appDelegate.cannonRotationAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonRotationAngle]];
-//    [appDelegate.bounce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.bounce]];
-//    [appDelegate.zOrder setIntValue:gameObject.zOrder];
-//    [appDelegate.zOrderStepper setIntValue:gameObject.zOrder];
-//    [appDelegate.leftEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.leftEdge]];
-//    [appDelegate.rightEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.rightEdge]];
-//    [appDelegate.walkVelocity setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.walkVelocity]];
 }
 
 - (void) unselectAllGameObjects {
@@ -486,9 +465,9 @@
     NSMutableArray *gameItems = [NSMutableArray array];
     for (GameObject *gameObject in gameObjects) {
         NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
-        [levelDict setObject:[gameObject gameObjectTypeString] forKey:@"Type"];
         
         [gameObject levelForSerialization:levelDict];
+
         [gameItems addObject:levelDict];
     }
     

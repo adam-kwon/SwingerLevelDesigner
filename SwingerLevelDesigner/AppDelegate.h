@@ -45,6 +45,7 @@
 @property (assign) IBOutlet NSTextField *leftEdge;
 @property (assign) IBOutlet NSTextField *rightEdge;
 @property (assign) IBOutlet NSTextField *walkVelocity;
+@property (assign) IBOutlet NSTextField *wheelSpeed;
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showOpenPanel:(id)sender;

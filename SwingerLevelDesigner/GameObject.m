@@ -22,6 +22,7 @@
 #import "Star.h"
 #import "Coin.h"
 #import "Boxes.h"
+#import "Wheel.h"
 
 @implementation GameObject
 
@@ -144,12 +145,16 @@
     else if ([@"Boxes" isEqualToString:type] || [@"L1a_Boxes1.png" isEqualToString:type]) {
         go = [[Boxes alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
     }
+    else if ([@"Wheel" isEqualToString:type]) {
+        go = [[Wheel alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];        
+    }
 
     
     return go;
 }
 
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
+    [levelDict setObject:[self gameObjectTypeString] forKey:@"Type"];
     [levelDict setObject:[NSNumber numberWithFloat:self.position.x/2] forKey:@"XPosition"];
     [levelDict setObject:[NSNumber numberWithFloat:self.position.y/2] forKey:@"YPosition"];
     [levelDict setObject:[NSNumber numberWithInt:self.zOrder] forKey:@"Z-Order"];
