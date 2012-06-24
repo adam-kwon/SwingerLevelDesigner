@@ -487,61 +487,6 @@
     for (GameObject *gameObject in gameObjects) {
         NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
         [levelDict setObject:[gameObject gameObjectTypeString] forKey:@"Type"];
-//        switch (gameObject.gameObjectType) {
-//            case kGameObjectTypeSwinger:
-//                [levelDict setObject:@"Catcher" forKey:@"Type"];
-//                break;
-//            case kGameObjectTypeCannon:
-//                [levelDict setObject:@"Cannon" forKey:@"Type"];
-//                break;                
-//            case kGameObjectTypeFinalPlatform:
-//                [levelDict setObject:@"FinalPlatform" forKey:@"Type"];
-//                break;                
-//            case kGameObjectTypeDummy:
-//                [levelDict setObject:@"Dummy" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeStar:
-//                [levelDict setObject:@"Star" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeCoin:
-//                [levelDict setObject:@"Coin" forKey:@"Type"];
-//                break;
-//            case kGameObjectTypeSpring:
-//                [levelDict setObject:@"Spring" forKey:@"Type"];
-//                break;
-//            case kGameObjectTypeElephant:
-//                [levelDict setObject:@"Elephant" forKey:@"Type"];
-//                break;
-//            // From here on out, these are foreground parallax layer objects.
-//            // Store the file name of the image directly as the Type
-//            case kGameObjectTypeTreeClump1:
-//                [levelDict setObject:@"L1aTreeClump1.png" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeTreeClump2:
-//                [levelDict setObject:@"L1aTreeClump2.png" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeTreeClump3:
-//                [levelDict setObject:@"L1aTreeClump3.png" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeTent1:
-//                [levelDict setObject:@"L1a_Tent1.png" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeTent2:
-//                [levelDict setObject:@"L1a_Tent2.png" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeBalloonCart:
-//                [levelDict setObject:@"L1a_BalloonCart.png" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypePopcornCart:
-//                [levelDict setObject:@"L1a_PopcornCart.png" forKey:@"Type"];
-//                break;                                
-//            case kGameObjectTypeBoxes:
-//                [levelDict setObject:@"L1a_Boxes1.png" forKey:@"Type"];
-//                break;                                
-//            default:
-//                break;
-//        }
-        
         
         [gameObject levelForSerialization:levelDict];
         [gameItems addObject:levelDict];
@@ -573,79 +518,9 @@
 
         NSString *type = [level objectForKey:@"Type"]; 
         gameObject = [GameObject instanceOf:type];
-        
-        if ([@"FinalPlatform" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0, 0)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeFinalPlatform;
-        } else if ([@"Dummy" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dummy" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0, 0)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeDummy;            
-        } else if ([@"Star" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeStar;
-        } else if ([@"Coin" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Coin1" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeCoin;
-        } 
-        // From here on out, these are foreground parallax layer objects.
-        // Check if the type is the file name of the image.
-        else if ([@"L1aTreeClump1.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1aTreeClump1" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeTreeClump1;
-        } else if ([@"L1aTreeClump2.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1aTreeClump2" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeTreeClump2;
-        } else if ([@"L1aTreeClump3.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1aTreeClump3" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeTreeClump3;
-        } else if ([@"L1a_Tent1.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_Tent1" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeTent1;
-        } else if ([@"L1a_Tent2.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_Tent2" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeTent2;
-        } else if ([@"L1a_BalloonCart.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_BalloonCart" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeBalloonCart;
-        } else if ([@"L1a_PopcornCart.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_PopcornCart" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypePopcornCart;
-        } else if ([@"L1a_Boxes1.png" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_Boxes1" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             ];
-            gameObject.gameObjectType = kGameObjectTypeBoxes;
-        }
-        
-        
-        if (gameObject != nil) {
-            
-            
-            [gameObject loadFromDict:level];
-            [self addGameObject:gameObject isSelected:NO];
-        }
+                
+        [gameObject loadFromDict:level];
+        [self addGameObject:gameObject isSelected:NO];
     }
     [self scrollPoint:CGPointMake(0, 0)];
         

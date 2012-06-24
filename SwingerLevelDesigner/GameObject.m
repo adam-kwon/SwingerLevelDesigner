@@ -13,6 +13,15 @@
 #import "Cannon.h"
 #import "Spring.h"
 #import "Elephant.h"
+#import "FinalPlatform.h"
+#import "TreeClump.h"
+#import "Tent.h"
+#import "Dummy.h"
+#import "BalloonCart.h"
+#import "PopcornCart.h"
+#import "Star.h"
+#import "Coin.h"
+#import "Boxes.h"
 
 @implementation GameObject
 
@@ -98,6 +107,42 @@
     }
     else if ([@"Elephant" isEqualToString:type]) {
         go = [[Elephant alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+    }
+    else if ([@"FinalPlatform" isEqualToString:type] || [@"Final Platform" isEqualToString:type]) {
+        go = [[FinalPlatform alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];        
+    }
+    else if ([@"Tree Clump 1" isEqualToString:type] || [@"L1aTreeClump1.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump1];        
+    }
+    else if ([@"Tree Clump 2" isEqualToString:type] || [@"L1aTreeClump2.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump2];        
+    }
+    else if ([@"Tree Clump 3" isEqualToString:type] || [@"L1aTreeClump3.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump3];        
+    }
+    else if ([@"Tent 1" isEqualToString:type] || [@"L1a_Tent1.png" isEqualToString:type]) {
+        go = [[Tent alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTent1];        
+    }
+    else if ([@"Tent 2" isEqualToString:type] || [@"L1a_Tent2.png" isEqualToString:type]) {
+        go = [[Tent alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTent2];        
+    }
+    else if ([@"Dummy" isEqualToString:type]) {
+        go = [[Dummy alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+    }
+    else if ([@"Balloon Cart" isEqualToString:type] || [@"L1a_BalloonCart.png" isEqualToString:type]) {
+        go = [[BalloonCart alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+    }
+    else if ([@"Popcorn Cart" isEqualToString:type] || [@"L1a_PopcornCart.png" isEqualToString:type]) {
+        go = [[PopcornCart alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+    }
+    else if ([@"Coin" isEqualToString:type]) {
+        go = [[Coin alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+    }
+    else if ([@"Star" isEqualToString:type]) {
+        go = [[Star alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+    }
+    else if ([@"Boxes" isEqualToString:type] || [@"L1a_Boxes1.png" isEqualToString:type]) {
+        go = [[Boxes alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
     }
 
     

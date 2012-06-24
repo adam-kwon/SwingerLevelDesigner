@@ -15,6 +15,15 @@
 		39104B1C15971EF700C80A13 /* Cannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B1B15971EF700C80A13 /* Cannon.m */; };
 		39104B2015972B2F00C80A13 /* Spring.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B1F15972B2F00C80A13 /* Spring.m */; };
 		39104B2315972DB400C80A13 /* Elephant.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B2215972DB400C80A13 /* Elephant.m */; };
+		39104B261597763C00C80A13 /* FinalPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B251597763C00C80A13 /* FinalPlatform.m */; };
+		39104B291597777D00C80A13 /* TreeClump.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B281597777D00C80A13 /* TreeClump.m */; };
+		39104B2C15977A7600C80A13 /* Tent.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B2B15977A7600C80A13 /* Tent.m */; };
+		39104B3015977BEE00C80A13 /* BalloonCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B2F15977BEE00C80A13 /* BalloonCart.m */; };
+		39104B3315977BFA00C80A13 /* PopcornCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3215977BFA00C80A13 /* PopcornCart.m */; };
+		39104B3615977C1200C80A13 /* Star.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3515977C1200C80A13 /* Star.m */; };
+		39104B3915977C2100C80A13 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3815977C2100C80A13 /* Coin.m */; };
+		39104B3C15977C2B00C80A13 /* Boxes.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3B15977C2B00C80A13 /* Boxes.m */; };
+		39104B3F15977C4100C80A13 /* Dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B3E15977C4100C80A13 /* Dummy.m */; };
 		391D412D1586D9A500F80DE6 /* Swing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 391D412C1586D9A500F80DE6 /* Swing1.png */; };
 		391D41321586DBA700F80DE6 /* Swing1.icns in Resources */ = {isa = PBXBuildFile; fileRef = 391D41311586DBA700F80DE6 /* Swing1.icns */; };
 		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
@@ -57,6 +66,24 @@
 		39104B1F15972B2F00C80A13 /* Spring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spring.m; sourceTree = "<group>"; };
 		39104B2115972DB400C80A13 /* Elephant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elephant.h; sourceTree = "<group>"; };
 		39104B2215972DB400C80A13 /* Elephant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Elephant.m; sourceTree = "<group>"; };
+		39104B241597763C00C80A13 /* FinalPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalPlatform.h; sourceTree = "<group>"; };
+		39104B251597763C00C80A13 /* FinalPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalPlatform.m; sourceTree = "<group>"; };
+		39104B271597777D00C80A13 /* TreeClump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeClump.h; sourceTree = "<group>"; };
+		39104B281597777D00C80A13 /* TreeClump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeClump.m; sourceTree = "<group>"; };
+		39104B2A15977A7600C80A13 /* Tent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tent.h; sourceTree = "<group>"; };
+		39104B2B15977A7600C80A13 /* Tent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tent.m; sourceTree = "<group>"; };
+		39104B2E15977BEE00C80A13 /* BalloonCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonCart.h; sourceTree = "<group>"; };
+		39104B2F15977BEE00C80A13 /* BalloonCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalloonCart.m; sourceTree = "<group>"; };
+		39104B3115977BFA00C80A13 /* PopcornCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopcornCart.h; sourceTree = "<group>"; };
+		39104B3215977BFA00C80A13 /* PopcornCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopcornCart.m; sourceTree = "<group>"; };
+		39104B3415977C1200C80A13 /* Star.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star.h; sourceTree = "<group>"; };
+		39104B3515977C1200C80A13 /* Star.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Star.m; sourceTree = "<group>"; };
+		39104B3715977C2100C80A13 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
+		39104B3815977C2100C80A13 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
+		39104B3A15977C2B00C80A13 /* Boxes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boxes.h; sourceTree = "<group>"; };
+		39104B3B15977C2B00C80A13 /* Boxes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boxes.m; sourceTree = "<group>"; };
+		39104B3D15977C4100C80A13 /* Dummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dummy.h; sourceTree = "<group>"; };
+		39104B3E15977C4100C80A13 /* Dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dummy.m; sourceTree = "<group>"; };
 		391D412C1586D9A500F80DE6 /* Swing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Swing1.png; path = ../Swing1.png; sourceTree = "<group>"; };
 		391D41311586DBA700F80DE6 /* Swing1.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Swing1.icns; path = resources/macos/Swing1.icns; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +164,41 @@
 			path = SwingerLevelDesigner;
 			sourceTree = "<group>";
 		};
+		39104B2D15977BA900C80A13 /* Game Objects */ = {
+			isa = PBXGroup;
+			children = (
+				39C05CCD1571C5EF007C0035 /* GameObject.h */,
+				39C05CCE1571C5EF007C0035 /* GameObject.m */,
+				39104B241597763C00C80A13 /* FinalPlatform.h */,
+				39104B251597763C00C80A13 /* FinalPlatform.m */,
+				39104B271597777D00C80A13 /* TreeClump.h */,
+				39104B281597777D00C80A13 /* TreeClump.m */,
+				39104B1A15971EF700C80A13 /* Cannon.h */,
+				39104B1B15971EF700C80A13 /* Cannon.m */,
+				39104B2A15977A7600C80A13 /* Tent.h */,
+				39104B2B15977A7600C80A13 /* Tent.m */,
+				39104B1E15972B2F00C80A13 /* Spring.h */,
+				39104B1F15972B2F00C80A13 /* Spring.m */,
+				3937DC5815970DD500934226 /* Pole.h */,
+				3937DC5915970DD500934226 /* Pole.m */,
+				39104B2115972DB400C80A13 /* Elephant.h */,
+				39104B2215972DB400C80A13 /* Elephant.m */,
+				39104B2E15977BEE00C80A13 /* BalloonCart.h */,
+				39104B2F15977BEE00C80A13 /* BalloonCart.m */,
+				39104B3115977BFA00C80A13 /* PopcornCart.h */,
+				39104B3215977BFA00C80A13 /* PopcornCart.m */,
+				39104B3415977C1200C80A13 /* Star.h */,
+				39104B3515977C1200C80A13 /* Star.m */,
+				39104B3715977C2100C80A13 /* Coin.h */,
+				39104B3815977C2100C80A13 /* Coin.m */,
+				39104B3A15977C2B00C80A13 /* Boxes.h */,
+				39104B3B15977C2B00C80A13 /* Boxes.m */,
+				39104B3D15977C4100C80A13 /* Dummy.h */,
+				39104B3E15977C4100C80A13 /* Dummy.m */,
+			);
+			name = "Game Objects";
+			sourceTree = "<group>";
+		};
 		39258DD5156F2E3600311702 = {
 			isa = PBXGroup;
 			children = (
@@ -177,16 +239,7 @@
 		39258DEA156F2E3600311702 /* SwingerLevelDesigner */ = {
 			isa = PBXGroup;
 			children = (
-				39C05CCD1571C5EF007C0035 /* GameObject.h */,
-				39C05CCE1571C5EF007C0035 /* GameObject.m */,
-				39104B1A15971EF700C80A13 /* Cannon.h */,
-				39104B1B15971EF700C80A13 /* Cannon.m */,
-				39104B1E15972B2F00C80A13 /* Spring.h */,
-				39104B1F15972B2F00C80A13 /* Spring.m */,
-				3937DC5815970DD500934226 /* Pole.h */,
-				3937DC5915970DD500934226 /* Pole.m */,
-				39104B2115972DB400C80A13 /* Elephant.h */,
-				39104B2215972DB400C80A13 /* Elephant.m */,
+				39104B2D15977BA900C80A13 /* Game Objects */,
 				39258DF6156F2E3600311702 /* AppDelegate.h */,
 				39258DF7156F2E3600311702 /* AppDelegate.m */,
 				39258E03156F2E9E00311702 /* StretchView.h */,
@@ -307,6 +360,15 @@
 				39104B1C15971EF700C80A13 /* Cannon.m in Sources */,
 				39104B2015972B2F00C80A13 /* Spring.m in Sources */,
 				39104B2315972DB400C80A13 /* Elephant.m in Sources */,
+				39104B261597763C00C80A13 /* FinalPlatform.m in Sources */,
+				39104B291597777D00C80A13 /* TreeClump.m in Sources */,
+				39104B2C15977A7600C80A13 /* Tent.m in Sources */,
+				39104B3015977BEE00C80A13 /* BalloonCart.m in Sources */,
+				39104B3315977BFA00C80A13 /* PopcornCart.m in Sources */,
+				39104B3615977C1200C80A13 /* Star.m in Sources */,
+				39104B3915977C2100C80A13 /* Coin.m in Sources */,
+				39104B3C15977C2B00C80A13 /* Boxes.m in Sources */,
+				39104B3F15977C4100C80A13 /* Dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

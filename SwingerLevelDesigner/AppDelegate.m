@@ -112,6 +112,7 @@
     [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
+    [gameObjects addItemWithObjectValue:@"Tree Clump 3"];
     [gameObjects addItemWithObjectValue:@"Tent 1"];
     [gameObjects addItemWithObjectValue:@"Tent 2"];
     [gameObjects addItemWithObjectValue:@"Balloon Cart"];
@@ -279,90 +280,12 @@
 
 - (IBAction)addGameObject:(id)sender {
     [self.stretchView unselectAllGameObjects];
-    NSString *resourceName = nil;
-    CGPoint anchorPoint = CGPointZero;
-    GameObjectType type = kGameObjectTypeNone;
-    int z = 0;
     
     GameObject *gameObject;
     
     NSString *val = [self.gameObjects stringValue];
-    if ([@"Final Platform" isEqualToString:val]) {
-        resourceName = @"finalPlatform";
-        type = kGameObjectTypeFinalPlatform;                
-    }
-    else if ([@"Tree Clump 1" isEqualToString:val]) {
-        resourceName = @"L1aTreeClump1";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeTreeClump1;
-        z = -1;
-    }
-    else if ([@"Tree Clump 2" isEqualToString:val]) {
-        resourceName = @"L1aTreeClump2";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeTreeClump2;        
-        z = -1;
-    }
-    else if ([@"Tree Clump 3" isEqualToString:val]) {
-        resourceName = @"L1aTreeClump3";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeTreeClump3;
-        z = -1;
-    }
-    else if ([@"Tent 1" isEqualToString:val]) {
-        resourceName = @"L1a_Tent1";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeTent1;
-        z = -1;
-    }
-    else if ([@"Tent 2" isEqualToString:val]) {
-        resourceName = @"L1a_Tent2";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeTent2;        
-        z = -1;
-    }
-    else if ([@"Balloon Cart" isEqualToString:val]) {
-        resourceName = @"L1a_BalloonCart";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeBalloonCart;        
-        z = -1;
-    }
-    else if ([@"Popcorn Cart" isEqualToString:val]) {
-        anchorPoint = CGPointMake(0.5, 0.5);
-        resourceName = @"L1a_PopcornCart";
-        type = kGameObjectTypePopcornCart;                
-        z = -1;
-    }
-    else if ([@"Star" isEqualToString:val]) {
-        resourceName = @"star";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeStar;
-    }
-    else if ([@"Coin" isEqualToString:val]) {
-        resourceName = @"Coin1";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeCoin;
-    }
-    else if ([@"Boxes" isEqualToString:val]) {
-        resourceName = @"L1a_Boxes1";
-        anchorPoint = CGPointMake(0.5, 0.5);
-        type = kGameObjectTypeBoxes;
-    }
-    else if ([@"Dummy" isEqualToString:val]) {
-        resourceName = @"dummy";
-        type = kGameObjectTypeDummy;
-    }
     
     gameObject = [GameObject instanceOf:val];
-    
-    if (gameObject == nil)
-
-    gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"png"] 
-                                                            anchorPoint:anchorPoint
-                                                                 ];
-    gameObject.gameObjectType = type;    
-    gameObject.zOrder = z;
-    gameObject.name = val;
     
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
     NSRect r = [sv documentVisibleRect];
