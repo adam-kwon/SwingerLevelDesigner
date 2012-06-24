@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AppDelegate.h"
 
 typedef enum {
     kGameObjectTypeNone,
@@ -35,34 +36,25 @@ typedef enum {
     BOOL resizeHandleSelected;
     CGSize originalSize;
     CGPoint position;
-    CGFloat ropeLength;
-    CGFloat period;
-    CGFloat poleScale;
-    CGFloat swingAngle;
     CGFloat grip;
     CGFloat windSpeed;
-    CGFloat cannonSpeed;
-    CGFloat cannonRotationAngle;
-    CGFloat cannonForce;
     CGPoint anchorPoint;
-    CGFloat bounce;
     CGFloat anchorXOffset;
     CGFloat anchorYOffset;
-    CGFloat leftEdge;
-    CGFloat rightEdge;
-    CGFloat walkVelocity;
+    CGFloat scale;
     int zOrder;
     NSString *name;
     NSString *windDirection;
     
-    NSView *parent;
-    NSTextView *lbl;
+//    NSTextView *lbl;
 
     NSImage *moveHandle;
     NSImage *resizeHandle;
 }
 
-- (id) initWithContentsOfFile:(NSString *)fileName anchorPoint:(CGPoint)ap parent:(NSView*)parentView;
++ (id) instanceOf:(NSString*)type;
+- (id) initWithAnchorPoint:(CGPoint)ap;
+- (id) initWithContentsOfFile:(NSString *)fileName anchorPoint:(CGPoint)ap;
 - (CGRect) imageRect;
 - (CGRect) moveHandleRect;
 - (CGRect) resizeHandleRect;
@@ -71,6 +63,11 @@ typedef enum {
 - (BOOL) isPointInMoveHandle:(CGPoint)point;
 - (BOOL) isPointInResizeHandle:(CGPoint)point;
 - (BOOL) isRectIntersectImage:(CGRect)rect;
+- (void) updateInfo;
+- (void) updateProperties;
+- (void) levelForSerialization:(NSMutableDictionary*)levelDict;
+- (void) loadFromDict:(NSDictionary*)level;
+- (NSString*) gameObjectTypeString;
 
 @property (nonatomic, readwrite, assign) CGPoint position;
 @property (nonatomic, readwrite, assign) int zOrder;
@@ -78,22 +75,12 @@ typedef enum {
 @property (nonatomic, readwrite, assign) BOOL moveHandleSelected;
 @property (nonatomic, readwrite, assign) BOOL resizeHandleSelected;
 @property (nonatomic, readwrite, assign) GameObjectType gameObjectType;
-@property (nonatomic, readwrite, assign) CGFloat period;
-@property (nonatomic, readwrite, assign) CGFloat ropeLength;
-@property (nonatomic, readwrite, assign) CGFloat poleScale;
-@property (nonatomic, readwrite, assign) CGFloat swingAngle;
 @property (nonatomic, readwrite, assign) CGFloat grip;
 @property (nonatomic, readwrite, assign) CGFloat windSpeed;
-@property (nonatomic, readwrite, assign) CGFloat cannonSpeed;
-@property (nonatomic, readwrite, assign) CGFloat cannonRotationAngle;
-@property (nonatomic, readwrite, assign) CGFloat cannonForce;
 @property (nonatomic, readwrite, assign) CGFloat anchorXOffset;
 @property (nonatomic, readwrite, assign) CGFloat anchorYOffset;
-@property (nonatomic, readwrite, assign) CGFloat bounce;
-@property (nonatomic, readwrite, assign) CGFloat leftEdge;
-@property (nonatomic, readwrite, assign) CGFloat rightEdge;
-@property (nonatomic, readwrite, assign) CGFloat walkVelocity;
 @property (nonatomic, readwrite, assign) CGPoint anchorPoint;
+@property (nonatomic, readwrite, assign) CGFloat scale;
 @property (retain) NSString *windDirection;
 @property (retain) NSString *name;
 

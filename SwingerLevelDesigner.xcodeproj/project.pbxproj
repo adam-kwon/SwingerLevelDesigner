@@ -12,6 +12,9 @@
 		390ADF551573477500A3F01A /* SwingPole1.png in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF541573477500A3F01A /* SwingPole1.png */; };
 		390ADF5B15741BF500A3F01A /* btn-move-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF5A15741BF500A3F01A /* btn-move-hi.png */; };
 		390ADF611574685200A3F01A /* btn-scale-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 390ADF601574685200A3F01A /* btn-scale-hi.png */; };
+		39104B1C15971EF700C80A13 /* Cannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B1B15971EF700C80A13 /* Cannon.m */; };
+		39104B2015972B2F00C80A13 /* Spring.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B1F15972B2F00C80A13 /* Spring.m */; };
+		39104B2315972DB400C80A13 /* Elephant.m in Sources */ = {isa = PBXBuildFile; fileRef = 39104B2215972DB400C80A13 /* Elephant.m */; };
 		391D412D1586D9A500F80DE6 /* Swing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 391D412C1586D9A500F80DE6 /* Swing1.png */; };
 		391D41321586DBA700F80DE6 /* Swing1.icns in Resources */ = {isa = PBXBuildFile; fileRef = 391D41311586DBA700F80DE6 /* Swing1.icns */; };
 		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
@@ -21,6 +24,7 @@
 		39258DF8156F2E3600311702 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF7156F2E3600311702 /* AppDelegate.m */; };
 		39258DFB156F2E3600311702 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39258DF9156F2E3600311702 /* MainMenu.xib */; };
 		39258E05156F2E9E00311702 /* StretchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258E04156F2E9E00311702 /* StretchView.m */; };
+		3937DC5A15970DD500934226 /* Pole.m in Sources */ = {isa = PBXBuildFile; fileRef = 3937DC5915970DD500934226 /* Pole.m */; };
 		3953383C1586E203001A2C12 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 3953383B1586E203001A2C12 /* help.html */; };
 		396F5E12158A9F7C004CD17E /* dummy.png in Resources */ = {isa = PBXBuildFile; fileRef = 396F5E11158A9F7C004CD17E /* dummy.png */; };
 		396F5E15158ADD12004CD17E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 396F5E14158ADD12004CD17E /* star.png */; };
@@ -47,6 +51,12 @@
 		390ADF541573477500A3F01A /* SwingPole1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwingPole1.png; sourceTree = "<group>"; };
 		390ADF5A15741BF500A3F01A /* btn-move-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-move-hi.png"; sourceTree = "<group>"; };
 		390ADF601574685200A3F01A /* btn-scale-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-scale-hi.png"; sourceTree = "<group>"; };
+		39104B1A15971EF700C80A13 /* Cannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cannon.h; sourceTree = "<group>"; };
+		39104B1B15971EF700C80A13 /* Cannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cannon.m; sourceTree = "<group>"; };
+		39104B1E15972B2F00C80A13 /* Spring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spring.h; sourceTree = "<group>"; };
+		39104B1F15972B2F00C80A13 /* Spring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spring.m; sourceTree = "<group>"; };
+		39104B2115972DB400C80A13 /* Elephant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elephant.h; sourceTree = "<group>"; };
+		39104B2215972DB400C80A13 /* Elephant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Elephant.m; sourceTree = "<group>"; };
 		391D412C1586D9A500F80DE6 /* Swing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Swing1.png; path = ../Swing1.png; sourceTree = "<group>"; };
 		391D41311586DBA700F80DE6 /* Swing1.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Swing1.icns; path = resources/macos/Swing1.icns; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +74,8 @@
 		39258DFA156F2E3600311702 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		39258E03156F2E9E00311702 /* StretchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StretchView.h; sourceTree = "<group>"; };
 		39258E04156F2E9E00311702 /* StretchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StretchView.m; sourceTree = "<group>"; };
+		3937DC5815970DD500934226 /* Pole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pole.h; sourceTree = "<group>"; };
+		3937DC5915970DD500934226 /* Pole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pole.m; sourceTree = "<group>"; };
 		3953383B1586E203001A2C12 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		396F5E11158A9F7C004CD17E /* dummy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummy.png; sourceTree = "<group>"; };
 		396F5E14158ADD12004CD17E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
@@ -167,6 +179,14 @@
 			children = (
 				39C05CCD1571C5EF007C0035 /* GameObject.h */,
 				39C05CCE1571C5EF007C0035 /* GameObject.m */,
+				39104B1A15971EF700C80A13 /* Cannon.h */,
+				39104B1B15971EF700C80A13 /* Cannon.m */,
+				39104B1E15972B2F00C80A13 /* Spring.h */,
+				39104B1F15972B2F00C80A13 /* Spring.m */,
+				3937DC5815970DD500934226 /* Pole.h */,
+				3937DC5915970DD500934226 /* Pole.m */,
+				39104B2115972DB400C80A13 /* Elephant.h */,
+				39104B2215972DB400C80A13 /* Elephant.m */,
 				39258DF6156F2E3600311702 /* AppDelegate.h */,
 				39258DF7156F2E3600311702 /* AppDelegate.m */,
 				39258E03156F2E9E00311702 /* StretchView.h */,
@@ -283,6 +303,10 @@
 				39258E05156F2E9E00311702 /* StretchView.m in Sources */,
 				39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */,
 				390ADF5115733B9500A3F01A /* SetCanvasSizeWindowController.m in Sources */,
+				3937DC5A15970DD500934226 /* Pole.m in Sources */,
+				39104B1C15971EF700C80A13 /* Cannon.m in Sources */,
+				39104B2015972B2F00C80A13 /* Spring.m in Sources */,
+				39104B2315972DB400C80A13 /* Elephant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

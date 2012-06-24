@@ -199,89 +199,37 @@
     return nil;
 }
 
+- (void) updateSelectedGameObject {
+    for (GameObject *go in gameObjects) {
+        [go  updateProperties];
+    }    
+
+}
 - (void) updateSelectedInfo {
-    GameObject *gameObject = [self getSelectedGameObject];
-    AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
-    [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x]];
-    [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.y]];
-    
-    [appDelegate.period setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.period]];
-    [appDelegate.ropeLength setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.ropeLength]];
-    [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.poleScale]];
-    [appDelegate.swingAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.swingAngle]];
-    [appDelegate.grip setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.grip]];
-    [appDelegate.windSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.windSpeed]];
-    [appDelegate.windDirection setStringValue:gameObject == nil || gameObject.windDirection == nil ? @"" : gameObject.windDirection];
-    [appDelegate.cannonSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonSpeed]];
-    [appDelegate.cannonForce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonForce]];
-    [appDelegate.cannonRotationAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonRotationAngle]];
-    [appDelegate.bounce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.bounce]];
-    [appDelegate.zOrder setIntValue:gameObject.zOrder];
-    [appDelegate.zOrderStepper setIntValue:gameObject.zOrder];
-    [appDelegate.leftEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.leftEdge]];
-    [appDelegate.rightEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.rightEdge]];
-    [appDelegate.walkVelocity setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.walkVelocity]];
-}
-
-- (void) updateSelectedElephantLeftEdge:(CGFloat)v {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.leftEdge = v;
-}
-
-- (void) updateSelectedElephantRightEdge:(CGFloat)v {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.rightEdge = v;
-}
-
-- (void) updateSelectedElephantWalkVelocity:(CGFloat)v {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.walkVelocity = v;
-}
-
-- (void) updateSelectedBounce:(CGFloat)bounce {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.bounce = bounce;        
-}
-
-- (void) updateSelectedCannonSpeed:(CGFloat)speed {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.cannonSpeed = speed;    
-}
-
-- (void) updateSelectedZOrder:(int)zOrder {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.zOrder = zOrder;   
-    
-    [self sortGameObjectsByZOrder];
-    [self setNeedsDisplay:YES];
-}
-
-- (void) updateSelectedCannonForce:(CGFloat)force {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.cannonForce = force;    
-}
-
-- (void) updateSelectedCannonRotationAngle:(CGFloat)angle {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.cannonRotationAngle = angle;    
-    [self setNeedsDisplay:YES];    
-}
-
-- (void) updateSelectedPeriod:(CGFloat)newSwingSpeed {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.period = newSwingSpeed;
-}
-
-- (void) updateSelectedPosition:(CGPoint)newPos {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.position = newPos;
-    [self setNeedsDisplay:YES];
-}
-
-- (void) updateSelectedRopeLength:(CGFloat)ropeLength {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.ropeLength = ropeLength;
-    [self setNeedsDisplay:YES];    
+    for (GameObject *go in gameObjects) {
+        [go  updateInfo];
+    }
+//    GameObject *gameObject = [self getSelectedGameObject];
+//    AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+//    [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.x]];
+//    [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.position.y]];
+//    
+//    [appDelegate.period setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.period]];
+//    [appDelegate.ropeLength setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.ropeLength]];
+//    [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.poleScale]];
+//    [appDelegate.swingAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.swingAngle]];
+//    [appDelegate.grip setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.grip]];
+//    [appDelegate.windSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.windSpeed]];
+//    [appDelegate.windDirection setStringValue:gameObject == nil || gameObject.windDirection == nil ? @"" : gameObject.windDirection];
+//    [appDelegate.cannonSpeed setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonSpeed]];
+//    [appDelegate.cannonForce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonForce]];
+//    [appDelegate.cannonRotationAngle setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.cannonRotationAngle]];
+//    [appDelegate.bounce setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.bounce]];
+//    [appDelegate.zOrder setIntValue:gameObject.zOrder];
+//    [appDelegate.zOrderStepper setIntValue:gameObject.zOrder];
+//    [appDelegate.leftEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.leftEdge]];
+//    [appDelegate.rightEdge setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.rightEdge]];
+//    [appDelegate.walkVelocity setStringValue:[NSString stringWithFormat:@"%.2f", gameObject.walkVelocity]];
 }
 
 - (void) unselectAllGameObjects {
@@ -292,32 +240,6 @@
     }    
 }
 
-- (void) updateSelectedSwingAngle:(CGFloat)swingAngle {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.swingAngle = swingAngle;
-    [self setNeedsDisplay:YES];        
-}
-
-- (void) updateSelectedPoleScale:(CGFloat)poleScale {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.poleScale = poleScale;
-    [self setNeedsDisplay:YES];        
-}
-
-- (void) updateSelectedGrip:(CGFloat)grip {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.grip = grip;
-}
-
-- (void) updateSelectedWindSpeed:(CGFloat)windSpeed {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.windSpeed = windSpeed;
-}
-
-- (void) updateSelectedWindDirection:(NSString*)windDirection {
-    GameObject *gameObject = [self getSelectedGameObject];
-    gameObject.windDirection = windDirection;
-}
 
 #pragma mark Accessors
 
@@ -564,91 +486,64 @@
     NSMutableArray *gameItems = [NSMutableArray array];
     for (GameObject *gameObject in gameObjects) {
         NSMutableDictionary *levelDict = [NSMutableDictionary dictionary];
-        switch (gameObject.gameObjectType) {
-            case kGameObjectTypeSwinger:
-                [levelDict setObject:@"Catcher" forKey:@"Type"];
-                break;
-            case kGameObjectTypeCannon:
-                [levelDict setObject:@"Cannon" forKey:@"Type"];
-                break;                
-            case kGameObjectTypeFinalPlatform:
-                [levelDict setObject:@"FinalPlatform" forKey:@"Type"];
-                break;                
-            case kGameObjectTypeDummy:
-                [levelDict setObject:@"Dummy" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeStar:
-                [levelDict setObject:@"Star" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeCoin:
-                [levelDict setObject:@"Coin" forKey:@"Type"];
-                break;
-            case kGameObjectTypeSpring:
-                [levelDict setObject:@"Spring" forKey:@"Type"];
-                break;
-            case kGameObjectTypeElephant:
-                [levelDict setObject:@"Elephant" forKey:@"Type"];
-                break;
-            // From here on out, these are foreground parallax layer objects.
-            // Store the file name of the image directly as the Type
-            case kGameObjectTypeTreeClump1:
-                [levelDict setObject:@"L1aTreeClump1.png" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeTreeClump2:
-                [levelDict setObject:@"L1aTreeClump2.png" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeTreeClump3:
-                [levelDict setObject:@"L1aTreeClump3.png" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeTent1:
-                [levelDict setObject:@"L1a_Tent1.png" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeTent2:
-                [levelDict setObject:@"L1a_Tent2.png" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeBalloonCart:
-                [levelDict setObject:@"L1a_BalloonCart.png" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypePopcornCart:
-                [levelDict setObject:@"L1a_PopcornCart.png" forKey:@"Type"];
-                break;                                
-            case kGameObjectTypeBoxes:
-                [levelDict setObject:@"L1a_Boxes1.png" forKey:@"Type"];
-                break;                                
-            default:
-                break;
-        }
+        [levelDict setObject:[gameObject gameObjectTypeString] forKey:@"Type"];
+//        switch (gameObject.gameObjectType) {
+//            case kGameObjectTypeSwinger:
+//                [levelDict setObject:@"Catcher" forKey:@"Type"];
+//                break;
+//            case kGameObjectTypeCannon:
+//                [levelDict setObject:@"Cannon" forKey:@"Type"];
+//                break;                
+//            case kGameObjectTypeFinalPlatform:
+//                [levelDict setObject:@"FinalPlatform" forKey:@"Type"];
+//                break;                
+//            case kGameObjectTypeDummy:
+//                [levelDict setObject:@"Dummy" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeStar:
+//                [levelDict setObject:@"Star" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeCoin:
+//                [levelDict setObject:@"Coin" forKey:@"Type"];
+//                break;
+//            case kGameObjectTypeSpring:
+//                [levelDict setObject:@"Spring" forKey:@"Type"];
+//                break;
+//            case kGameObjectTypeElephant:
+//                [levelDict setObject:@"Elephant" forKey:@"Type"];
+//                break;
+//            // From here on out, these are foreground parallax layer objects.
+//            // Store the file name of the image directly as the Type
+//            case kGameObjectTypeTreeClump1:
+//                [levelDict setObject:@"L1aTreeClump1.png" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeTreeClump2:
+//                [levelDict setObject:@"L1aTreeClump2.png" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeTreeClump3:
+//                [levelDict setObject:@"L1aTreeClump3.png" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeTent1:
+//                [levelDict setObject:@"L1a_Tent1.png" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeTent2:
+//                [levelDict setObject:@"L1a_Tent2.png" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeBalloonCart:
+//                [levelDict setObject:@"L1a_BalloonCart.png" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypePopcornCart:
+//                [levelDict setObject:@"L1a_PopcornCart.png" forKey:@"Type"];
+//                break;                                
+//            case kGameObjectTypeBoxes:
+//                [levelDict setObject:@"L1a_Boxes1.png" forKey:@"Type"];
+//                break;                                
+//            default:
+//                break;
+//        }
         
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].x/2] forKey:@"XPosition"];
-        [levelDict setObject:[NSNumber numberWithFloat:[gameObject position].y/2] forKey:@"YPosition"];
-        [levelDict setObject:[NSNumber numberWithInt:gameObject.zOrder] forKey:@"Z-Order"];
         
-        if (gameObject.gameObjectType != kGameObjectTypeStar
-            && gameObject.gameObjectType != kGameObjectTypeTreeClump1
-            && gameObject.gameObjectType != kGameObjectTypeTreeClump2
-            && gameObject.gameObjectType != kGameObjectTypeTreeClump3
-            && gameObject.gameObjectType != kGameObjectTypeTent1
-            && gameObject.gameObjectType != kGameObjectTypeTent2
-            && gameObject.gameObjectType != kGameObjectTypeBalloonCart
-            && gameObject.gameObjectType != kGameObjectTypePopcornCart
-            && gameObject.gameObjectType != kGameObjectTypeBoxes
-            && gameObject.gameObjectType != kGameObjectTypeCoin) 
-        {
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject period]] forKey:@"Period"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject ropeLength]] forKey:@"RopeLength"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject grip]] forKey:@"Grip"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject swingAngle]] forKey:@"SwingAngle"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject poleScale]] forKey:@"PoleScale"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject windSpeed]] forKey:@"WindSpeed"];
-            [levelDict setObject:[gameObject windDirection] == nil ? @"" : [gameObject windDirection] forKey:@"WindDirection"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonSpeed]] forKey:@"Speed"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonForce]] forKey:@"Force"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject cannonRotationAngle]] forKey:@"RotationAngle"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject bounce]] forKey:@"Bounce"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject leftEdge]] forKey:@"LeftEdge"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject rightEdge]] forKey:@"RightEdge"];
-            [levelDict setObject:[NSNumber numberWithFloat:[gameObject walkVelocity]] forKey:@"WalkVelocity"];
-        }
+        [gameObject levelForSerialization:levelDict];
         [gameItems addObject:levelDict];
     }
     
@@ -677,125 +572,78 @@
         GameObject *gameObject = nil;
 
         NSString *type = [level objectForKey:@"Type"]; 
-        if ([@"Catcher" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SwingPole1" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0)
-                                                             parent:self];
-            gameObject.gameObjectType = kGameObjectTypeSwinger;
-        } else if ([@"Cannon" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Cannon" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0, 0)
-                                                             parent:self];
-            gameObject.gameObjectType = kGameObjectTypeCannon;
-        } else if ([@"FinalPlatform" isEqualToString:type]) {
+        gameObject = [GameObject instanceOf:type];
+        
+        if ([@"FinalPlatform" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"finalPlatform" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0, 0)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeFinalPlatform;
         } else if ([@"Dummy" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dummy" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0, 0)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeDummy;            
         } else if ([@"Star" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeStar;
         } else if ([@"Coin" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Coin1" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeCoin;
-        } else if ([@"Spring" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spring" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0)
-                                                             parent:self];
-            gameObject.gameObjectType = kGameObjectTypeSpring;
-        } else if ([@"Elephant" isEqualToString:type]) {
-            gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ElephantWalk6" ofType:@"png"]
-                                                        anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
-            gameObject.gameObjectType = kGameObjectTypeElephant;
-        }
+        } 
         // From here on out, these are foreground parallax layer objects.
         // Check if the type is the file name of the image.
         else if ([@"L1aTreeClump1.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1aTreeClump1" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeTreeClump1;
         } else if ([@"L1aTreeClump2.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1aTreeClump2" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeTreeClump2;
         } else if ([@"L1aTreeClump3.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1aTreeClump3" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeTreeClump3;
         } else if ([@"L1a_Tent1.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_Tent1" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeTent1;
         } else if ([@"L1a_Tent2.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_Tent2" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeTent2;
         } else if ([@"L1a_BalloonCart.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_BalloonCart" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeBalloonCart;
         } else if ([@"L1a_PopcornCart.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_PopcornCart" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypePopcornCart;
         } else if ([@"L1a_Boxes1.png" isEqualToString:type]) {
             gameObject = [[GameObject alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"L1a_Boxes1" ofType:@"png"]
                                                         anchorPoint:CGPointMake(0.5, 0.5)
-                                                             parent:self];
+                                                             ];
             gameObject.gameObjectType = kGameObjectTypeBoxes;
         }
         
         
         if (gameObject != nil) {
-            gameObject.position = CGPointMake([[level objectForKey:@"XPosition"] floatValue]*2,
-                                              [[level objectForKey:@"YPosition"] floatValue]*2);
-
-            gameObject.zOrder = [[level objectForKey:@"Z-Order"] intValue];
             
-            if (gameObject.gameObjectType != kGameObjectTypeStar
-                && gameObject.gameObjectType != kGameObjectTypeTreeClump1
-                && gameObject.gameObjectType != kGameObjectTypeTreeClump2
-                && gameObject.gameObjectType != kGameObjectTypeTreeClump3
-                && gameObject.gameObjectType != kGameObjectTypeTent1
-                && gameObject.gameObjectType != kGameObjectTypeTent2
-                && gameObject.gameObjectType != kGameObjectTypePopcornCart
-                && gameObject.gameObjectType != kGameObjectTypeBalloonCart
-                && gameObject.gameObjectType != kGameObjectTypeBoxes
-                && gameObject.gameObjectType != kGameObjectTypeCoin) 
-            {
-                gameObject.period = [[level objectForKey:@"Period"] floatValue];
-                gameObject.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
-                gameObject.grip = [[level objectForKey:@"Grip"] floatValue];
-                gameObject.swingAngle = [[level objectForKey:@"SwingAngle"] floatValue];
-                gameObject.poleScale = [[level objectForKey:@"PoleScale"] floatValue];
-                gameObject.windSpeed = [[level objectForKey:@"WindSpeed"] floatValue];
-                gameObject.windDirection = [level objectForKey:@"WindDirection"];
-                gameObject.cannonForce = [[level objectForKey:@"Force"] floatValue];
-                gameObject.cannonRotationAngle = [[level objectForKey:@"RotationAngle"] floatValue];
-                gameObject.cannonSpeed = [[level objectForKey:@"Speed"] floatValue];
-                gameObject.bounce = [[level objectForKey:@"Bounce"] floatValue];
-                gameObject.leftEdge = [[level objectForKey:@"LeftEdge"] floatValue];
-                gameObject.rightEdge = [[level objectForKey:@"RightEdge"] floatValue];
-                gameObject.walkVelocity = [[level objectForKey:@"WalkVelocity"] floatValue];
-            }
             
+            [gameObject loadFromDict:level];
             [self addGameObject:gameObject isSelected:NO];
         }
     }

@@ -9,33 +9,27 @@
 #import "GameObject.h"
 #import "AppDelegate.h"
 #import "StretchView.h"
+#import "Pole.h"
+#import "Cannon.h"
+#import "Spring.h"
+#import "Elephant.h"
 
 @implementation GameObject
 
 @synthesize position;
 @synthesize selected;
 @synthesize gameObjectType;
-@synthesize period;
 @synthesize moveHandleSelected;
 @synthesize resizeHandleSelected;
-@synthesize ropeLength;
 @synthesize grip;
-@synthesize poleScale;
 @synthesize windSpeed;
-@synthesize swingAngle;
 @synthesize windDirection;
-@synthesize cannonForce;
-@synthesize cannonSpeed;
-@synthesize cannonRotationAngle;
 @synthesize anchorYOffset;
 @synthesize anchorXOffset;
 @synthesize zOrder;
 @synthesize anchorPoint;
 @synthesize name;
-@synthesize bounce;
-@synthesize leftEdge;
-@synthesize rightEdge;
-@synthesize walkVelocity;
+@synthesize scale;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -58,14 +52,17 @@
     return rect;    
 }
 
-- (id) initWithContentsOfFile:(NSString *)fileName anchorPoint:(CGPoint)ap parent:(NSView *)parentView {
-    self = [super initWithContentsOfFile:fileName];
+- (id) initWithAnchorPoint:(CGPoint)ap {
+    NSAssert(NO, @"Must be overriden");
+    return nil;
+}
+
+- (id) initWithContentsOfFile:(NSString *)fileName anchorPoint:(CGPoint)ap {
+    NSString *fullPath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"png"];
+    self = [super initWithContentsOfFile:fullPath];
     self.windDirection = @"";
-    self.poleScale = 1.0;
+    self.scale = 1.0;
     self.grip = 2.0;
-    self.period = 2.0;
-    self.swingAngle = 55;
-    self.ropeLength = 150;
     self.zOrder = 0;
     self.anchorPoint = ap;
     moveHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-move-hi" 
@@ -75,17 +72,57 @@
                                                                                            ofType:@"png"]];
     originalSize = [self size];
 
-    parent = parentView;
     
-    lbl = [[NSTextView alloc] initWithFrame:CGRectMake(0, 40, 400, 60)];
-    [lbl setString:@""];
-    [lbl setDrawsBackground:NO];
-    [lbl setSelectable:NO];
-    [lbl setEditable:NO];
-    [lbl setFont:[NSFont fontWithName:@"Courier New" size:11]];
-    [parent addSubview:lbl];
+//    lbl = [[NSTextView alloc] initWithFrame:CGRectMake(0, 40, 400, 60)];
+//    [lbl setString:@""];
+//    [lbl setDrawsBackground:NO];
+//    [lbl setSelectable:NO];
+//    [lbl setEditable:NO];
+//    [lbl setFont:[NSFont fontWithName:@"Courier New" size:11]];
+//    [parent addSubview:lbl];
     
     return self;
+}
+
++ (id) instanceOf:(NSString*)type {
+    GameObject *go;
+    
+    if ([@"Pole" isEqualToString:type] || [@"Catcher" isEqualToString:type]) {
+        go = [[Pole alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];
+    }
+    else if ([@"Cannon" isEqualToString:type]) {
+        go = [[Cannon alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];        
+    }
+    else if ([@"Spring" isEqualToString:type]) {
+        go = [[Spring alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];        
+    }
+    else if ([@"Elephant" isEqualToString:type]) {
+        go = [[Elephant alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+    }
+
+    
+    return go;
+}
+
+- (void) levelForSerialization:(NSMutableDictionary*)levelDict {
+    [levelDict setObject:[NSNumber numberWithFloat:self.position.x/2] forKey:@"XPosition"];
+    [levelDict setObject:[NSNumber numberWithFloat:self.position.y/2] forKey:@"YPosition"];
+    [levelDict setObject:[NSNumber numberWithInt:self.zOrder] forKey:@"Z-Order"];
+    [levelDict setObject:[NSNumber numberWithFloat:self.scale] forKey:@"PoleScale"];
+    [levelDict setObject:[NSNumber numberWithFloat:self.grip] forKey:@"Grip"];
+    [levelDict setObject:[NSNumber numberWithFloat:self.windSpeed] forKey:@"WindSpeed"];
+    [levelDict setObject:self.windDirection == nil ? @"" : self.windDirection forKey:@"WindDirection"];
+}
+
+- (void) loadFromDict:(NSDictionary*)level {
+    self.position = CGPointMake([[level objectForKey:@"XPosition"] floatValue]*2,
+                                [[level objectForKey:@"YPosition"] floatValue]*2);
+    
+    self.zOrder = [[level objectForKey:@"Z-Order"] intValue];
+    self.grip = [[level objectForKey:@"Grip"] floatValue];
+    self.windSpeed = [[level objectForKey:@"WindSpeed"] floatValue];
+    self.windDirection = [level objectForKey:@"WindDirection"];
+
 }
 
 
@@ -93,7 +130,7 @@
 - (void) draw:(CGContextRef)ctx {
     
     [self setScalesWhenResized:YES];
-    CGSize newSize = CGSizeMake(originalSize.width, originalSize.height*poleScale);
+    CGSize newSize = CGSizeMake(originalSize.width, originalSize.height*scale);
     [self setSize:newSize];
     
     NSRect imageRect;
@@ -103,49 +140,6 @@
              fromRect:imageRect 
             operation:NSCompositeSourceOver 
              fraction:1.0];        
-    
-    
-    // Factor used to scale rope length so that it matches length seen in game.
-    // This is just eye-balled. Saw what the ratio of rope length to pole length was in game.
-    float ropeHeightConversionFactor = [self size].height / 300;
-
-    NSBezierPath *linePath = [NSBezierPath bezierPath];
-    //CGFloat pattern[2] = {2, 2};
-    //[gridLinePath setLineDash:pattern count:2 phase:0];
-    
-    float x1, x2, y1, y2;
-    if (gameObjectType == kGameObjectTypeSwinger) {
-        x1 = position.x + [self size].width/2 - anchorXOffset;
-        y1 = position.y + [self size].height;
-        
-        x2 = position.x + [self size].width/2 - anchorXOffset + (ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180))/poleScale;
-        
-        // divide by poleScale to keep length same regardless of whether pole is scaled
-        y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/poleScale);
-        [linePath moveToPoint:CGPointMake(x1, y1)];
-        [linePath lineToPoint:CGPointMake(x2, y2)];
-        
-        [[NSColor blueColor] set];
-        [linePath setLineWidth:2.0];
-        [linePath stroke];
-    } else if (gameObjectType == kGameObjectTypeCannon) {
-        x1 = position.x + [self size].width/2 + 30;
-        y1 = position.y + 190;
-        
-        x2 = position.x + [self size].width/2 + 30 + 200*cos((90-cannonRotationAngle)*M_PI/180);
-        
-        // divide by poleScale to keep length same regardless of whether pole is scaled
-        y2 = position.y + 190 + (200*sin((90-cannonRotationAngle)*M_PI/180)/poleScale);        
-        [linePath moveToPoint:CGPointMake(x1, y1)];
-        [linePath lineToPoint:CGPointMake(x2, y2)];
-        
-        [[NSColor blueColor] set];
-        [linePath setLineWidth:2.0];
-        [linePath stroke];
-    }
-
-
-    
     
     if (selected) {
         if (gameObjectType == kGameObjectTypeStar) {
@@ -183,19 +177,46 @@
                          fraction:1.0];
     }
     
-    if (gameObjectType == kGameObjectTypeSwinger) {
-        NSString *str;
+//    if (gameObjectType == kGameObjectTypeSwinger) {
+//        NSString *str;
+//        
+//        str = [NSString stringWithFormat:@"%15s %.2f secs\n%15s %.2f\n%15s %.2f\n%15s %@", 
+//                         "Period:", "Grip:", "Wind speed:", "Wind direction:", period, grip, windSpeed, windDirection];
+//        
+//        [lbl setString:str];
+//        [lbl setFrameOrigin:CGPointMake(position.x + [self size].width, position.y)];
+//    } else {
+//        if (lbl != nil) {
+//            [lbl removeFromSuperview];
+//            lbl = nil;
+//        }
+//    }
+}
+
+- (void) updateInfo {
+    if (selected) {
+        AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+        [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", self.position.x]];
+        [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", self.position.y]];
         
-        str = [NSString stringWithFormat:@"%15s %.2f secs\n%15s %.2f\n%15s %.2f\n%15s %@", 
-                         "Period:", "Grip:", "Wind speed:", "Wind direction:", period, grip, windSpeed, windDirection];
-        
-        [lbl setString:str];
-        [lbl setFrameOrigin:CGPointMake(position.x + [self size].width, position.y)];
-    } else {
-        if (lbl != nil) {
-            [lbl removeFromSuperview];
-            lbl = nil;
-        }
+        [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", self.scale]];
+        [appDelegate.grip setStringValue:[NSString stringWithFormat:@"%.2f", self.grip]];
+        [appDelegate.windSpeed setStringValue:[NSString stringWithFormat:@"%.2f", self.windSpeed]];
+        [appDelegate.windDirection setStringValue:self.windDirection == nil ? @"" : self.windDirection];
+        [appDelegate.zOrder setIntValue:self.zOrder];
+        [appDelegate.zOrderStepper setIntValue:self.zOrder];
+    }
+}
+
+- (void) updateProperties {
+    if (selected) {
+        AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+        self.position = CGPointMake([appDelegate.xPosition floatValue], [appDelegate.yPosition floatValue]);
+        self.scale = [appDelegate.poleScale floatValue];
+        self.grip = [appDelegate.grip floatValue];
+        self.windSpeed = [appDelegate.windSpeed floatValue];
+        self.windDirection = [appDelegate.windDirection stringValue];
+        self.zOrder = [appDelegate.zOrder intValue];        
     }
 }
 
@@ -207,7 +228,7 @@
 
 - (void) setSize:(NSSize)aSize {
     [super setSize:aSize];
-    poleScale = aSize.height / originalSize.height;
+    scale = aSize.height / originalSize.height;
 }
 
 - (BOOL) isRectIntersectImage:(CGRect)rect {
@@ -238,8 +259,12 @@
     return NO;    
 }
 
+- (NSString*) gameObjectTypeString {
+    NSAssert(NO, @"Must be overriden");
+    return nil;
+}
 
 - (void) dealloc {
-    [lbl removeFromSuperview];
+    //[lbl removeFromSuperview];
 }
 @end

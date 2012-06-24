@@ -26,29 +26,13 @@
 
 - (void) addGameObject:(GameObject*)gameObject isSelected:(BOOL)selected;
 
-- (void) updateSelectedPosition:(CGPoint)newPos;
-- (void) updateSelectedPeriod:(CGFloat)newSwingSpeed;
-- (void) updateSelectedRopeLength:(CGFloat)ropeLength;
-- (void) updateSelectedSwingAngle:(CGFloat)swingAngle;
-- (void) updateSelectedPoleScale:(CGFloat)poleScale;
-- (void) updateSelectedGrip:(CGFloat)grip;
-- (void) updateSelectedWindSpeed:(CGFloat)windSpeed;
-- (void) updateSelectedWindDirection:(NSString*)windDirection;
-- (void) updateSelectedCannonSpeed:(CGFloat)speed;
-- (void) updateSelectedCannonForce:(CGFloat)force;
-- (void) updateSelectedCannonRotationAngle:(CGFloat)angle;
-- (void) updateSelectedZOrder:(int)zOrder;
-- (void) updateSelectedBounce:(CGFloat)bounce;
-- (void) updateSelectedElephantLeftEdge:(CGFloat)v;
-- (void) updateSelectedElephantRightEdge:(CGFloat)v;
-- (void) updateSelectedElephantWalkVelocity:(CGFloat)v;
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;
 - (void) sortGameObjectsByZOrder;
 - (GameObject*) getLastGameObject;
 - (NSArray*) levelForSerialization;
-
+- (void) updateSelectedGameObject;
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
