@@ -9,6 +9,7 @@
 #import "StretchView.h"
 #import "AppDelegate.h"
 #import "GameObject.h"
+#import "Notifications.h"
 
 @interface StretchView(Private)
 - (void) drawGrid:(CGContextRef)ctx;
@@ -17,6 +18,7 @@
 - (GameObject*) getSelectedGameObject;
 - (GameObject*) getMoveHandleSelectedGameObject;
 - (GameObject*) getResizeHandleSelectedGameObject;
+- (void) handleZOrderChangedNotification:(NSNotification *)notification;
 @end
 
 @implementation StretchView
@@ -29,6 +31,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         gameObjects = [[NSMutableArray alloc] init];
+        sortedArray = gameObjects;
         currentPoint = CGPointZero;
         opacity = 1.0;
         scale = 1.0;
@@ -37,6 +40,11 @@
         deviceScreenHeight = 320*2;
         
         selectionRect = CGRectMake(0, 0, 0, 0);
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(handleZOrderChangedNotification:) 
+                                                     name:Z_ORDER_CHANGED 
+                                                   object:nil];
+
         //[NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(updateDisplay:) userInfo:nil repeats:YES];
     }
     
@@ -204,6 +212,10 @@
         [go  updateProperties];
     }    
 
+    if (gameObjects != sortedArray) {
+        [gameObjects removeAllObjects];
+        gameObjects = sortedArray;    
+    }
 }
 - (void) updateSelectedInfo {
     for (GameObject *go in gameObjects) {
@@ -506,6 +518,11 @@
     [self setNeedsDisplay:YES];
 }
 
+- (void) handleZOrderChangedNotification:(NSNotification *)notification {
+    [self sortGameObjectsByZOrder];
+    [self setNeedsDisplay:YES];
+}
+
 - (void) sortGameObjectsByZOrder {
     NSArray *sortedGameItems = [gameObjects sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2) {
         GameObject *item1 = (GameObject*) obj1;
@@ -521,11 +538,8 @@
         
         return (NSComparisonResult) NSOrderedSame;
     }];
-    
-    [gameObjects removeAllObjects];
-    
-    NSMutableArray *sortedArray = [NSMutableArray arrayWithArray:sortedGameItems];
-    gameObjects = sortedArray;    
+        
+    sortedArray = [NSMutableArray arrayWithArray:sortedGameItems];
 }
 
 - (void) clearCanvas {

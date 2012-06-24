@@ -12,6 +12,7 @@
 @interface StretchView : NSView<NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate> {
     NSBezierPath *path;
     NSMutableArray *gameObjects;
+    NSMutableArray *sortedArray;
     float opacity;
     NSPoint downPoint;
     NSPoint currentPoint;
@@ -29,10 +30,10 @@
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;
 - (void) clearCanvas;
-- (void) sortGameObjectsByZOrder;
 - (GameObject*) getLastGameObject;
 - (NSArray*) levelForSerialization;
 - (void) updateSelectedGameObject;
+- (void) sortGameObjectsByZOrder;
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;

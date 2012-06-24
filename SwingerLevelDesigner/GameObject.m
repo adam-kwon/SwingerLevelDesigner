@@ -23,6 +23,7 @@
 #import "Coin.h"
 #import "Boxes.h"
 #import "Wheel.h"
+#import "Notifications.h"
 
 @implementation GameObject
 
@@ -266,7 +267,10 @@
         self.grip = [appDelegate.grip floatValue];
         self.windSpeed = [appDelegate.windSpeed floatValue];
         self.windDirection = [appDelegate.windDirection stringValue];
-        self.zOrder = [appDelegate.zOrder intValue];        
+        if ([appDelegate.zOrder intValue] != self.zOrder) {
+            self.zOrder = [appDelegate.zOrder intValue];        
+            [[NSNotificationCenter defaultCenter] postNotificationName:Z_ORDER_CHANGED object:nil];
+        }
     }
 }
 

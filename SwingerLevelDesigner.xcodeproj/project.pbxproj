@@ -89,6 +89,7 @@
 		39104B4015978A9100C80A13 /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
 		39104B4115978A9100C80A13 /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
 		39104B4315978BCD00C80A13 /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
+		39104B451597994100C80A13 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		391D412C1586D9A500F80DE6 /* Swing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Swing1.png; path = ../Swing1.png; sourceTree = "<group>"; };
 		391D41311586DBA700F80DE6 /* Swing1.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Swing1.icns; path = resources/macos/Swing1.icns; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +254,7 @@
 				39258E03156F2E9E00311702 /* StretchView.h */,
 				39258E04156F2E9E00311702 /* StretchView.m */,
 				39258DF9156F2E3600311702 /* MainMenu.xib */,
+				39104B451597994100C80A13 /* Notifications.h */,
 				390ADF4E15733B9500A3F01A /* SetCanvasSizeWindowController.h */,
 				390ADF4F15733B9500A3F01A /* SetCanvasSizeWindowController.m */,
 				390ADF5015733B9500A3F01A /* SetCanvasSizeWindowController.xib */,

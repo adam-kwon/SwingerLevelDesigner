@@ -11,6 +11,7 @@
 #import "GameObject.h"
 #import "SetCanvasSizeWindowController.h"
 #import "Pole.h"
+#import "Notifications.h"
 
 @implementation AppDelegate
 
@@ -298,8 +299,12 @@
 
 
 - (void) controlTextDidEndEditing:(NSNotification *)obj {
-//    NSTextField *textField = (NSTextField*)[obj object];
+    NSTextField *textField = (NSTextField*)[obj object];
     
+    if (levelField == textField) {
+        [levelStepper setIntValue:[levelField intValue]];
+        [self loadLevel:[levelField intValue]];
+    }
     [self.stretchView updateSelectedGameObject];
 }
 
