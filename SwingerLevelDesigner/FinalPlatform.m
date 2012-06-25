@@ -18,7 +18,7 @@
 }
 
 - (NSString*) gameObjectTypeString {
-    return @"Final Platform";
+    return @"FinalPlatform";
 }
 
 @end
