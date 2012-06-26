@@ -82,6 +82,10 @@
     resizeHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-scale-hi" 
                                                                                            ofType:@"png"]];
     originalSize = [self size];
+    
+    anchorXOffset = [self size].width * anchorPoint.x;
+    anchorYOffset = [self size].height * anchorPoint.y;
+
 
     
 //    lbl = [[NSTextView alloc] initWithFrame:CGRectMake(0, 40, 400, 60)];
@@ -147,7 +151,7 @@
         go = [[Boxes alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
     }
     else if ([@"Wheel" isEqualToString:type]) {
-        go = [[Wheel alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];        
+        go = [[Wheel alloc] initWithAnchorPoint:CGPointMake(0.5, 0.68)];        
     }
 
     
@@ -276,8 +280,6 @@
 
 - (void) setGameObjectType:(GameObjectType)type {
     gameObjectType = type;
-    anchorXOffset = [self size].width * anchorPoint.x;
-    anchorYOffset = [self size].height * anchorPoint.y;
 }
 
 - (void) setSize:(NSSize)aSize {
