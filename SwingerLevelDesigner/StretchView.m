@@ -216,6 +216,8 @@
         [gameObjects removeAllObjects];
         gameObjects = sortedArray;    
     }
+    
+    [self setNeedsDisplay:YES];
 }
 - (void) updateSelectedInfo {
     for (GameObject *go in gameObjects) {
