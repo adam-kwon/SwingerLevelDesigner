@@ -151,7 +151,7 @@
         go = [[Boxes alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
     }
     else if ([@"Wheel" isEqualToString:type]) {
-        go = [[Wheel alloc] initWithAnchorPoint:CGPointMake(0.5, 0.68)];        
+        go = [[Wheel alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];
     }
 
     
