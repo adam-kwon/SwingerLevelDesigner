@@ -121,6 +121,7 @@
     [gameObjects addItemWithObjectValue:@"Balloon Cart"];
     [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
     [gameObjects addItemWithObjectValue:@"Boxes"];
+    [gameObjects addItemWithObjectValue:@"Strong Man"];
     [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 

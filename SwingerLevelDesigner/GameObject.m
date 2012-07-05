@@ -23,6 +23,7 @@
 #import "Coin.h"
 #import "Boxes.h"
 #import "Wheel.h"
+#import "StrongMan.h"
 #import "Notifications.h"
 
 @implementation GameObject
@@ -152,6 +153,9 @@
     }
     else if ([@"Wheel" isEqualToString:type]) {
         go = [[Wheel alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];
+    }
+    else if ([@"StrongMan" isEqualToString:type] || [@"Strong Man" isEqualToString:type]) {
+        go = [[StrongMan alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];
     }
 
     

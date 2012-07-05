@@ -53,6 +53,8 @@
 		39BE5E4C1590344200C7D79E /* Coin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E4B1590344200C7D79E /* Coin1.png */; };
 		39BE5E601591A3A300C7D79E /* spring.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E5F1591A3A300C7D79E /* spring.png */; };
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
+		39F9A55C15A55E1400AAC46B /* StrongmanStand1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */; };
+		39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F9A55F15A55EA500AAC46B /* StrongMan.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +129,9 @@
 		39BE5E5F1591A3A300C7D79E /* spring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring.png; sourceTree = "<group>"; };
 		39C05CCD1571C5EF007C0035 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		39C05CCE1571C5EF007C0035 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StrongmanStand1.png; sourceTree = "<group>"; };
+		39F9A55E15A55EA500AAC46B /* StrongMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongMan.h; sourceTree = "<group>"; };
+		39F9A55F15A55EA500AAC46B /* StrongMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrongMan.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +149,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */,
 				39104B4315978BCD00C80A13 /* wheel.png */,
 				39BE5E5F1591A3A300C7D79E /* spring.png */,
 				39B966701592E51700D4BF00 /* ElephantWalk6.png */,
@@ -178,6 +184,8 @@
 				39C05CCE1571C5EF007C0035 /* GameObject.m */,
 				39104B241597763C00C80A13 /* FinalPlatform.h */,
 				39104B251597763C00C80A13 /* FinalPlatform.m */,
+				39F9A55E15A55EA500AAC46B /* StrongMan.h */,
+				39F9A55F15A55EA500AAC46B /* StrongMan.m */,
 				39104B4015978A9100C80A13 /* Wheel.h */,
 				39104B4115978A9100C80A13 /* Wheel.m */,
 				39104B271597777D00C80A13 /* TreeClump.h */,
@@ -352,6 +360,7 @@
 				39BE5E601591A3A300C7D79E /* spring.png in Resources */,
 				39B966711592E51700D4BF00 /* ElephantWalk6.png in Resources */,
 				39104B4415978BCD00C80A13 /* wheel.png in Resources */,
+				39F9A55C15A55E1400AAC46B /* StrongmanStand1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +390,7 @@
 				39104B3C15977C2B00C80A13 /* Boxes.m in Sources */,
 				39104B3F15977C4100C80A13 /* Dummy.m in Sources */,
 				39104B4215978A9100C80A13 /* Wheel.m in Sources */,
+				39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
