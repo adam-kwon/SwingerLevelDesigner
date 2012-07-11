@@ -29,6 +29,14 @@ typedef enum {
     kGameObjectTypeBoxes,
     kGameObjectTypeWheel,
     kGameObjectTypeStrongMan,
+    kGameObjectTypeTorch,
+    kGameObjectTypeTreeClump1ForestRetreat,
+    kGameObjectTypeTreeClump2ForestRetreat,
+    kGameObjectTypeTreeClump3ForestRetreat,
+    kGameObjectTypeTree1ForestRetreat,
+    kGameObjectTypeTree2ForestRetreat,
+    kGameObjectTypeTree3ForestRetreat,
+    kGameObjectTypeTree4ForestRetreat
 } GameObjectType;
 
 @interface GameObject : NSImage {

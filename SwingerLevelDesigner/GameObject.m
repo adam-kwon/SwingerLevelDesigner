@@ -157,6 +157,27 @@
     else if ([@"StrongMan" isEqualToString:type] || [@"Strong Man" isEqualToString:type]) {
         go = [[StrongMan alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];
     }
+    else if ([@"Forest Retreat Tree Clump 1" isEqualToString:type] || [@"L2a_TreeClump1.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump1ForestRetreat];        
+    }
+    else if ([@"Forest Retreat Tree Clump 2" isEqualToString:type] || [@"L2a_TreeClump2.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump2ForestRetreat];        
+    }
+    else if ([@"Forest Retreat Tree Clump 3" isEqualToString:type] || [@"L2a_TreeClump3.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump3ForestRetreat];        
+    }
+    else if ([@"Forest Retreat Tree 1" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree1ForestRetreat];        
+    }
+    else if ([@"Forest Retreat Tree 2" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree2ForestRetreat];        
+    }
+    else if ([@"Forest Retreat Tree 3" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree3ForestRetreat];        
+    }
+    else if ([@"Forest Retreat Tree 4" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
+        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree4ForestRetreat];        
+    }
 
     
     return go;

@@ -310,9 +310,50 @@
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification {
     NSComboBox *comboBox = (NSComboBox *)[notification object];
-    if (comboBox == self.gameObjects) {
-        //NSString *str = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
-        //NSLog(@"seleted %@", str);
+    if (comboBox == self.worldNames) {
+        NSString *str = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
+        
+        [gameObjects removeAllItems];
+            
+        if ([WORLD_GRASSY_KNOLLS isEqualToString:str]) {
+            [gameObjects addItemWithObjectValue:@"Pole"];
+            [gameObjects addItemWithObjectValue:@"Cannon"];
+            [gameObjects addItemWithObjectValue:@"Spring"];    
+            [gameObjects addItemWithObjectValue:@"Elephant"];
+            [gameObjects addItemWithObjectValue:@"Wheel"];
+            [gameObjects addItemWithObjectValue:@"Final Platform"];
+            [gameObjects addItemWithObjectValue:@"Coin"];
+            [gameObjects addItemWithObjectValue:@"Star"];
+            [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
+            [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
+            [gameObjects addItemWithObjectValue:@"Tree Clump 3"];
+            [gameObjects addItemWithObjectValue:@"Tent 1"];
+            [gameObjects addItemWithObjectValue:@"Tent 2"];
+            [gameObjects addItemWithObjectValue:@"Balloon Cart"];
+            [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
+            [gameObjects addItemWithObjectValue:@"Boxes"];
+            [gameObjects addItemWithObjectValue:@"Strong Man"];
+            [gameObjects addItemWithObjectValue:@"Dummy"];
+        }
+        else if ([WORLD_FOREST_RETREAT isEqualToString:str]) {
+            [gameObjects addItemWithObjectValue:@"Pole"];
+            [gameObjects addItemWithObjectValue:@"Cannon"];
+            [gameObjects addItemWithObjectValue:@"Spring"];    
+            [gameObjects addItemWithObjectValue:@"Elephant"];
+            [gameObjects addItemWithObjectValue:@"Wheel"];
+            [gameObjects addItemWithObjectValue:@"Final Platform"];
+            [gameObjects addItemWithObjectValue:@"Coin"];
+            [gameObjects addItemWithObjectValue:@"Star"];
+            [gameObjects addItemWithObjectValue:@"Forest Retreat Tree Clump 1"];
+            [gameObjects addItemWithObjectValue:@"Forest Retreat Tree Clump 2"];
+            [gameObjects addItemWithObjectValue:@"Forest Retreat Tree Clump 3"];
+            [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 1"];
+            [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 2"];
+            [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 3"];
+            [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 4"];
+            [gameObjects addItemWithObjectValue:@"Strong Man"];
+            [gameObjects addItemWithObjectValue:@"Dummy"];            
+        }
     }
 }
 

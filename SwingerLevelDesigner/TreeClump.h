@@ -11,7 +11,14 @@
 typedef enum {
     kTreeClump1,
     kTreeClump2,
-    kTreeClump3
+    kTreeClump3,
+    kTreeClump1ForestRetreat,
+    kTreeClump2ForestRetreat,
+    kTreeClump3ForestRetreat,
+    kTree1ForestRetreat,
+    kTree2ForestRetreat,
+    kTree3ForestRetreat,
+    kTree4ForestRetreat
 } TreeClumpType;
 
 @interface TreeClump : GameObject
