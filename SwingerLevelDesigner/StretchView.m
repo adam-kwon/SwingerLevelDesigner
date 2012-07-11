@@ -405,6 +405,9 @@
             [gameObjects removeObjectAtIndex:i];
         }
     }
+    
+    AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+    [appDelegate synchronizeCurrentLevel];
 }
 
 - (void)keyDown:(NSEvent *)theEvent {

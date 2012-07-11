@@ -53,6 +53,12 @@
     [levels setValue:levelArray forKey:@"Level0"];
     [worlds setValue:levels forKey:@"World0"];
 
+    
+    levels = [NSMutableDictionary dictionary];
+    levelArray = [NSArray array];
+    [levels setValue:levelArray forKey:@"Level0"];
+    [worlds setValue:levels forKey:@"World1"];
+
     // Insert code here to initialize your application
 }
 
@@ -266,10 +272,10 @@
     NSArray *levelItems = [self.stretchView levelForSerialization];
     NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
 
-    NSDictionary *world = [worlds objectForKey:[worldNames stringValue]];
+    NSDictionary *world = [worlds objectForKey:[self convertedWorldName:[worldNames stringValue]]];
     [world setValue:levelItems forKey:currentLevel];
     
-    [worlds setValue:world forKey:[worldNames stringValue]];    
+    [worlds setValue:world forKey:[self convertedWorldName:[worldNames stringValue]]];
 }
 
 
@@ -314,7 +320,8 @@
         NSString *str = [comboBox itemObjectValueAtIndex:[comboBox indexOfSelectedItem]];
         
         [gameObjects removeAllItems];
-            
+        [gameObjects setStringValue:@""];    
+        
         if ([WORLD_GRASSY_KNOLLS isEqualToString:str]) {
             [gameObjects addItemWithObjectValue:@"Pole"];
             [gameObjects addItemWithObjectValue:@"Cannon"];
@@ -375,6 +382,7 @@
     gameObject.position = CGPointMake(r.origin.x + gameObject.anchorXOffset, 0 + gameObject.anchorYOffset);
     
     [self.stretchView addGameObject:gameObject isSelected:YES];    
+    [self synchronizeCurrentLevel];
 }
 
 
