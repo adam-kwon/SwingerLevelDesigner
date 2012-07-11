@@ -45,21 +45,29 @@
 @synthesize wheelSpeed;
 @synthesize worldNames;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+- (void) initNewWorlds {
     fileName = nil;
-    worlds = [NSMutableDictionary dictionary];
+    if (worlds != nil) {
+        [worlds removeAllObjects];
+    } else {
+        worlds = [NSMutableDictionary dictionary];
+    }
     NSDictionary *levels = [NSMutableDictionary dictionary];
     NSArray *levelArray = [NSArray array];
     [levels setValue:levelArray forKey:@"Level0"];
     [worlds setValue:levels forKey:@"World0"];
-
+    
     
     levels = [NSMutableDictionary dictionary];
     levelArray = [NSArray array];
     [levels setValue:levelArray forKey:@"Level0"];
     [worlds setValue:levels forKey:@"World1"];
+    
+}
 
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    [self initNewWorlds];
     // Insert code here to initialize your application
 }
 
@@ -291,16 +299,8 @@
 }
 
 - (IBAction)newDocument:(id)sender {
-    if (worlds == nil) {
-        worlds = [NSMutableDictionary dictionary];
-    } else {
-        [worlds removeAllObjects];
-    }
-    NSArray *levelArray = [NSArray array];
-    NSDictionary *world = [NSDictionary dictionary];
-    [worlds setValue:world forKey:@"World0"];
+    [self initNewWorlds];
     
-    [world setValue:levelArray forKey:@"Level0"];
     [levelField setIntValue:0];
     [maxLevelField setStringValue:@"of 0"];
     [levelStepper setIntValue:0];
