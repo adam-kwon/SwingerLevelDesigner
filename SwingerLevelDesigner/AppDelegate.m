@@ -204,7 +204,7 @@
     [self loadWorld:WORLD_GRASSY_KNOLLS level:0];
     [levelStepper setIntValue:0];
     [levelField setIntValue:0];
-    int maxLevels = [[worlds objectForKey:[self convertedWorldName:WORLD_GRASSY_KNOLLS]] count];
+    int maxLevels = [[worlds objectForKey:[self convertedWorldName:WORLD_GRASSY_KNOLLS]] count] - 1;
     [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", maxLevels]];
 }
 
@@ -277,7 +277,7 @@
     [self synchronizeCurrentLevel];
     
     // Add dummy level as place holder
-    NSDictionary *world = [worlds objectForKey:[worldNames stringValue]];
+    NSDictionary *world = [worlds objectForKey:[self convertedWorldName:[worldNames stringValue]]];
     int numLevels = [world count];
     NSArray *levelArray = [NSArray array];
     [world setValue:levelArray forKey:[NSString stringWithFormat:@"Level%d", numLevels]];
