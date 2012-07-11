@@ -11,7 +11,7 @@
 
 @interface StretchView : NSView<NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate> {
     NSBezierPath *path;
-    NSMutableDictionary *gameObjects;
+    NSMutableArray *gameObjects;
     NSMutableArray *sortedArray;
     float opacity;
     NSPoint downPoint;

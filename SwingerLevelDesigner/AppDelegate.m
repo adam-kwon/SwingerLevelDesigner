@@ -143,8 +143,10 @@
 }
 
 - (void) loadWorld:(NSString*)worldName level:(int)levelNumber {
+    [self.stretchView clearCanvas];
+
     NSString *convertedWorldName = [GPUtil convertedWorldName:worldName];
-    
+
     CGFloat maxXPosition = 0.0;
     CGFloat maxYPosition = 0.0;
     NSDictionary *world = [worlds objectForKey:convertedWorldName];
@@ -178,10 +180,7 @@
         CGRect newFrame = CGRectMake(0.f, 0.f, width, height);
         [self.stretchView setFrame:newFrame];
         
-        [self.stretchView clearCanvas];
         [self.stretchView loadLevel:levelItems];    
-    } else {
-        [self.stretchView clearCanvas];
     }
 //    NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
 //    [sv verticalScroller].floatValue = 0.f;

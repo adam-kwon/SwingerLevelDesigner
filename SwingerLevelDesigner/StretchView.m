@@ -551,6 +551,7 @@
 
 - (void) clearCanvas {
     [gameObjects removeAllObjects];
+    [sortedArray removeAllObjects];
     [self setNeedsDisplay:YES];
 }
 
