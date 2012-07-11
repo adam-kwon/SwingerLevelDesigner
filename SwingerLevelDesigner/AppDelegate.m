@@ -158,8 +158,26 @@
     CGFloat maxXPosition = 0.0;
     CGFloat maxYPosition = 0.0;
     NSDictionary *world = [worlds objectForKey:convertedWorldName];
-    NSArray *levelItems = [world objectForKey:[NSString stringWithFormat:@"Level%d", levelNumber]];
+    NSMutableArray *levelItems = [world objectForKey:[NSString stringWithFormat:@"Level%d", levelNumber]];
     if ([levelItems count] > 0) {
+        // First sort by z-order
+        NSArray *sortedLevelItems = [levelItems sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2) {
+            NSDictionary *item1 = (NSDictionary*) obj1;
+            NSDictionary *item2 = (NSDictionary*) obj2;
+            CGFloat x1 = [[item1 objectForKey:@"Z-Order"] floatValue];
+            CGFloat x2 = [[item2 objectForKey:@"Z-Order"] floatValue];
+            if (x1 > x2) {
+                return (NSComparisonResult) NSOrderedDescending;
+            }
+            if (x1 < x2) {
+                return (NSComparisonResult) NSOrderedAscending;
+            }
+            
+            return (NSComparisonResult) NSOrderedSame;
+        }];        
+        [levelItems removeAllObjects];
+        [levelItems addObjectsFromArray:sortedLevelItems];
+        
         // Calculate canvas size
         for (NSDictionary *level in levelItems) {
             CGFloat xpos = [[level objectForKey:@"XPosition"] floatValue]*2;
@@ -204,8 +222,8 @@
     worlds = [NSPropertyListSerialization propertyListFromData:plistData
                                               mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                                         format:&format
-                                              errorDescription:&error];
-
+                                              errorDescription:&error];    
+    
     [self loadWorld:WORLD_GRASSY_KNOLLS level:0];
     [levelStepper setIntValue:0];
     [levelField setIntValue:0];

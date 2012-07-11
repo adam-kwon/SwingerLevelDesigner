@@ -209,7 +209,7 @@
 
 - (void) updateSelectedGameObject {
     for (GameObject *go in gameObjects) {
-        [go  updateProperties];
+        [go updateProperties];
     }    
 
     if (gameObjects != sortedArray) {
@@ -221,7 +221,7 @@
 }
 - (void) updateSelectedInfo {
     for (GameObject *go in gameObjects) {
-        [go  updateInfo];
+        [go updateInfo];
     }
 }
 
