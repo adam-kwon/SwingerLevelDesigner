@@ -13,6 +13,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     NSMutableDictionary *worlds;
     NSURL *fileName;
+    NSString *oldWorldsName;
 }
 
 - (void) writeLevelToFile;
