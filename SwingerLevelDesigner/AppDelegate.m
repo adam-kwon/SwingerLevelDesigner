@@ -12,6 +12,7 @@
 #import "SetCanvasSizeWindowController.h"
 #import "Pole.h"
 #import "Notifications.h"
+#import "Constants.h"
 
 @implementation AppDelegate
 
@@ -41,13 +42,16 @@
 @synthesize rightEdge;
 @synthesize walkVelocity;
 @synthesize wheelSpeed;
+@synthesize worldNames;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     fileName = nil;
-    levels = [NSMutableDictionary dictionary];
+    worlds = [NSMutableDictionary dictionary];
+    NSDictionary *levels = [NSMutableDictionary dictionary];
     NSArray *levelArray = [NSArray array];
     [levels setValue:levelArray forKey:@"Level0"];
+    [worlds setValue:levels forKey:@"World0"];
 
     // Insert code here to initialize your application
 }
@@ -105,6 +109,11 @@
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
     [levelField setIntValue:0];
     [maxLevelField setStringValue:@"of 0"];
+    
+    [worldNames addItemWithObjectValue:WORLD_GRASSY_KNOLLS];
+    [worldNames addItemWithObjectValue:WORLD_FOREST_RETREAT];
+    [worldNames setStringValue:WORLD_GRASSY_KNOLLS];
+    
     [gameObjects addItemWithObjectValue:@"Pole"];
     [gameObjects addItemWithObjectValue:@"Cannon"];
     [gameObjects addItemWithObjectValue:@"Spring"];    
@@ -125,10 +134,23 @@
     [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 
-- (void) loadLevel:(int)levelNumber {
+- (NSString*) convertedWorldName:(NSString*)worldName {
+    if ([WORLD_GRASSY_KNOLLS isEqualToString:worldName]) {
+        return @"World0";
+    }
+    else if ([WORLD_FOREST_RETREAT isEqualToString:worldName]) {
+        return @"World1";
+    }
+    return @"";
+}
+
+- (void) loadWorld:(NSString*)worldName level:(int)levelNumber {
+    NSString *convertedWorldName = [self convertedWorldName:worldName];
+    
     CGFloat maxXPosition = 0.0;
     CGFloat maxYPosition = 0.0;
-    NSArray *levelItems = [levels objectForKey:[NSString stringWithFormat:@"Level%d", levelNumber]];
+    NSDictionary *world = [worlds objectForKey:convertedWorldName];
+    NSArray *levelItems = [world objectForKey:[NSString stringWithFormat:@"Level%d", levelNumber]];
     if ([levelItems count] > 0) {
         // Calculate canvas size
         for (NSDictionary *level in levelItems) {
@@ -174,25 +196,29 @@
     NSString *error;
     NSPropertyListFormat format;
     
-    levels = [NSPropertyListSerialization propertyListFromData:plistData
-                                                            mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                                                      format:&format
-                                                            errorDescription:&error];
+    worlds = [NSPropertyListSerialization propertyListFromData:plistData
+                                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                        format:&format
+                                              errorDescription:&error];
 
-    [self loadLevel:0];
+    [self loadWorld:WORLD_GRASSY_KNOLLS level:0];
     [levelStepper setIntValue:0];
     [levelField setIntValue:0];
-    [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", [levels count]-1]];
+    int maxLevels = [[worlds objectForKey:[self convertedWorldName:WORLD_GRASSY_KNOLLS]] count];
+    [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", maxLevels]];
 }
 
 - (void) writeLevelToFile {
     NSArray *levelsArray = [self.stretchView levelForSerialization];
 
     NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
-    [levels setValue:levelsArray forKey:currentLevel];
+    NSDictionary *world = [worlds objectForKey:[self convertedWorldName:[worldNames stringValue]]];
+    [world setValue:levelsArray forKey:currentLevel];
+    
+    [worlds setValue:world forKey:[self convertedWorldName:[worldNames stringValue]]];
     
     NSString *error;
-    NSData *pList = [NSPropertyListSerialization dataFromPropertyList:levels 
+    NSData *pList = [NSPropertyListSerialization dataFromPropertyList:worlds 
                                                                format:NSPropertyListXMLFormat_v1_0 
                                                      errorDescription:&error];
     [pList writeToURL:fileName atomically:NO];                
@@ -239,7 +265,11 @@
 - (void) synchronizeCurrentLevel {
     NSArray *levelItems = [self.stretchView levelForSerialization];
     NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
-    [levels setValue:levelItems forKey:currentLevel];    
+
+    NSDictionary *world = [worlds objectForKey:[worldNames stringValue]];
+    [world setValue:levelItems forKey:currentLevel];
+    
+    [worlds setValue:world forKey:[worldNames stringValue]];    
 }
 
 
@@ -247,9 +277,10 @@
     [self synchronizeCurrentLevel];
     
     // Add dummy level as place holder
-    int numLevels = [levels count];
+    NSDictionary *world = [worlds objectForKey:[worldNames stringValue]];
+    int numLevels = [world count];
     NSArray *levelArray = [NSArray array];
-    [levels setValue:levelArray forKey:[NSString stringWithFormat:@"Level%d", numLevels]];
+    [world setValue:levelArray forKey:[NSString stringWithFormat:@"Level%d", numLevels]];
 
     // Update level fields on screen
     [levelField setIntValue:numLevels];
@@ -260,13 +291,16 @@
 }
 
 - (IBAction)newDocument:(id)sender {
-    if (levels == nil) {
-        levels = [NSMutableDictionary dictionary];
+    if (worlds == nil) {
+        worlds = [NSMutableDictionary dictionary];
     } else {
-        [levels removeAllObjects];
+        [worlds removeAllObjects];
     }
     NSArray *levelArray = [NSArray array];
-    [levels setValue:levelArray forKey:@"Level0"];
+    NSDictionary *world = [NSDictionary dictionary];
+    [worlds setValue:world forKey:@"World0"];
+    
+    [world setValue:levelArray forKey:@"Level0"];
     [levelField setIntValue:0];
     [maxLevelField setStringValue:@"of 0"];
     [levelStepper setIntValue:0];
@@ -304,7 +338,7 @@
     
     if (levelField == textField) {
         [levelStepper setIntValue:[levelField intValue]];
-        [self loadLevel:[levelField intValue]];
+        [self loadWorld:[worldNames stringValue] level:[levelField intValue]];
     }
     [self.stretchView updateSelectedGameObject];
 }
@@ -312,15 +346,16 @@
 
 - (IBAction)stepperAction:(id)sender {
     if (sender == levelStepper) {
-        if ([levelStepper intValue] < [levels count]) {
+        NSDictionary *world = [worlds objectForKey:[self convertedWorldName:[worldNames stringValue]]];
+        if ([levelStepper intValue] < [world count]) {
             NSArray *levelItems = [self.stretchView levelForSerialization];
             NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
-            [levels setValue:levelItems forKey:currentLevel];
+            [world setValue:levelItems forKey:currentLevel];
 
             [levelField setIntValue:[levelStepper intValue]];
-            [self loadLevel:[levelStepper intValue]];
+            [self loadWorld:[worldNames stringValue] level:[levelField intValue]];
         } else {
-            [levelStepper setIntValue:[levels count]-1];
+            [levelStepper setIntValue:[world count]-1];
         }
     } else if (sender == zOrderStepper) {
         [zOrder setIntValue:[zOrderStepper intValue]];

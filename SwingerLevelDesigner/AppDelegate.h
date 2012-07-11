@@ -11,13 +11,13 @@
 @class StretchView;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
-    NSMutableDictionary *levels;
+    NSMutableDictionary *worlds;
     NSURL *fileName;
 }
 
 - (void) writeLevelToFile;
 - (void) loadLevelFromFile;
-- (void) loadLevel:(int)levelNumber;
+- (void) loadWorld:(NSString*)worldName level:(int)levelNumber;
 - (void) synchronizeCurrentLevel;
 
 @property (assign) IBOutlet NSWindow *window;
@@ -37,6 +37,7 @@
 @property (assign) IBOutlet NSStepper *zOrderStepper;
 @property (assign) IBOutlet NSTextField *zOrder;
 @property (assign) IBOutlet StretchView *stretchView;
+@property (assign) IBOutlet NSComboBox *worldNames;
 @property (assign) IBOutlet NSComboBox *gameObjects;
 @property (assign) IBOutlet NSTextField *cannonSpeed;
 @property (assign) IBOutlet NSTextField *cannonForce;

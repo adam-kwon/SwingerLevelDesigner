@@ -128,6 +128,7 @@
 		39567A1C15ACD2EA00B82B1C /* L2a_TreeClump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L2a_TreeClump1.png; sourceTree = "<group>"; };
 		39567A1D15ACD2EA00B82B1C /* L2a_TreeClump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L2a_TreeClump2.png; sourceTree = "<group>"; };
 		39567A1E15ACD2EA00B82B1C /* L2a_TreeClump3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L2a_TreeClump3.png; sourceTree = "<group>"; };
+		39567A2815ACF2E100B82B1C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		396F5E11158A9F7C004CD17E /* dummy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummy.png; sourceTree = "<group>"; };
 		396F5E14158ADD12004CD17E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		399C3A0515865419005537B6 /* Cannon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cannon.png; sourceTree = "<group>"; };
@@ -283,6 +284,7 @@
 				39104B2D15977BA900C80A13 /* Game Objects */,
 				39258DF6156F2E3600311702 /* AppDelegate.h */,
 				39258DF7156F2E3600311702 /* AppDelegate.m */,
+				39567A2815ACF2E100B82B1C /* Constants.h */,
 				39258E03156F2E9E00311702 /* StretchView.h */,
 				39258E04156F2E9E00311702 /* StretchView.m */,
 				39258DF9156F2E3600311702 /* MainMenu.xib */,
