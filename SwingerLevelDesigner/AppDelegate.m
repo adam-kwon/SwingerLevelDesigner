@@ -128,6 +128,7 @@
     [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
+    [gameObjects addItemWithObjectValue:@"Strong Man"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 3"];
@@ -136,7 +137,6 @@
     [gameObjects addItemWithObjectValue:@"Balloon Cart"];
     [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
     [gameObjects addItemWithObjectValue:@"Boxes"];
-    [gameObjects addItemWithObjectValue:@"Strong Man"];
     [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 
