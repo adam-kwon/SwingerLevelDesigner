@@ -24,6 +24,7 @@
 #import "Boxes.h"
 #import "Wheel.h"
 #import "StrongMan.h"
+#import "Torch.h"
 #import "Notifications.h"
 
 @implementation GameObject
@@ -177,6 +178,9 @@
     }
     else if ([@"Forest Retreat Tree 4" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
         go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree4ForestRetreat];        
+    }
+    else if ([@"Torch" isEqualToString:type] || [@"L2a_Torch.png" isEqualToString:type]) {
+        go = [[Torch alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
     }
 
     
