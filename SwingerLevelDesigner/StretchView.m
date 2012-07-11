@@ -512,8 +512,10 @@
         NSString *type = [level objectForKey:@"Type"]; 
         gameObject = [GameObject instanceOf:type];
                 
-        [gameObject loadFromDict:level];
-        [self addGameObject:gameObject isSelected:NO];
+        if (gameObject != nil) {
+            [gameObject loadFromDict:level];
+            [self addGameObject:gameObject isSelected:NO];
+        }
     }
     [self scrollPoint:CGPointMake(0, 0)];
         

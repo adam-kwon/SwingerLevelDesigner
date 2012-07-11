@@ -101,7 +101,7 @@
 }
 
 + (id) instanceOf:(NSString*)type {
-    GameObject *go;
+    GameObject *go = nil;
     
     if ([@"Pole" isEqualToString:type] || [@"Catcher" isEqualToString:type]) {
         go = [[Pole alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];

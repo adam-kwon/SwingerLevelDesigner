@@ -334,6 +334,8 @@
             [gameObjects addItemWithObjectValue:@"Boxes"];
             [gameObjects addItemWithObjectValue:@"Strong Man"];
             [gameObjects addItemWithObjectValue:@"Dummy"];
+            
+            [self loadWorld:WORLD_GRASSY_KNOLLS level:0];
         }
         else if ([WORLD_FOREST_RETREAT isEqualToString:str]) {
             [gameObjects addItemWithObjectValue:@"Pole"];
@@ -353,6 +355,8 @@
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 4"];
             [gameObjects addItemWithObjectValue:@"Strong Man"];
             [gameObjects addItemWithObjectValue:@"Dummy"];            
+
+            [self loadWorld:WORLD_FOREST_RETREAT level:0];
         }
     }
 }
