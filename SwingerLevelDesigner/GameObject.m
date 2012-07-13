@@ -75,7 +75,7 @@
     self = [super initWithContentsOfFile:fullPath];
     self.windDirection = @"";
     self.scale = 1.0;
-    self.grip = 2.0;
+    self.grip = 20.0;
     self.zOrder = 0;
     self.anchorPoint = ap;
     moveHandle = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"btn-move-hi" 
