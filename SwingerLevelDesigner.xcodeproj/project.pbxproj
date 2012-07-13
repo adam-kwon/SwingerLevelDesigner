@@ -63,6 +63,8 @@
 		39BE5E4C1590344200C7D79E /* Coin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E4B1590344200C7D79E /* Coin1.png */; };
 		39BE5E601591A3A300C7D79E /* spring.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E5F1591A3A300C7D79E /* spring.png */; };
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
+		39DC31B615AFC0FF0081C4AA /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 39DC31B415AFC0FF0081C4AA /* empty.png */; };
+		39DC31B715AFC0FF0081C4AA /* filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 39DC31B515AFC0FF0081C4AA /* filled.png */; };
 		39F9A55C15A55E1400AAC46B /* StrongmanStand1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */; };
 		39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F9A55F15A55EA500AAC46B /* StrongMan.m */; };
 /* End PBXBuildFile section */
@@ -152,6 +154,8 @@
 		39BE5E5F1591A3A300C7D79E /* spring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring.png; sourceTree = "<group>"; };
 		39C05CCD1571C5EF007C0035 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		39C05CCE1571C5EF007C0035 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		39DC31B415AFC0FF0081C4AA /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
+		39DC31B515AFC0FF0081C4AA /* filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filled.png; sourceTree = "<group>"; };
 		39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StrongmanStand1.png; sourceTree = "<group>"; };
 		39F9A55E15A55EA500AAC46B /* StrongMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongMan.h; sourceTree = "<group>"; };
 		39F9A55F15A55EA500AAC46B /* StrongMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrongMan.m; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39DC31B415AFC0FF0081C4AA /* empty.png */,
+				39DC31B515AFC0FF0081C4AA /* filled.png */,
 				39567A1715ACD2EA00B82B1C /* L2a_Torch.png */,
 				39567A1815ACD2EA00B82B1C /* L2a_Tree1.png */,
 				39567A1915ACD2EA00B82B1C /* L2a_Tree2.png */,
@@ -405,6 +411,8 @@
 				39567A2415ACD2EA00B82B1C /* L2a_TreeClump1.png in Resources */,
 				39567A2515ACD2EA00B82B1C /* L2a_TreeClump2.png in Resources */,
 				39567A2615ACD2EA00B82B1C /* L2a_TreeClump3.png in Resources */,
+				39DC31B615AFC0FF0081C4AA /* empty.png in Resources */,
+				39DC31B715AFC0FF0081C4AA /* filled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
