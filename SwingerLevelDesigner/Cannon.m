@@ -64,7 +64,7 @@
     
     
     CGFloat dash[2] = { 3.0, 3.0 };
-    [linePath setLineDash:dash count:2 phase:30];
+    [linePath setLineDash:dash count:2 phase:0];
     [linePath setLineWidth:0.5];
     [[NSColor purpleColor] set];        
     BOOL isOrigin = YES;

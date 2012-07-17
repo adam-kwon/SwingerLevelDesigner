@@ -69,7 +69,7 @@
     NSBezierPath *linePath = [NSBezierPath bezierPath];
     CGFloat dash[2] = { 3.0, 3.0 };
     [[NSColor orangeColor] set];        
-    [linePath setLineDash:dash count:2 phase:30];
+    [linePath setLineDash:dash count:2 phase:0];
     [linePath setLineWidth:0.5];
     BOOL isOrigin = YES;
     while (true) {
