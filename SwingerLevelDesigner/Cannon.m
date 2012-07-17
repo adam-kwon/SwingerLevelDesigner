@@ -49,9 +49,8 @@
         angle = (90-cannonRotationAngle) * (M_PI/180.f);        
     }
     
-    CGPoint origin = CGPointMake(self.position.x + self.size.width, self.position.y + self.size.width);
-    float x0 = (origin.x * cosf(angle))/PTM_RATIO;
-    float y0 = (origin.y * sinf(angle))/PTM_RATIO;
+    float x0 = (x1 + self.size.width/2 - 230 * cosf(angle))/PTM_RATIO;
+    float y0 = ((y1 - self.size.width/2 - 80) + self.size.width * sinf(angle))/PTM_RATIO;
     float v01 = self.cannonForce + 4 + [self getWindForce:1].x;
     float v02 = self.cannonForce + 4 + [self getWindForce:1].y;
     float g = 30.0f + 5.0f;
