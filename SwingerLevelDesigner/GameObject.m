@@ -209,6 +209,36 @@
 
 }
 
+- (CGPoint) getWindForce:(float)mass {
+    CGPoint impVec = CGPointZero;
+    float impulse = self.windSpeed * mass;
+    
+    if ([@"N" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(0, impulse);
+    }
+    else if ([@"S" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(0, -impulse);
+    }
+    else if ([@"E" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(impulse, 0);
+    }
+    else if ([@"W" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(-impulse, 0);
+    }
+    else if ([@"NE" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(impulse, impulse);
+    }
+    else if ([@"NW" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(-impulse, impulse);
+    }
+    else if ([@"SE" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(impulse, -impulse);
+    }
+    else if ([@"SW" isEqualToString:self.windDirection]) {
+        impVec = CGPointMake(-impulse, -impulse);
+    }
+    return impVec;
+}
 
 // Origin is lower, left
 - (void) draw:(CGContextRef)ctx {

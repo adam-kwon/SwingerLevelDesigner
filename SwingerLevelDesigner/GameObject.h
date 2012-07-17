@@ -78,6 +78,7 @@ typedef enum {
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict;
 - (void) loadFromDict:(NSDictionary*)level;
 - (NSString*) gameObjectTypeString;
+- (CGPoint) getWindForce:(float)mass;
 
 @property (nonatomic, readwrite, assign) CGPoint position;
 @property (nonatomic, readwrite, assign) int zOrder;

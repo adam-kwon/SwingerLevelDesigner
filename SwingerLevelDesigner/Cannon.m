@@ -52,8 +52,8 @@
     CGPoint origin = CGPointMake(self.size.width, self.size.width);
     float x0 = (origin.x/PTM_RATIO) * cosf(angle);
     float y0 = (origin.y/PTM_RATIO) * sinf(angle);
-    float v01 = self.cannonForce + 4;
-    float v02 = self.cannonForce + 4;
+    float v01 = self.cannonForce + 4 + [self getWindForce:1].x;
+    float v02 = self.cannonForce + 4 + [self getWindForce:1].y;
     float g = 30.0f + 5.0f;
     
     float v0x = v01 * cosf(angle);
