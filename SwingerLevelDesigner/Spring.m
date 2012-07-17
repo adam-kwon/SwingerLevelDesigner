@@ -15,7 +15,7 @@
 
 - (id) initWithAnchorPoint:(CGPoint)ap {
     self = [super initWithContentsOfFile:@"spring" anchorPoint:ap];
-    self.bounce = 2.0;
+    self.bounce = 10.0;
     self.gameObjectType = kGameObjectTypeSpring;
     
     return self;
@@ -51,8 +51,6 @@
 }
 
 - (void) draw:(CGContextRef)ctx {        
-    [[NSColor greenColor] set];
-    
     float angle = (45) * (M_PI/180.f);
     
     float x0 = (self.position.x)/PTM_RATIO;
@@ -68,18 +66,33 @@
     float t = 0;
     float stepAmt = v01/400.0f;
     
+    NSBezierPath *linePath = [NSBezierPath bezierPath];
+    CGFloat dash[2] = { 3.0, 3.0 };
+    [[NSColor orangeColor] set];        
+    [linePath setLineDash:dash count:2 phase:30];
+    [linePath setLineWidth:0.5];
+    BOOL isOrigin = YES;
     while (true) {
         float xPos = (x0 + (cosf(angle)*v01*t)) * PTM_RATIO;
         float yPos = (y0 + ((sinf(angle)*v02*t) - (g/2)*(t*t))) * PTM_RATIO;
         
         t += stepAmt;
         
+        if (isOrigin) {
+            isOrigin = NO;
+            [linePath moveToPoint:CGPointMake(xPos, yPos)];
+        } else {
+            [linePath lineToPoint:CGPointMake(xPos, yPos)];
+        }
+        
+        CGContextFillRect(ctx, CGRectMake(xPos-1.5, yPos-1.5, 3, 3));
+        
         if (xPos > (x0 + range)*PTM_RATIO) {
             break;
         }
-        
-        CGContextFillRect(ctx, CGRectMake(xPos, yPos, 5, 5));
     }
+    
+    [linePath stroke];
     
     
     [super draw:ctx];
