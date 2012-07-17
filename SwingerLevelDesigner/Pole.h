@@ -12,6 +12,10 @@
     CGFloat ropeLength;
     CGFloat period;
     CGFloat swingAngle;
+    // Factor used to scale rope length so that it matches length seen in game.
+    // This is just eye-balled. Saw what the ratio of rope length to pole length was in game.
+    float ropeHeightConversionFactor;
+
 }
 
 

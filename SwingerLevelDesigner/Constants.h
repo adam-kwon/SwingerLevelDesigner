@@ -12,4 +12,6 @@
 #define WORLD_GRASSY_KNOLLS             @"Grassy Knolls"
 #define WORLD_FOREST_RETREAT            @"Forest Retreat"
 
+#define PTM_RATIO   64.0f
+
 #endif

@@ -7,6 +7,7 @@
 //
 
 #import "Cannon.h"
+#import "Constants.h"
 
 @implementation Cannon
 
@@ -41,8 +42,9 @@
     [[NSColor blueColor] set];
     [linePath setLineWidth:2.0];
     [linePath stroke];
-    
-    float PTM_RATIO = 64.0f;
+
+    [[NSColor purpleColor] set];
+
     float angle = (90-45) * (M_PI/180.f);
     if (cannonRotationAngle < 45) {
         angle = (90-cannonRotationAngle) * (M_PI/180.f);        
@@ -66,7 +68,6 @@
         float xPos = (x0 + (cosf(angle)*v01*t)) * PTM_RATIO;
         float yPos = (y0 + ((sinf(angle)*v02*t) - (g/2)*(t*t))) * PTM_RATIO;
         
-        NSLog(@"%f, %f", xPos, yPos);
         t += stepAmt;
         
         if (xPos > (x0 + range)*PTM_RATIO) {
