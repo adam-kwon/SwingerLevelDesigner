@@ -43,16 +43,15 @@
     [linePath setLineWidth:2.0];
     [linePath stroke];
 
-    [[NSColor purpleColor] set];
 
     float angle = (90-45) * (M_PI/180.f);
     if (cannonRotationAngle < 45) {
         angle = (90-cannonRotationAngle) * (M_PI/180.f);        
     }
     
-    CGPoint origin = CGPointMake(self.size.width, self.size.width);
-    float x0 = (origin.x/PTM_RATIO) * cosf(angle);
-    float y0 = (origin.y/PTM_RATIO) * sinf(angle);
+    CGPoint origin = CGPointMake(self.position.x + self.size.width, self.position.y + self.size.width);
+    float x0 = (origin.x * cosf(angle))/PTM_RATIO;
+    float y0 = (origin.y * sinf(angle))/PTM_RATIO;
     float v01 = self.cannonForce + 4 + [self getWindForce:1].x;
     float v02 = self.cannonForce + 4 + [self getWindForce:1].y;
     float g = 30.0f + 5.0f;
