@@ -42,7 +42,6 @@
     [linePath setLineWidth:2.0];
     [linePath stroke];
     
-    // Todo: wind stuff
     float PTM_RATIO = 64.0f;
     float angle = (90-45) * (M_PI/180.f);
     if (cannonRotationAngle < 45) {
