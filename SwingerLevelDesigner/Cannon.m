@@ -42,6 +42,42 @@
     [linePath setLineWidth:2.0];
     [linePath stroke];
     
+    // Todo: wind stuff
+    float PTM_RATIO = 64.0f;
+    float angle = (90-45) * (M_PI/180.f);
+    if (cannonRotationAngle < 45) {
+        angle = (90-cannonRotationAngle) * (M_PI/180.f);        
+    }
+    
+    CGPoint origin = CGPointMake(self.size.width, self.size.width);
+    float x0 = (origin.x/PTM_RATIO) * cosf(angle);
+    float y0 = (origin.y/PTM_RATIO) * sinf(angle);
+    float v01 = self.cannonForce + 4;
+    float v02 = self.cannonForce + 4;
+    float g = 30.0f + 5.0f;
+    
+    float v0x = v01 * cosf(angle);
+    float v0y = v02 * sinf(angle);
+    
+    float range = (2*(v0x*v0y))/g;
+    float t = 0;
+    float stepAmt = v01/400.0f;
+    
+    while (true) {
+        float xPos = (x0 + (cosf(angle)*v01*t)) * PTM_RATIO;
+        float yPos = (y0 + ((sinf(angle)*v02*t) - (g/2)*(t*t))) * PTM_RATIO;
+        
+        NSLog(@"%f, %f", xPos, yPos);
+        t += stepAmt;
+        
+        if (xPos > (x0 + range)*PTM_RATIO) {
+            break;
+        }
+
+        CGContextFillRect(ctx, CGRectMake(xPos, yPos, 5, 5));
+    }
+    
+    
     [super draw:ctx];
 }
 
