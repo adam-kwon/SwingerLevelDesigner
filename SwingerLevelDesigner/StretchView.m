@@ -334,7 +334,6 @@
             deltaX = currentPoint.x - downPoint.x;
         }
 
-        NSLog(@"****** deltax = %f", deltaX);
         [gameObject setScalesWhenResized:YES];
         CGSize newSize = CGSizeMake([gameObject size].width + deltaX, [gameObject size].height + deltaY);
         [gameObject setSize:newSize];
