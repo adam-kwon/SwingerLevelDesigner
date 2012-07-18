@@ -342,6 +342,8 @@
 
         [gameObjects removeAllItems];
         [gameObjects setStringValue:@""];    
+        [levelField setIntValue:0];
+        [levelStepper setIntegerValue:0];
         
         if ([WORLD_GRASSY_KNOLLS isEqualToString:str]) {
             [self addCommonGameObjectsToDropdown];
