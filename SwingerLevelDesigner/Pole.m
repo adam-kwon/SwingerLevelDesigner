@@ -36,7 +36,7 @@
     float BASE_JUMP_X = 3.5;
     float BASE_JUMP_Y = 2.5;
     
-    float scaledRopeLength = (ropeHeightConversionFactor*ropeLength)/scale;
+    float scaledRopeLength = (ropeHeightConversionFactor*ropeLength);
 
     float lengthScale = (scaledRopeLength/BASE_LENGTH) * (scaledRopeLength/BASE_LENGTH);
     float anglePeriodScale = ((swingAngle*(M_PI/180.0f))/period/BASE_RATIO);
@@ -66,10 +66,13 @@
     x1 = position.x + [self size].width/2 - anchorXOffset;
     y1 = position.y + [self size].height;
     
-    x2 = position.x + [self size].width/2 - anchorXOffset + (ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180))/scale;
+//    x2 = position.x + [self size].width/2 - anchorXOffset + (ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180))/scale;
+    x2 = position.x + [self size].width/2 - anchorXOffset + (ropeHeightConversionFactor*ropeLength*sin(swingAngle*M_PI/180));
     
     // divide by poleScale to keep length same regardless of whether pole is scaled
-    y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/scale);
+//    y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180)/scale);
+    y2 = position.y + [self size].height - (ropeHeightConversionFactor*ropeLength*cos(swingAngle*M_PI/180));
+
     [linePath moveToPoint:CGPointMake(x1, y1)];
     [linePath lineToPoint:CGPointMake(x2, y2)];
     
@@ -84,7 +87,7 @@
     }
     
 
-    float scaledRopeLength = (ropeHeightConversionFactor*ropeLength)/scale;
+    float scaledRopeLength = (ropeHeightConversionFactor*ropeLength);
     
     float x0 = (x1+fabs(scaledRopeLength) * cosf(angle))/PTM_RATIO;
     float y0 = (y1-fabs(scaledRopeLength) * sinf(angle))/PTM_RATIO;
@@ -127,12 +130,6 @@
     }
     
     [linePath stroke];
-
-//    [linePath2 moveToPoint:CGPointMake(x5, y5)];
-//    [linePath2 lineToPoint:CGPointMake(x6, y6)];
-//    [linePath2 lineToPoint:CGPointMake(x7, y7)];
-//    [linePath2 stroke];
-    
 
     [super draw:ctx];
     

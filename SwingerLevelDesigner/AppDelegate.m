@@ -119,6 +119,20 @@
     
 }
 
+- (void) addCommonGameObjectsToDropdown {
+    [gameObjects addItemWithObjectValue:@"Pole"];
+    [gameObjects addItemWithObjectValue:@"Cannon"];
+    [gameObjects addItemWithObjectValue:@"Spring"];    
+    [gameObjects addItemWithObjectValue:@"Elephant"];
+    [gameObjects addItemWithObjectValue:@"Wheel"];
+    [gameObjects addItemWithObjectValue:@"Floating Platform"];    
+    [gameObjects addItemWithObjectValue:@"Final Platform"];
+    [gameObjects addItemWithObjectValue:@"Coin"];
+    [gameObjects addItemWithObjectValue:@"Star"];
+    [gameObjects addItemWithObjectValue:@"Strong Man"];
+    [gameObjects addItemWithObjectValue:@"Dummy"];
+}
+
 - (void) awakeFromNib {
     CGRect frame = [self.stretchView frame];
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
@@ -130,15 +144,7 @@
     [worldNames setStringValue:WORLD_GRASSY_KNOLLS];
     oldWorldsName = WORLD_GRASSY_KNOLLS;
     
-    [gameObjects addItemWithObjectValue:@"Pole"];
-    [gameObjects addItemWithObjectValue:@"Cannon"];
-    [gameObjects addItemWithObjectValue:@"Spring"];    
-    [gameObjects addItemWithObjectValue:@"Elephant"];
-    [gameObjects addItemWithObjectValue:@"Wheel"];
-    [gameObjects addItemWithObjectValue:@"Final Platform"];
-    [gameObjects addItemWithObjectValue:@"Coin"];
-    [gameObjects addItemWithObjectValue:@"Star"];
-    [gameObjects addItemWithObjectValue:@"Strong Man"];
+    [self addCommonGameObjectsToDropdown];
     [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
     [gameObjects addItemWithObjectValue:@"Tree Clump 3"];
@@ -147,7 +153,6 @@
     [gameObjects addItemWithObjectValue:@"Balloon Cart"];
     [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
     [gameObjects addItemWithObjectValue:@"Boxes"];
-    [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 
 - (void) loadWorld:(NSString*)worldName level:(int)levelNumber {
@@ -339,15 +344,7 @@
         [gameObjects setStringValue:@""];    
         
         if ([WORLD_GRASSY_KNOLLS isEqualToString:str]) {
-            [gameObjects addItemWithObjectValue:@"Pole"];
-            [gameObjects addItemWithObjectValue:@"Cannon"];
-            [gameObjects addItemWithObjectValue:@"Spring"];    
-            [gameObjects addItemWithObjectValue:@"Elephant"];
-            [gameObjects addItemWithObjectValue:@"Wheel"];
-            [gameObjects addItemWithObjectValue:@"Final Platform"];
-            [gameObjects addItemWithObjectValue:@"Coin"];
-            [gameObjects addItemWithObjectValue:@"Star"];
-            [gameObjects addItemWithObjectValue:@"Strong Man"];
+            [self addCommonGameObjectsToDropdown];
             [gameObjects addItemWithObjectValue:@"Tree Clump 1"];
             [gameObjects addItemWithObjectValue:@"Tree Clump 2"];
             [gameObjects addItemWithObjectValue:@"Tree Clump 3"];
@@ -356,20 +353,11 @@
             [gameObjects addItemWithObjectValue:@"Balloon Cart"];
             [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
             [gameObjects addItemWithObjectValue:@"Boxes"];
-            [gameObjects addItemWithObjectValue:@"Dummy"];
             
             [self loadWorld:WORLD_GRASSY_KNOLLS level:0];
         }
         else if ([WORLD_FOREST_RETREAT isEqualToString:str]) {
-            [gameObjects addItemWithObjectValue:@"Pole"];
-            [gameObjects addItemWithObjectValue:@"Cannon"];
-            [gameObjects addItemWithObjectValue:@"Spring"];    
-            [gameObjects addItemWithObjectValue:@"Elephant"];
-            [gameObjects addItemWithObjectValue:@"Wheel"];
-            [gameObjects addItemWithObjectValue:@"Final Platform"];
-            [gameObjects addItemWithObjectValue:@"Coin"];
-            [gameObjects addItemWithObjectValue:@"Star"];
-            [gameObjects addItemWithObjectValue:@"Strong Man"];
+            [self addCommonGameObjectsToDropdown];
             [gameObjects addItemWithObjectValue:@"Torch"];
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree Clump 1"];
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree Clump 2"];
@@ -378,7 +366,6 @@
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 2"];
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 3"];
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 4"];
-            [gameObjects addItemWithObjectValue:@"Dummy"];            
 
             [self loadWorld:WORLD_FOREST_RETREAT level:0];
         }

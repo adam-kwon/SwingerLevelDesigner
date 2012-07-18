@@ -16,6 +16,7 @@ typedef enum {
     kGameObjectTypeCannon,
     kGameObjectTypeSpring,
     kGameObjectTypeFinalPlatform,
+    kGameObjectTypeFloatingPlatform,
     kGameObjectTypeElephant,
     kGameObjectTypeStar,
     kGameObjectTypeCoin,
@@ -51,7 +52,8 @@ typedef enum {
     CGPoint anchorPoint;
     CGFloat anchorXOffset;
     CGFloat anchorYOffset;
-    CGFloat scale;
+    CGFloat scaleY;
+    CGFloat scaleX;
     int zOrder;
     NSString *name;
     NSString *windDirection;
@@ -91,7 +93,8 @@ typedef enum {
 @property (nonatomic, readwrite, assign) CGFloat anchorXOffset;
 @property (nonatomic, readwrite, assign) CGFloat anchorYOffset;
 @property (nonatomic, readwrite, assign) CGPoint anchorPoint;
-@property (nonatomic, readwrite, assign) CGFloat scale;
+@property (nonatomic, readwrite, assign) CGFloat scaleY;
+@property (nonatomic, readwrite, assign) CGFloat scaleX;
 @property (retain) NSString *windDirection;
 @property (retain) NSString *name;
 

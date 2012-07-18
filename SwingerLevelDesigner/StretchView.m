@@ -325,10 +325,18 @@
     gameObject = [self getResizeHandleSelectedGameObject];
     if (gameObject != nil) {
         //CGFloat deltaX = currentPoint.x - downPoint.x;
-        CGFloat deltaY = currentPoint.y - downPoint.y;
+        CGFloat deltaY = 0.f;
+        CGFloat deltaX = 0.f;
+        if ([gameObject gameObjectType] == kGameObjectTypeSwinger) {
+            deltaY = currentPoint.y - downPoint.y;
+        }
+        else if ([gameObject gameObjectType] == kGameObjectTypeFloatingPlatform) {
+            deltaX = currentPoint.x - downPoint.x;
+        }
 
+        NSLog(@"****** deltax = %f", deltaX);
         [gameObject setScalesWhenResized:YES];
-        CGSize newSize = CGSizeMake([gameObject size].width, [gameObject size].height+deltaY);
+        CGSize newSize = CGSizeMake([gameObject size].width + deltaX, [gameObject size].height + deltaY);
         [gameObject setSize:newSize];
 
         downPoint = currentPoint;

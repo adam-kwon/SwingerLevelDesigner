@@ -25,6 +25,7 @@
 #import "Wheel.h"
 #import "StrongMan.h"
 #import "Torch.h"
+#import "FloatingPlatform.h"
 #import "Notifications.h"
 
 @implementation GameObject
@@ -42,7 +43,8 @@
 @synthesize zOrder;
 @synthesize anchorPoint;
 @synthesize name;
-@synthesize scale;
+@synthesize scaleY;
+@synthesize scaleX;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -74,7 +76,8 @@
     NSString *fullPath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"png"];
     self = [super initWithContentsOfFile:fullPath];
     self.windDirection = @"";
-    self.scale = 1.0;
+    self.scaleY = 1.0;
+    self.scaleX = 1.0;
     self.grip = 20.0;
     self.zOrder = 0;
     self.anchorPoint = ap;
@@ -182,6 +185,9 @@
     else if ([@"Torch" isEqualToString:type] || [@"L2a_Torch.png" isEqualToString:type]) {
         go = [[Torch alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
     }
+    else if ([@"FloatingPlatform" isEqualToString:type] || [@"Floating Platform" isEqualToString:type]) {
+        go = [[FloatingPlatform alloc] initWithAnchorPoint:CGPointMake(0.0, 0.5)];        
+    }
 
     
     return go;
@@ -192,7 +198,7 @@
     [levelDict setObject:[NSNumber numberWithFloat:self.position.x/2] forKey:@"XPosition"];
     [levelDict setObject:[NSNumber numberWithFloat:self.position.y/2] forKey:@"YPosition"];
     [levelDict setObject:[NSNumber numberWithInt:self.zOrder] forKey:@"Z-Order"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.scale] forKey:@"PoleScale"];
+    [levelDict setObject:[NSNumber numberWithFloat:self.scaleY] forKey:@"PoleScale"];
     [levelDict setObject:[NSNumber numberWithFloat:self.grip] forKey:@"Grip"];
     [levelDict setObject:[NSNumber numberWithFloat:self.windSpeed] forKey:@"WindSpeed"];
     [levelDict setObject:self.windDirection == nil ? @"" : self.windDirection forKey:@"WindDirection"];
@@ -244,7 +250,7 @@
 - (void) draw:(CGContextRef)ctx {
     
     [self setScalesWhenResized:YES];
-    CGSize newSize = CGSizeMake(originalSize.width, originalSize.height*scale);
+    CGSize newSize = CGSizeMake(originalSize.width*scaleX, originalSize.height*scaleY);
     [self setSize:newSize];
     
     NSRect imageRect;
@@ -313,7 +319,7 @@
         [appDelegate.xPosition setStringValue:[NSString stringWithFormat:@"%.2f", self.position.x]];
         [appDelegate.yPosition setStringValue:[NSString stringWithFormat:@"%.2f", self.position.y]];
         
-        [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", self.scale]];
+        [appDelegate.poleScale setStringValue:[NSString stringWithFormat:@"%.2f", self.scaleY]];
         [appDelegate.grip setStringValue:[NSString stringWithFormat:@"%.2f", self.grip]];
         [appDelegate.windSpeed setStringValue:[NSString stringWithFormat:@"%.2f", self.windSpeed]];
         [appDelegate.windDirection setStringValue:self.windDirection == nil ? @"" : self.windDirection];
@@ -326,7 +332,7 @@
     if (selected) {
         AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
         self.position = CGPointMake([appDelegate.xPosition floatValue], [appDelegate.yPosition floatValue]);
-        self.scale = [appDelegate.poleScale floatValue];
+        self.scaleY = [appDelegate.poleScale floatValue];
         self.grip = [appDelegate.grip floatValue];
         self.windSpeed = [appDelegate.windSpeed floatValue];
         self.windDirection = [appDelegate.windDirection stringValue];
@@ -343,7 +349,8 @@
 
 - (void) setSize:(NSSize)aSize {
     [super setSize:aSize];
-    scale = aSize.height / originalSize.height;
+    scaleY = aSize.height / originalSize.height;
+    scaleX = aSize.width / originalSize.width;
 }
 
 - (BOOL) isRectIntersectImage:(CGRect)rect {

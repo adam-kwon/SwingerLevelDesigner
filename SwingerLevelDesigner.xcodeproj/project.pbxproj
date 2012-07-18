@@ -65,6 +65,8 @@
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
 		39F9A55C15A55E1400AAC46B /* StrongmanStand1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */; };
 		39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F9A55F15A55EA500AAC46B /* StrongMan.m */; };
+		39FACEC715B6668200CC5717 /* floatingPlatform.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FACEC615B6668200CC5717 /* floatingPlatform.png */; };
+		39FACECB15B666D600CC5717 /* FloatingPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FACECA15B666D600CC5717 /* FloatingPlatform.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +157,9 @@
 		39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StrongmanStand1.png; sourceTree = "<group>"; };
 		39F9A55E15A55EA500AAC46B /* StrongMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongMan.h; sourceTree = "<group>"; };
 		39F9A55F15A55EA500AAC46B /* StrongMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrongMan.m; sourceTree = "<group>"; };
+		39FACEC615B6668200CC5717 /* floatingPlatform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floatingPlatform.png; sourceTree = "<group>"; };
+		39FACEC915B666D600CC5717 /* FloatingPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingPlatform.h; sourceTree = "<group>"; };
+		39FACECA15B666D600CC5717 /* FloatingPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingPlatform.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +177,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39FACEC615B6668200CC5717 /* floatingPlatform.png */,
 				39567A1715ACD2EA00B82B1C /* L2a_Torch.png */,
 				39567A1815ACD2EA00B82B1C /* L2a_Tree1.png */,
 				39567A1915ACD2EA00B82B1C /* L2a_Tree2.png */,
@@ -215,6 +221,8 @@
 				39C05CCE1571C5EF007C0035 /* GameObject.m */,
 				39104B241597763C00C80A13 /* FinalPlatform.h */,
 				39104B251597763C00C80A13 /* FinalPlatform.m */,
+				39FACEC915B666D600CC5717 /* FloatingPlatform.h */,
+				39FACECA15B666D600CC5717 /* FloatingPlatform.m */,
 				39F9A55E15A55EA500AAC46B /* StrongMan.h */,
 				39F9A55F15A55EA500AAC46B /* StrongMan.m */,
 				39104B4015978A9100C80A13 /* Wheel.h */,
@@ -405,6 +413,7 @@
 				39567A2415ACD2EA00B82B1C /* L2a_TreeClump1.png in Resources */,
 				39567A2515ACD2EA00B82B1C /* L2a_TreeClump2.png in Resources */,
 				39567A2615ACD2EA00B82B1C /* L2a_TreeClump3.png in Resources */,
+				39FACEC715B6668200CC5717 /* floatingPlatform.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +446,7 @@
 				39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */,
 				39567A2B15AD22FA00B82B1C /* Torch.m in Sources */,
 				39567A2E15AE040600B82B1C /* GPUtil.m in Sources */,
+				39FACECB15B666D600CC5717 /* FloatingPlatform.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

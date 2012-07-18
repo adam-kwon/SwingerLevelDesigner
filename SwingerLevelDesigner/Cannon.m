@@ -34,8 +34,7 @@
     
     x2 = position.x + [self size].width/2 + 30 + 200*cos((90-cannonRotationAngle)*M_PI/180);
     
-    // divide by poleScale to keep length same regardless of whether pole is scaled
-    y2 = position.y + 190 + (200*sin((90-cannonRotationAngle)*M_PI/180)/scale);        
+    y2 = position.y + 190 + (200*sin((90-cannonRotationAngle)*M_PI/180));        
     [linePath moveToPoint:CGPointMake(x1, y1)];
     [linePath lineToPoint:CGPointMake(x2, y2)];
     
