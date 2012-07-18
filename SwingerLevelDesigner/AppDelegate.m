@@ -179,9 +179,9 @@
             }
             
             return (NSComparisonResult) NSOrderedSame;
-        }];        
-        [levelItems removeAllObjects];
-        [levelItems addObjectsFromArray:sortedLevelItems];
+        }];
+
+        levelItems = [sortedLevelItems mutableCopy];
         
         // Calculate canvas size
         for (NSDictionary *level in levelItems) {
