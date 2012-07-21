@@ -25,7 +25,7 @@
 
     // Factor used to scale rope length so that it matches length seen in game.
     // This is just eye-balled. Saw what the ratio of rope length to pole length was in game.
-    ropeHeightConversionFactor = [self size].height / 280;
+    ropeHeightConversionFactor = [self size].height / 260;
 
     return self;
 }
