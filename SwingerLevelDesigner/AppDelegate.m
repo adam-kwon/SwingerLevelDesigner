@@ -44,6 +44,8 @@
 @synthesize walkVelocity;
 @synthesize wheelSpeed;
 @synthesize worldNames;
+@synthesize moveX;
+@synthesize moveY;
 
 - (void) initNewWorlds {
     fileName = nil;
@@ -130,6 +132,7 @@
     [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
     [gameObjects addItemWithObjectValue:@"Strong Man"];
+    [gameObjects addItemWithObjectValue:@"Fire Ring"];
     [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 

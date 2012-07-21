@@ -26,6 +26,7 @@
 #import "StrongMan.h"
 #import "Torch.h"
 #import "FloatingPlatform.h"
+#import "FireRing.h"
 #import "Notifications.h"
 
 @implementation GameObject
@@ -187,6 +188,9 @@
     }
     else if ([@"FloatingPlatform" isEqualToString:type] || [@"Floating Platform" isEqualToString:type]) {
         go = [[FloatingPlatform alloc] initWithAnchorPoint:CGPointMake(0.0, 0.5)];        
+    }
+    else if ([@"FireRing" isEqualToString:type] || [@"Fire Ring" isEqualToString:type]) {
+        go = [[FireRing alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
     }
 
     

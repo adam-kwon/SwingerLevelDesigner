@@ -30,6 +30,7 @@ typedef enum {
     kGameObjectTypeBoxes,
     kGameObjectTypeWheel,
     kGameObjectTypeStrongMan,
+    kGameObjectTypeFireRing,
     kGameObjectTypeTorch,
     kGameObjectTypeTreeClump1ForestRetreat,
     kGameObjectTypeTreeClump2ForestRetreat,

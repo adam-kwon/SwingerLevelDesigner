@@ -67,6 +67,8 @@
 		39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F9A55F15A55EA500AAC46B /* StrongMan.m */; };
 		39FACEC715B6668200CC5717 /* floatingPlatform.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FACEC615B6668200CC5717 /* floatingPlatform.png */; };
 		39FACECB15B666D600CC5717 /* FloatingPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FACECA15B666D600CC5717 /* FloatingPlatform.m */; };
+		39FACEEA15BA3ACD00CC5717 /* FireRing.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FACEE915BA3ACD00CC5717 /* FireRing.png */; };
+		39FACEED15BA3AE800CC5717 /* FireRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FACEEC15BA3AE700CC5717 /* FireRing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +162,9 @@
 		39FACEC615B6668200CC5717 /* floatingPlatform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floatingPlatform.png; sourceTree = "<group>"; };
 		39FACEC915B666D600CC5717 /* FloatingPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingPlatform.h; sourceTree = "<group>"; };
 		39FACECA15B666D600CC5717 /* FloatingPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingPlatform.m; sourceTree = "<group>"; };
+		39FACEE915BA3ACD00CC5717 /* FireRing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireRing.png; sourceTree = "<group>"; };
+		39FACEEB15BA3AE600CC5717 /* FireRing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireRing.h; sourceTree = "<group>"; };
+		39FACEEC15BA3AE700CC5717 /* FireRing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireRing.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +182,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39FACEE915BA3ACD00CC5717 /* FireRing.png */,
 				39FACEC615B6668200CC5717 /* floatingPlatform.png */,
 				39567A1715ACD2EA00B82B1C /* L2a_Torch.png */,
 				39567A1815ACD2EA00B82B1C /* L2a_Tree1.png */,
@@ -223,6 +229,8 @@
 				39104B251597763C00C80A13 /* FinalPlatform.m */,
 				39FACEC915B666D600CC5717 /* FloatingPlatform.h */,
 				39FACECA15B666D600CC5717 /* FloatingPlatform.m */,
+				39FACEEB15BA3AE600CC5717 /* FireRing.h */,
+				39FACEEC15BA3AE700CC5717 /* FireRing.m */,
 				39F9A55E15A55EA500AAC46B /* StrongMan.h */,
 				39F9A55F15A55EA500AAC46B /* StrongMan.m */,
 				39104B4015978A9100C80A13 /* Wheel.h */,
@@ -414,6 +422,7 @@
 				39567A2515ACD2EA00B82B1C /* L2a_TreeClump2.png in Resources */,
 				39567A2615ACD2EA00B82B1C /* L2a_TreeClump3.png in Resources */,
 				39FACEC715B6668200CC5717 /* floatingPlatform.png in Resources */,
+				39FACEEA15BA3ACD00CC5717 /* FireRing.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +456,7 @@
 				39567A2B15AD22FA00B82B1C /* Torch.m in Sources */,
 				39567A2E15AE040600B82B1C /* GPUtil.m in Sources */,
 				39FACECB15B666D600CC5717 /* FloatingPlatform.m in Sources */,
+				39FACEED15BA3AE800CC5717 /* FireRing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
