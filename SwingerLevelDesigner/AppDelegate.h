@@ -50,6 +50,7 @@
 @property (assign) IBOutlet NSTextField *wheelSpeed;
 @property (assign) IBOutlet NSTextField *moveX;
 @property (assign) IBOutlet NSTextField *moveY;
+@property (assign) IBOutlet NSTextField *frequency;
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showOpenPanel:(id)sender;

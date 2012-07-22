@@ -11,12 +11,14 @@
 @implementation FireRing
 @synthesize moveX;
 @synthesize moveY;
+@synthesize frequency;
 
 - (id) initWithAnchorPoint:(CGPoint)ap {
     self = [super initWithContentsOfFile:@"FireRing" anchorPoint:ap];
     self.gameObjectType = kGameObjectTypeFireRing;
-    self.moveX = 0;
-    self.moveY = 0;
+    self.moveX = 0.0;
+    self.moveY = 0.0;
+    self.frequency = 1.0;
     return self;
 }
 
@@ -26,6 +28,7 @@
         AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
         [appDelegate.moveX setStringValue:[NSString stringWithFormat:@"%.2f", self.moveX]];
         [appDelegate.moveY setStringValue:[NSString stringWithFormat:@"%.2f", self.moveY]];
+        [appDelegate.frequency setStringValue:[NSString stringWithFormat:@"%.2f", self.frequency]];
     }
 }
 
@@ -35,6 +38,7 @@
         AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
         self.moveX = [appDelegate.moveX floatValue];
         self.moveY = [appDelegate.moveY floatValue];
+        self.frequency = [appDelegate.frequency floatValue];
     }
 }
 
@@ -43,6 +47,7 @@
     
     [levelDict setObject:[NSNumber numberWithFloat:self.moveX] forKey:@"MoveX"];
     [levelDict setObject:[NSNumber numberWithFloat:self.moveY] forKey:@"MoveY"];
+    [levelDict setObject:[NSNumber numberWithFloat:self.frequency] forKey:@"Frequency"];
 }
 
 
@@ -51,6 +56,7 @@
     
     self.moveX = [[level objectForKey:@"MoveX"] floatValue];
     self.moveY = [[level objectForKey:@"MoveY"] floatValue];
+    self.frequency = [[level objectForKey:@"Frequency"] floatValue];
 }
 
 - (NSString*) gameObjectTypeString {

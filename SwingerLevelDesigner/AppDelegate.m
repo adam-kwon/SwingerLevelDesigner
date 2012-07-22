@@ -46,6 +46,7 @@
 @synthesize worldNames;
 @synthesize moveX;
 @synthesize moveY;
+@synthesize frequency;
 
 - (void) initNewWorlds {
     fileName = nil;

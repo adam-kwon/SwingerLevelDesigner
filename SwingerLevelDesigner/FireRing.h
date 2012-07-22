@@ -11,9 +11,11 @@
 @interface FireRing : GameObject {
     CGFloat moveX;
     CGFloat moveY;
+    CGFloat frequency;
 }
 
 @property (nonatomic, readwrite, assign) CGFloat moveX;
 @property (nonatomic, readwrite, assign) CGFloat moveY;
+@property (nonatomic, readwrite, assign) CGFloat frequency;
 
 @end
