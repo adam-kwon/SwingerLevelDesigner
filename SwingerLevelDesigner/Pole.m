@@ -167,6 +167,7 @@
 - (void) loadFromDict:(NSDictionary*)level {
     [super loadFromDict:level];
     
+    self.scaleY = [[level objectForKey:@"PoleScale"] floatValue];
     self.period = [[level objectForKey:@"Period"] floatValue];
     self.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
     self.swingAngle = [[level objectForKey:@"SwingAngle"] floatValue];

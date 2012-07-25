@@ -216,7 +216,6 @@
     self.grip = [[level objectForKey:@"Grip"] floatValue];
     self.windSpeed = [[level objectForKey:@"WindSpeed"] floatValue];
     self.windDirection = [level objectForKey:@"WindDirection"];
-
 }
 
 - (CGPoint) getWindForce:(float)mass {
@@ -337,6 +336,7 @@
         AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
         self.position = CGPointMake([appDelegate.xPosition floatValue], [appDelegate.yPosition floatValue]);
         self.scaleY = [appDelegate.poleScale floatValue];
+
         self.grip = [appDelegate.grip floatValue];
         self.windSpeed = [appDelegate.windSpeed floatValue];
         self.windDirection = [appDelegate.windDirection stringValue];
