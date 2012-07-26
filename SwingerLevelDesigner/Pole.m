@@ -25,7 +25,7 @@
 
     // Factor used to scale rope length so that it matches length seen in game.
     // This is just eye-balled. Saw what the ratio of rope length to pole length was in game.
-    ropeHeightConversionFactor = [self size].height / 260;
+    ropeHeightConversionFactor = [self size].height / 274;
 
     return self;
 }
@@ -80,8 +80,8 @@
     [linePath setLineWidth:2.0];
     [linePath stroke];
     
-    
-    float angle = (90-55) * (M_PI/180.f);
+
+    float angle = (90) * (M_PI/180.f);
     if (swingAngle < 90) {
         angle = (90-swingAngle) * (M_PI/180.f);        
     }

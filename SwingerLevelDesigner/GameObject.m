@@ -109,7 +109,7 @@
     GameObject *go = nil;
     
     if ([@"Pole" isEqualToString:type] || [@"Catcher" isEqualToString:type]) {
-        go = [[Pole alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];
+        go = [[Pole alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];
     }
     else if ([@"Cannon" isEqualToString:type]) {
         go = [[Cannon alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];        
