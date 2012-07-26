@@ -57,13 +57,13 @@
     }
     NSDictionary *levels = [NSMutableDictionary dictionary];
     NSArray *levelArray = [NSArray array];
-    [levels setValue:levelArray forKey:@"Level0"];
+    [levels setValue:levelArray forKey:@"Level01"];
     [worlds setValue:levels forKey:@"World0"];
     
     
     levels = [NSMutableDictionary dictionary];
     levelArray = [NSArray array];
-    [levels setValue:levelArray forKey:@"Level0"];
+    [levels setValue:levelArray forKey:@"Level01"];
     [worlds setValue:levels forKey:@"World1"];
     
 }
@@ -140,8 +140,8 @@
 - (void) awakeFromNib {
     CGRect frame = [self.stretchView frame];
     [gameWorldSize setStringValue:[NSString stringWithFormat:@"Game World Size (%.2f, %.2f)", frame.size.width, frame.size.height]]; 
-    [levelField setIntValue:0];
-    [maxLevelField setStringValue:@"of 0"];
+    [levelField setIntValue:1];
+    [maxLevelField setStringValue:@"of 1"];
     
     [worldNames addItemWithObjectValue:WORLD_GRASSY_KNOLLS];
     [worldNames addItemWithObjectValue:WORLD_FOREST_RETREAT];
@@ -167,7 +167,14 @@
     CGFloat maxXPosition = 0.0;
     CGFloat maxYPosition = 0.0;
     NSDictionary *world = [worlds objectForKey:convertedWorldName];
-    NSMutableArray *levelItems = [world objectForKey:[NSString stringWithFormat:@"Level%d", levelNumber]];
+    NSString *format;
+    if (levelNumber < 10) {
+        format = @"Level0%d";
+    } else {
+        format = @"Level%d";
+    }
+    
+    NSMutableArray *levelItems = [world objectForKey:[NSString stringWithFormat:format, levelNumber]];
     if ([levelItems count] > 0) {
         // First sort by z-order
         NSArray *sortedLevelItems = [levelItems sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2) {
@@ -233,17 +240,24 @@
                                                         format:&format
                                               errorDescription:&error];    
     
-    [self loadWorld:WORLD_GRASSY_KNOLLS level:0];
-    [levelStepper setIntValue:0];
-    [levelField setIntValue:0];
-    int maxLevels = [[worlds objectForKey:[GPUtil convertedWorldName:WORLD_GRASSY_KNOLLS]] count] - 1;
+    [self loadWorld:WORLD_GRASSY_KNOLLS level:1];
+    [levelStepper setIntValue:1];
+    [levelField setIntValue:1];
+    int maxLevels = [[worlds objectForKey:[GPUtil convertedWorldName:WORLD_GRASSY_KNOLLS]] count];
     [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", maxLevels]];
 }
 
 - (void) writeLevelToFile {
     NSArray *levelsArray = [self.stretchView levelForSerialization];
 
-    NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
+    NSString *format;
+    if ([levelField intValue] < 10) {
+        format = @"Level0%d";
+    } else {
+        format = @"Level%d";
+    }
+
+    NSString *currentLevel = [NSString stringWithFormat:format, [levelField intValue]];
     NSDictionary *world = [worlds objectForKey:[GPUtil convertedWorldName:[worldNames stringValue]]];
     [world setValue:levelsArray forKey:currentLevel];
     
@@ -296,15 +310,24 @@
 
 - (void) synchronizeCurrentLevel {
     NSArray *levelItems = [self.stretchView levelForSerialization];
-    NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
+    
+    NSString *format;
+    if ([levelField intValue] < 10) {
+        format = @"Level0%d";
+    } else {
+        format = @"Level%d";
+    }
+    
+    NSString *currentLevel = [NSString stringWithFormat:format, [levelField intValue]];
 
     NSString *converted = [GPUtil convertedWorldName:oldWorldsName];
     NSDictionary *world = [worlds objectForKey:converted];
+    NSLog(@"SYnchronigin %@ %@ currentLevel=%@ %ld", oldWorldsName, converted, currentLevel, [world count]);
     [world setValue:levelItems forKey:currentLevel];
     
     [worlds setValue:world forKey:converted];
     
-    NSLog(@"SYnchronigin %@ %@", oldWorldsName, converted);
+    NSLog(@"SYnchronigin %@ %@ currentLevel=%@ %ld", oldWorldsName, converted, currentLevel, [world count]);
 }
 
 
@@ -315,8 +338,18 @@
     NSDictionary *world = [worlds objectForKey:[GPUtil convertedWorldName:[worldNames stringValue]]];
     int numLevels = [world count];
     NSArray *levelArray = [NSArray array];
-    [world setValue:levelArray forKey:[NSString stringWithFormat:@"Level%d", numLevels]];
 
+    numLevels++;
+
+    NSString *format;
+    if (numLevels < 10) {
+        format = @"Level0%d";
+    } else {
+        format = @"Level%d";
+    }
+    
+    
+    [world setValue:levelArray forKey:[NSString stringWithFormat:format, numLevels]];
     // Update level fields on screen
     [levelField setIntValue:numLevels];
     [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", numLevels]];
@@ -328,9 +361,9 @@
 - (IBAction)newDocument:(id)sender {
     [self initNewWorlds];
     
-    [levelField setIntValue:0];
-    [maxLevelField setStringValue:@"of 0"];
-    [levelStepper setIntValue:0];
+    [levelField setIntValue:1];
+    [maxLevelField setStringValue:@"of 1"];
+    [levelStepper setIntValue:1];
     [self.stretchView clearCanvas];
     [self.stretchView setNeedsDisplay:YES];
 }
@@ -346,8 +379,11 @@
 
         [gameObjects removeAllItems];
         [gameObjects setStringValue:@""];    
-        [levelField setIntValue:0];
-        [levelStepper setIntegerValue:0];
+        [levelField setIntValue:1];
+        [levelStepper setIntegerValue:1];
+        
+        NSDictionary *world = [worlds objectForKey:[GPUtil convertedWorldName:str]];
+        [maxLevelField setIntValue:[world count]];
         
         if ([WORLD_GRASSY_KNOLLS isEqualToString:str]) {
             [self addCommonGameObjectsToDropdown];
@@ -360,7 +396,8 @@
             [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
             [gameObjects addItemWithObjectValue:@"Boxes"];
             
-            [self loadWorld:WORLD_GRASSY_KNOLLS level:0];
+
+            [self loadWorld:WORLD_GRASSY_KNOLLS level:1];
         }
         else if ([WORLD_FOREST_RETREAT isEqualToString:str]) {
             [self addCommonGameObjectsToDropdown];
@@ -373,7 +410,7 @@
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 3"];
             [gameObjects addItemWithObjectValue:@"Forest Retreat Tree 4"];
 
-            [self loadWorld:WORLD_FOREST_RETREAT level:0];
+            [self loadWorld:WORLD_FOREST_RETREAT level:1];
         }
     }
 }
@@ -394,7 +431,6 @@
     [self.stretchView addGameObject:gameObject isSelected:YES];    
 }
 
-
 - (void) controlTextDidEndEditing:(NSNotification *)obj {
     NSTextField *textField = (NSTextField*)[obj object];
     
@@ -409,9 +445,17 @@
 - (IBAction)stepperAction:(id)sender {
     if (sender == levelStepper) {
         NSDictionary *world = [worlds objectForKey:[GPUtil convertedWorldName:[worldNames stringValue]]];
-        if ([levelStepper intValue] < [world count]) {
+        if ([levelStepper intValue] <= [world count]) {
             NSArray *levelItems = [self.stretchView levelForSerialization];
-            NSString *currentLevel = [NSString stringWithFormat:@"Level%d", [levelField intValue]];
+            
+            NSString *format;
+            if ([levelField intValue] < 10) {
+                format = @"Level0%d";
+            } else {
+                format = @"Level%d";
+            }
+            
+            NSString *currentLevel = [NSString stringWithFormat:format, [levelField intValue]];
             [world setValue:levelItems forKey:currentLevel];
 
             [levelField setIntValue:[levelStepper intValue]];

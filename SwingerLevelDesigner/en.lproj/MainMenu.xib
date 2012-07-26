@@ -1944,6 +1944,8 @@
 												<int key="NSCellFlags2">0</int>
 												<string key="NSCellIdentifier">_NS:1083</string>
 												<reference key="NSControlView" ref="55357065"/>
+												<double key="NSValue">1</double>
+												<double key="NSMinValue">1</double>
 												<double key="NSMaxValue">100</double>
 												<double key="NSIncrement">1</double>
 												<bool key="NSAutorepeat">YES</bool>
