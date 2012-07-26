@@ -527,7 +527,6 @@
             [self addGameObject:gameObject isSelected:NO];
         }
     }
-    [self scrollPoint:CGPointMake(0, 0)];
         
     [self setNeedsDisplay:YES];
 }

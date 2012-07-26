@@ -171,6 +171,8 @@
     self.period = [[level objectForKey:@"Period"] floatValue];
     self.ropeLength = [[level objectForKey:@"RopeLength"] floatValue];
     self.swingAngle = [[level objectForKey:@"SwingAngle"] floatValue];
+    [self setSize:CGSizeMake([self size].width, [self size].height * self.scaleY)];
+    
 }
 
 - (NSString*) gameObjectTypeString {
