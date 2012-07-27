@@ -112,7 +112,7 @@
         go = [[Pole alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];
     }
     else if ([@"Cannon" isEqualToString:type]) {
-        go = [[Cannon alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];        
+        go = [[Cannon alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];        
     }
     else if ([@"Spring" isEqualToString:type]) {
         go = [[Spring alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];        
