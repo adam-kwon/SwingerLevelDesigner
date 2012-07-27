@@ -29,7 +29,7 @@
     NSBezierPath *linePath = [NSBezierPath bezierPath];
     float x1, x2, y1, y2;
     
-    x1 = position.x + [self size].width/2 + 50;
+    x1 = position.x + [self size].width/2;
     y1 = position.y + 190;
     
     x2 = position.x + [self size].width/2 + 30 + 200*cos((90-cannonRotationAngle)*M_PI/180);
@@ -48,7 +48,7 @@
         angle = (90-cannonRotationAngle) * (M_PI/180.f);        
     }
     
-    float x0 = (x1 + self.size.width/2 - 230 * cosf(angle))/PTM_RATIO;
+    float x0 = (x1 + self.size.width/2 - 275 * cosf(angle))/PTM_RATIO;
     float y0 = ((y1 - self.size.width/2) + self.size.width * sinf(angle))/PTM_RATIO;
     float v01 = self.cannonForce + 4 + [self getWindForce:1].x;
     float v02 = self.cannonForce + 4 + [self getWindForce:1].y;
