@@ -53,11 +53,11 @@
 - (void) draw:(CGContextRef)ctx {        
     float angle = (45) * (M_PI/180.f);
     
-    float x0 = (self.position.x)/PTM_RATIO;
-    float y0 = (self.position.y + self.size.height)/PTM_RATIO;
-    float v01 = self.bounce + 4 + [self getWindForce:1].x;
-    float v02 = self.bounce + 4 + [self getWindForce:1].y;
-    float g = 30.0f + 5.0f;
+    float x0 = (self.position.x + [self size].width/2)/PTM_RATIO;
+    float y0 = (self.position.y + self.size.height + 47)/PTM_RATIO;
+    float v01 = self.bounce + 5 + [self getWindForce:1].x;
+    float v02 = self.bounce + 5 + [self getWindForce:1].y;
+    float g = 30.0f;
     
     float v0x = v01 * cosf(angle);
     float v0y = v02 * sinf(angle);
