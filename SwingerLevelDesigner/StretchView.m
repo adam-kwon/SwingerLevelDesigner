@@ -45,7 +45,7 @@
                                                      name:Z_ORDER_CHANGED 
                                                    object:nil];
 
-        //[NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(updateDisplay:) userInfo:nil repeats:YES];
+        //[NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(updateDispalay:) userInfo:nil repeats:YES];
     }
     
     return self;

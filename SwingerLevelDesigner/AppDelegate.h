@@ -51,6 +51,8 @@
 @property (assign) IBOutlet NSTextField *moveX;
 @property (assign) IBOutlet NSTextField *moveY;
 @property (assign) IBOutlet NSTextField *frequency;
+@property (assign) IBOutlet NSTextField *numCopies;
+@property (assign) IBOutlet NSStepper *numCopiesStepper;
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showOpenPanel:(id)sender;

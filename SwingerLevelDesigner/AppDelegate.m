@@ -47,6 +47,8 @@
 @synthesize moveX;
 @synthesize moveY;
 @synthesize frequency;
+@synthesize numCopies;
+@synthesize numCopiesStepper;
 
 - (void) initNewWorlds {
     fileName = nil;
@@ -157,6 +159,9 @@
     [gameObjects addItemWithObjectValue:@"Balloon Cart"];
     [gameObjects addItemWithObjectValue:@"Popcorn Cart"];
     [gameObjects addItemWithObjectValue:@"Boxes"];
+    
+    [numCopies setIntValue:1];
+    [numCopiesStepper setIntValue:1];
 }
 
 - (void) loadWorld:(NSString*)worldName level:(int)levelNumber {
@@ -421,14 +426,20 @@
     GameObject *gameObject;
     
     NSString *val = [self.gameObjects stringValue];
-    
-    gameObject = [GameObject instanceOf:val];
-    
     NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
     NSRect r = [sv documentVisibleRect];
-    gameObject.position = CGPointMake(r.origin.x + gameObject.anchorXOffset, r.origin.y + gameObject.anchorYOffset);
     
-    [self.stretchView addGameObject:gameObject isSelected:YES];    
+    for (int i = 0; i < [numCopies intValue]; i++) {
+        gameObject = [GameObject instanceOf:val];
+        
+        gameObject.position = CGPointMake(r.origin.x + gameObject.anchorXOffset, r.origin.y + gameObject.anchorYOffset);
+        
+        BOOL selected = NO;
+        if (i == [numCopies intValue]-1) {
+            selected = YES;
+        }
+        [self.stretchView addGameObject:gameObject isSelected:selected];    
+    }
 }
 
 - (void) controlTextDidEndEditing:(NSNotification *)obj {
@@ -437,6 +448,10 @@
     if (levelField == textField) {
         [levelStepper setIntValue:[levelField intValue]];
         [self loadWorld:[worldNames stringValue] level:[levelField intValue]];
+    } else if (zOrder == textField) {
+        [zOrderStepper setIntValue:[zOrder intValue]];
+    } else if (numCopies == textField) {
+        [numCopiesStepper setIntValue:[numCopies intValue]];
     }
     [self.stretchView updateSelectedGameObject];
 }
@@ -467,6 +482,8 @@
         [zOrder setIntValue:[zOrderStepper intValue]];
         [self.stretchView updateSelectedGameObject];
         //[self.stretchView updateSelectedZOrder:[zOrder intValue]];        
+    } else if (sender == numCopiesStepper) {
+        [numCopies setIntValue:[numCopiesStepper intValue]];
     }
 }
 
