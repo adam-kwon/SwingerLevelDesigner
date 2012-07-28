@@ -30,20 +30,20 @@
 #import "Notifications.h"
 
 #define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
-obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
-go = obj; \
-} \
-else { \
-go = [obj copy]; \
-}
+                                                                obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
+                                                                go = obj; \
+                                                            } \
+                                                            else { \
+                                                                go = [obj copy]; \
+                                                            }
 
-#define INIT_INSTANCE_TYPE(obj, objectName, anchorX, anchorY, type)     if (obj == nil) { \
-obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY) ofType:type]; \
-go = obj; \
-} \
-else { \
-go = [obj copy]; \
-}
+#define INIT_INSTANCE_TYPE(obj, objectName, anchorX, anchorY, type) if (obj == nil) { \
+                                                                        obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY) ofType:type]; \
+                                                                        go = obj; \
+                                                                    } \
+                                                                    else { \
+                                                                        go = [obj copy]; \
+                                                                    }
 
 
 @implementation GameObject
