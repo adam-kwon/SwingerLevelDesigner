@@ -29,6 +29,23 @@
 #import "FireRing.h"
 #import "Notifications.h"
 
+#define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
+obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
+go = obj; \
+} \
+else { \
+go = [obj copy]; \
+}
+
+#define INIT_INSTANCE_TYPE(obj, objectName, anchorX, anchorY, type)     if (obj == nil) { \
+obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY) ofType:type]; \
+go = obj; \
+} \
+else { \
+go = [obj copy]; \
+}
+
+
 @implementation GameObject
 
 @synthesize position;
@@ -46,6 +63,35 @@
 @synthesize name;
 @synthesize scaleY;
 @synthesize scaleX;
+
+static GameObject *pole;
+static GameObject *cannon;
+static GameObject *spring;
+static GameObject *elephant;
+static GameObject *finalPlatform;
+static GameObject *treeClump1;
+static GameObject *treeClump2;
+static GameObject *treeClump3;
+static GameObject *tent1;
+static GameObject *tent2;
+static GameObject *dummy;
+static GameObject *balloonCart;
+static GameObject *popcornCart;
+static GameObject *coin;
+static GameObject *star;
+static GameObject *boxes;
+static GameObject *wheel;
+static GameObject *strongMan;
+static GameObject *forestRetreatTreeClump1;
+static GameObject *forestRetreatTreeClump2;
+static GameObject *forestRetreatTreeClump3;
+static GameObject *forestRetreatTree1;
+static GameObject *forestRetreatTree2;
+static GameObject *forestRetreatTree3;
+static GameObject *forestRetreatTree4;
+static GameObject *torch;
+static GameObject *floatingPlatform;
+static GameObject *fireRing;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -91,16 +137,16 @@
     
     anchorXOffset = [self size].width * anchorPoint.x;
     anchorYOffset = [self size].height * anchorPoint.y;
-
-
     
-//    lbl = [[NSTextView alloc] initWithFrame:CGRectMake(0, 40, 400, 60)];
-//    [lbl setString:@""];
-//    [lbl setDrawsBackground:NO];
-//    [lbl setSelectable:NO];
-//    [lbl setEditable:NO];
-//    [lbl setFont:[NSFont fontWithName:@"Courier New" size:11]];
-//    [parent addSubview:lbl];
+    
+    
+    //    lbl = [[NSTextView alloc] initWithFrame:CGRectMake(0, 40, 400, 60)];
+    //    [lbl setString:@""];
+    //    [lbl setDrawsBackground:NO];
+    //    [lbl setSelectable:NO];
+    //    [lbl setEditable:NO];
+    //    [lbl setFont:[NSFont fontWithName:@"Courier New" size:11]];
+    //    [parent addSubview:lbl];
     
     return self;
 }
@@ -109,90 +155,90 @@
     GameObject *go = nil;
     
     if ([@"Pole" isEqualToString:type] || [@"Catcher" isEqualToString:type]) {
-        go = [[Pole alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];
+        INIT_INSTANCE(pole, Pole, 0.5, 0.0)
     }
     else if ([@"Cannon" isEqualToString:type]) {
-        go = [[Cannon alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];        
+        INIT_INSTANCE(cannon, Cannon, 0.5, 0.0)
     }
     else if ([@"Spring" isEqualToString:type]) {
-        go = [[Spring alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];        
+        INIT_INSTANCE(spring, Spring, 0.5, 0.0)
     }
     else if ([@"Elephant" isEqualToString:type]) {
-        go = [[Elephant alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(elephant, Elephant, 0.5, 0.5)
     }
     else if ([@"FinalPlatform" isEqualToString:type] || [@"Final Platform" isEqualToString:type]) {
-        go = [[FinalPlatform alloc] initWithAnchorPoint:CGPointMake(0.0, 0.0)];        
+        INIT_INSTANCE(finalPlatform, FinalPlatform, 0.0, 0.0)
     }
     else if ([@"Tree Clump 1" isEqualToString:type] || [@"L1aTreeClump1.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump1];        
+        INIT_INSTANCE_TYPE(treeClump1, TreeClump, 0.5, 0.5, kTreeClump1);
     }
     else if ([@"Tree Clump 2" isEqualToString:type] || [@"L1aTreeClump2.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump2];        
+        INIT_INSTANCE_TYPE(treeClump2, TreeClump, 0.5, 0.5, kTreeClump2);
     }
     else if ([@"Tree Clump 3" isEqualToString:type] || [@"L1aTreeClump3.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump3];        
+        INIT_INSTANCE_TYPE(treeClump3, TreeClump, 0.5, 0.5, kTreeClump3);
     }
     else if ([@"Tent 1" isEqualToString:type] || [@"L1a_Tent1.png" isEqualToString:type]) {
-        go = [[Tent alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTent1];        
+        INIT_INSTANCE_TYPE(tent1, Tent, 0.5, 0.5, kTent1);
     }
     else if ([@"Tent 2" isEqualToString:type] || [@"L1a_Tent2.png" isEqualToString:type]) {
-        go = [[Tent alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTent2];        
+        INIT_INSTANCE_TYPE(tent2, Tent, 0.5, 0.5, kTent2);
     }
     else if ([@"Dummy" isEqualToString:type]) {
-        go = [[Dummy alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(dummy, Dummy, 0.5, 0.5)
     }
     else if ([@"Balloon Cart" isEqualToString:type] || [@"L1a_BalloonCart.png" isEqualToString:type]) {
-        go = [[BalloonCart alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(balloonCart, BalloonCart, 0.5, 0.5)
     }
     else if ([@"Popcorn Cart" isEqualToString:type] || [@"L1a_PopcornCart.png" isEqualToString:type]) {
-        go = [[PopcornCart alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(popcornCart, PopcornCart, 0.5, 0.5)
     }
     else if ([@"Coin" isEqualToString:type]) {
-        go = [[Coin alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(coin, Coin, 0.5, 0.5)
     }
     else if ([@"Star" isEqualToString:type]) {
-        go = [[Star alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(star, Star, 0.5, 0.5)
     }
     else if ([@"Boxes" isEqualToString:type] || [@"L1a_Boxes1.png" isEqualToString:type]) {
-        go = [[Boxes alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(boxes, Boxes, 0.5, 0.5)
     }
     else if ([@"Wheel" isEqualToString:type]) {
-        go = [[Wheel alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];
+        INIT_INSTANCE(wheel, Wheel, 0.5, 0.5)
     }
     else if ([@"StrongMan" isEqualToString:type] || [@"Strong Man" isEqualToString:type]) {
-        go = [[StrongMan alloc] initWithAnchorPoint:CGPointMake(0.5, 0.0)];
+        INIT_INSTANCE(strongMan, StrongMan, 0.5, 0.f)
     }
     else if ([@"Forest Retreat Tree Clump 1" isEqualToString:type] || [@"L2a_TreeClump1.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump1ForestRetreat];        
+        INIT_INSTANCE_TYPE(forestRetreatTreeClump1, TreeClump, 0.5, 0.5, kTreeClump1ForestRetreat);
     }
     else if ([@"Forest Retreat Tree Clump 2" isEqualToString:type] || [@"L2a_TreeClump2.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump2ForestRetreat];        
+        INIT_INSTANCE_TYPE(forestRetreatTreeClump2, TreeClump, 0.5, 0.5, kTreeClump2ForestRetreat);
     }
     else if ([@"Forest Retreat Tree Clump 3" isEqualToString:type] || [@"L2a_TreeClump3.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTreeClump3ForestRetreat];        
+        INIT_INSTANCE_TYPE(forestRetreatTreeClump3, TreeClump, 0.5, 0.5, kTreeClump3ForestRetreat);
     }
     else if ([@"Forest Retreat Tree 1" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree1ForestRetreat];        
+        INIT_INSTANCE_TYPE(forestRetreatTree1, TreeClump, 0.5, 0.5, kTree1ForestRetreat);
     }
     else if ([@"Forest Retreat Tree 2" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree2ForestRetreat];        
+        INIT_INSTANCE_TYPE(forestRetreatTree2, TreeClump, 0.5, 0.5, kTree2ForestRetreat);
     }
     else if ([@"Forest Retreat Tree 3" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree3ForestRetreat];        
+        INIT_INSTANCE_TYPE(forestRetreatTree3, TreeClump, 0.5, 0.5, kTree3ForestRetreat);
     }
     else if ([@"Forest Retreat Tree 4" isEqualToString:type] || [@"L2a_Tree1.png" isEqualToString:type]) {
-        go = [[TreeClump alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5) ofType:kTree4ForestRetreat];        
+        INIT_INSTANCE_TYPE(forestRetreatTree4, TreeClump, 0.5, 0.5, kTree4ForestRetreat);
     }
     else if ([@"Torch" isEqualToString:type] || [@"L2a_Torch.png" isEqualToString:type]) {
-        go = [[Torch alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(torch, Torch, 0.5, 0.5)
     }
     else if ([@"FloatingPlatform" isEqualToString:type] || [@"Floating Platform" isEqualToString:type]) {
-        go = [[FloatingPlatform alloc] initWithAnchorPoint:CGPointMake(0.0, 0.5)];        
+        INIT_INSTANCE(floatingPlatform, FloatingPlatform, 0.0, 0.5)
     }
     else if ([@"FireRing" isEqualToString:type] || [@"Fire Ring" isEqualToString:type]) {
-        go = [[FireRing alloc] initWithAnchorPoint:CGPointMake(0.5, 0.5)];        
+        INIT_INSTANCE(fireRing, FireRing, 0.5, 0.5)
     }
-
+    
     
     return go;
 }
@@ -279,7 +325,7 @@
             [[NSColor redColor] set];
             [box stroke];            
         }
-
+        
         NSRect moveHandleRect;
         moveHandleRect.origin = NSZeroPoint;
         moveHandleRect.size = [moveHandle size];
@@ -288,7 +334,7 @@
                        fromRect:moveHandleRect 
                       operation:NSCompositeSourceOver 
                        fraction:1.0];
-
+        
         
         NSRect sizeHandleRect;
         sizeHandleRect.origin = NSZeroPoint;
@@ -300,20 +346,20 @@
                          fraction:1.0];
     }
     
-//    if (gameObjectType == kGameObjectTypeSwinger) {
-//        NSString *str;
-//        
-//        str = [NSString stringWithFormat:@"%15s %.2f secs\n%15s %.2f\n%15s %.2f\n%15s %@", 
-//                         "Period:", "Grip:", "Wind speed:", "Wind direction:", period, grip, windSpeed, windDirection];
-//        
-//        [lbl setString:str];
-//        [lbl setFrameOrigin:CGPointMake(position.x + [self size].width, position.y)];
-//    } else {
-//        if (lbl != nil) {
-//            [lbl removeFromSuperview];
-//            lbl = nil;
-//        }
-//    }
+    //    if (gameObjectType == kGameObjectTypeSwinger) {
+    //        NSString *str;
+    //        
+    //        str = [NSString stringWithFormat:@"%15s %.2f secs\n%15s %.2f\n%15s %.2f\n%15s %@", 
+    //                         "Period:", "Grip:", "Wind speed:", "Wind direction:", period, grip, windSpeed, windDirection];
+    //        
+    //        [lbl setString:str];
+    //        [lbl setFrameOrigin:CGPointMake(position.x + [self size].width, position.y)];
+    //    } else {
+    //        if (lbl != nil) {
+    //            [lbl removeFromSuperview];
+    //            lbl = nil;
+    //        }
+    //    }
 }
 
 - (void) updateInfo {
@@ -336,7 +382,7 @@
         AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
         self.position = CGPointMake([appDelegate.xPosition floatValue], [appDelegate.yPosition floatValue]);
         self.scaleY = [appDelegate.poleScale floatValue];
-
+        
         self.grip = [appDelegate.grip floatValue];
         self.windSpeed = [appDelegate.windSpeed floatValue];
         self.windDirection = [appDelegate.windDirection stringValue];
