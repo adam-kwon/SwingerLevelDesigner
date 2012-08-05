@@ -9,6 +9,7 @@
 #import "GameObject.h"
 #import "AppDelegate.h"
 #import "StretchView.h"
+#import "Notifications.h"
 #import "Pole.h"
 #import "Cannon.h"
 #import "Spring.h"
@@ -27,7 +28,7 @@
 #import "Torch.h"
 #import "FloatingPlatform.h"
 #import "FireRing.h"
-#import "Notifications.h"
+#import "Magnet.h"
 
 #define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
                                                                 obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
@@ -92,6 +93,7 @@ static GameObject *forestRetreatTree4;
 static GameObject *torch;
 static GameObject *floatingPlatform;
 static GameObject *fireRing;
+static GameObject *magnet;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -237,6 +239,9 @@ static GameObject *fireRing;
     }
     else if ([@"FireRing" isEqualToString:type] || [@"Fire Ring" isEqualToString:type]) {
         INIT_INSTANCE(fireRing, FireRing, 0.5, 0.5)
+    }
+    else if ([@"Magnet" isEqualToString:type]) {
+        INIT_INSTANCE(magnet, Magnet, 0.5, 0.5)
     }
     
     

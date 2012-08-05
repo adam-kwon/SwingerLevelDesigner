@@ -20,6 +20,7 @@ typedef enum {
     kGameObjectTypeElephant,
     kGameObjectTypeStar,
     kGameObjectTypeCoin,
+    kGameObjectTypeMagnet,
     kGameObjectTypeTreeClump1,
     kGameObjectTypeTreeClump2,
     kGameObjectTypeTreeClump3,

@@ -134,6 +134,7 @@
     [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
+    [gameObjects addItemWithObjectValue:@"Magnet"];    
     [gameObjects addItemWithObjectValue:@"Strong Man"];
     [gameObjects addItemWithObjectValue:@"Fire Ring"];
     [gameObjects addItemWithObjectValue:@"Dummy"];
