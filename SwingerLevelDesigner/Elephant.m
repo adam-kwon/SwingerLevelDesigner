@@ -44,9 +44,9 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSNumber numberWithFloat:self.leftEdge] forKey:@"LeftEdge"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.rightEdge] forKey:@"RightEdge"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.walkVelocity] forKey:@"WalkVelocity"];
+//    [levelDict setObject:[NSString stringWithFormat:@"%.2f", ] forKey:@"LeftEdge"];
+//    [levelDict setObject:[NSString stringWithFormat:@"%.2f", ][NSNumber numberWithFloat:self.rightEdge] forKey:@"RightEdge"];
+//    [levelDict setObject:[NSString stringWithFormat:@"%.2f", ][NSNumber numberWithFloat:self.walkVelocity] forKey:@"WalkVelocity"];
 }
 
 

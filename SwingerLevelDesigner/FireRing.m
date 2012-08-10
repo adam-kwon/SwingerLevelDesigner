@@ -45,9 +45,9 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSNumber numberWithFloat:self.moveX] forKey:@"MoveX"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.moveY] forKey:@"MoveY"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.frequency] forKey:@"Frequency"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.moveX] forKey:@"MoveX"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.moveY] forKey:@"MoveY"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.frequency] forKey:@"Frequency"];
 }
 
 

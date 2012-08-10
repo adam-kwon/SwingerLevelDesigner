@@ -23,7 +23,7 @@
     [super levelForSerialization:levelDict];
     
     self.width = originalSize.width * scaleX;
-    [levelDict setObject:[NSNumber numberWithFloat:self.width] forKey:@"Width"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.width] forKey:@"Width"];
 }
 
 

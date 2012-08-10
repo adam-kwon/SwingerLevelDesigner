@@ -255,12 +255,13 @@ static GameObject *hunter;
 
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [levelDict setObject:[self gameObjectTypeString] forKey:@"Type"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.position.x/2] forKey:@"XPosition"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.position.y/2] forKey:@"YPosition"];
-    [levelDict setObject:[NSNumber numberWithInt:self.zOrder] forKey:@"Z-Order"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.scaleY] forKey:@"PoleScale"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.grip] forKey:@"Grip"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.windSpeed] forKey:@"WindSpeed"];
+    
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.position.x/2] forKey:@"XPosition"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.position.y/2] forKey:@"YPosition"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.zOrder] forKey:@"Z-Order"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.scaleY] forKey:@"PoleScale"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.grip] forKey:@"Grip"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.windSpeed] forKey:@"WindSpeed"];
     [levelDict setObject:self.windDirection == nil ? @"" : self.windDirection forKey:@"WindDirection"];
 }
 

@@ -119,9 +119,9 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSNumber numberWithFloat:self.cannonSpeed] forKey:@"Speed"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.cannonForce] forKey:@"Force"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.cannonRotationAngle] forKey:@"RotationAngle"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.cannonSpeed] forKey:@"Speed"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.cannonForce] forKey:@"Force"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.cannonRotationAngle] forKey:@"RotationAngle"];
 }
 
 - (void) loadFromDict:(NSDictionary*)level {

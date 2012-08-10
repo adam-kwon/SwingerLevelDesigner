@@ -40,7 +40,7 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSNumber numberWithFloat:self.speed] forKey:@"SpinRate"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.speed] forKey:@"SpinRate"];
 }
 
 

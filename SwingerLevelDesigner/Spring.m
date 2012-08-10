@@ -40,7 +40,7 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSNumber numberWithFloat:self.bounce] forKey:@"Bounce"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.bounce] forKey:@"Bounce"];
 }
 
 

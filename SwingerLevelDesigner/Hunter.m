@@ -41,8 +41,8 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSNumber numberWithFloat:self.walkDistance] forKey:@"WalkDistance"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.walkVelocity] forKey:@"WalkSpeed"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.walkDistance] forKey:@"WalkDistance"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.walkVelocity] forKey:@"WalkSpeed"];
 }
 
 

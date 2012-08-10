@@ -158,9 +158,9 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSNumber numberWithFloat:self.period] forKey:@"Period"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.ropeLength] forKey:@"RopeLength"];
-    [levelDict setObject:[NSNumber numberWithFloat:self.swingAngle] forKey:@"SwingAngle"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.period] forKey:@"Period"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.ropeLength] forKey:@"RopeLength"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.swingAngle] forKey:@"SwingAngle"];
 }
 
 
