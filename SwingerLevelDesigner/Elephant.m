@@ -22,23 +22,23 @@
 }
 
 - (void) updateInfo {
-    if (selected) {
-        [super updateInfo];
-        AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
-        [appDelegate.leftEdge setStringValue:[NSString stringWithFormat:@"%.2f", self.leftEdge]];
-        [appDelegate.rightEdge setStringValue:[NSString stringWithFormat:@"%.2f", self.rightEdge]];
-        [appDelegate.walkVelocity setStringValue:[NSString stringWithFormat:@"%.2f", self.walkVelocity]];
-    }
+//    if (selected) {
+//        [super updateInfo];
+//        AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+//        [appDelegate.leftEdge setStringValue:[NSString stringWithFormat:@"%.2f", self.leftEdge]];
+//        [appDelegate.rightEdge setStringValue:[NSString stringWithFormat:@"%.2f", self.rightEdge]];
+//        [appDelegate.walkVelocity setStringValue:[NSString stringWithFormat:@"%.2f", self.walkVelocity]];
+//    }
 }
 
 - (void) updateProperties {
-    if (selected) {
-        [super updateProperties];
-        AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
-        self.leftEdge = [appDelegate.leftEdge floatValue];
-        self.rightEdge = [appDelegate.rightEdge floatValue];
-        self.walkVelocity = [appDelegate.walkVelocity floatValue];
-    }
+//    if (selected) {
+//        [super updateProperties];
+//        AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+//        self.leftEdge = [appDelegate.leftEdge floatValue];
+//        self.rightEdge = [appDelegate.rightEdge floatValue];
+//        self.walkVelocity = [appDelegate.walkVelocity floatValue];
+//    }
 }
 
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {

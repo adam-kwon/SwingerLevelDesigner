@@ -39,8 +39,7 @@
 @synthesize zOrder;
 @synthesize gameObjects;
 @synthesize bounce;
-@synthesize leftEdge;
-@synthesize rightEdge;
+@synthesize walkDistance;
 @synthesize walkVelocity;
 @synthesize wheelSpeed;
 @synthesize worldNames;
@@ -128,7 +127,8 @@
     [gameObjects addItemWithObjectValue:@"Pole"];
     [gameObjects addItemWithObjectValue:@"Cannon"];
     [gameObjects addItemWithObjectValue:@"Spring"];    
-    [gameObjects addItemWithObjectValue:@"Elephant"];
+    [gameObjects addItemWithObjectValue:@"Hunter"];    
+//    [gameObjects addItemWithObjectValue:@"Elephant"];
     [gameObjects addItemWithObjectValue:@"Wheel"];
     [gameObjects addItemWithObjectValue:@"Floating Platform"];    
     [gameObjects addItemWithObjectValue:@"Final Platform"];

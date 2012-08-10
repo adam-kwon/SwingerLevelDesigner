@@ -28,6 +28,8 @@
 		39104B4415978BCD00C80A13 /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 39104B4315978BCD00C80A13 /* wheel.png */; };
 		391D412D1586D9A500F80DE6 /* Swing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 391D412C1586D9A500F80DE6 /* Swing1.png */; };
 		391D41321586DBA700F80DE6 /* Swing1.icns in Resources */ = {isa = PBXBuildFile; fileRef = 391D41311586DBA700F80DE6 /* Swing1.icns */; };
+		3921917D15D4CA2700441C6C /* Hunter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3921917C15D4CA2700441C6C /* Hunter.m */; };
+		3921918015D4CB6400441C6C /* hunter-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3921917F15D4CB6400441C6C /* hunter-hd.png */; };
 		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
 		39258DEF156F2E3600311702 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 39258DED156F2E3600311702 /* InfoPlist.strings */; };
 		39258DF1156F2E3600311702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF0156F2E3600311702 /* main.m */; };
@@ -110,6 +112,9 @@
 		39104B451597994100C80A13 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		391D412C1586D9A500F80DE6 /* Swing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Swing1.png; path = ../Swing1.png; sourceTree = "<group>"; };
 		391D41311586DBA700F80DE6 /* Swing1.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Swing1.icns; path = resources/macos/Swing1.icns; sourceTree = "<group>"; };
+		3921917B15D4CA2700441C6C /* Hunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hunter.h; sourceTree = "<group>"; };
+		3921917C15D4CA2700441C6C /* Hunter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hunter.m; sourceTree = "<group>"; };
+		3921917F15D4CB6400441C6C /* hunter-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hunter-hd.png"; sourceTree = "<group>"; };
 		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39258DE4156F2E3600311702 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		39258DE7156F2E3600311702 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -187,6 +192,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3921917F15D4CB6400441C6C /* hunter-hd.png */,
 				397AA3E515CE38A700DF8881 /* magnet-hd.png */,
 				39FACEE915BA3ACD00CC5717 /* FireRing.png */,
 				39FACEC615B6668200CC5717 /* floatingPlatform.png */,
@@ -238,6 +244,8 @@
 				39FACEEB15BA3AE600CC5717 /* FireRing.h */,
 				39FACEEC15BA3AE700CC5717 /* FireRing.m */,
 				39F9A55E15A55EA500AAC46B /* StrongMan.h */,
+				3921917B15D4CA2700441C6C /* Hunter.h */,
+				3921917C15D4CA2700441C6C /* Hunter.m */,
 				39F9A55F15A55EA500AAC46B /* StrongMan.m */,
 				39104B4015978A9100C80A13 /* Wheel.h */,
 				39104B4115978A9100C80A13 /* Wheel.m */,
@@ -432,6 +440,7 @@
 				39FACEC715B6668200CC5717 /* floatingPlatform.png in Resources */,
 				39FACEEA15BA3ACD00CC5717 /* FireRing.png in Resources */,
 				397AA3E615CE38A700DF8881 /* magnet-hd.png in Resources */,
+				3921918015D4CB6400441C6C /* hunter-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +476,7 @@
 				39FACECB15B666D600CC5717 /* FloatingPlatform.m in Sources */,
 				39FACEED15BA3AE800CC5717 /* FireRing.m in Sources */,
 				397AA3E915CE38B800DF8881 /* Magnet.m in Sources */,
+				3921917D15D4CA2700441C6C /* Hunter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
