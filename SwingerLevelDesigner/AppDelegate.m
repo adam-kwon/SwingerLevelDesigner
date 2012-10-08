@@ -138,6 +138,7 @@
     [gameObjects addItemWithObjectValue:@"Strong Man"];
     [gameObjects addItemWithObjectValue:@"Fire Ring"];
     [gameObjects addItemWithObjectValue:@"Anger Potion"];
+    [gameObjects addItemWithObjectValue:@"Speed Boost"];
     [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 
