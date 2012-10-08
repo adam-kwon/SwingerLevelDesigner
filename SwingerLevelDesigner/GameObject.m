@@ -33,6 +33,7 @@
 #import "AngerPotion.h"
 #import "SpeedBoost.h"
 #import "JetPack.h"
+#import "MissileLauncher.h"
 
 #define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
                                                                 obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
@@ -102,6 +103,7 @@ static GameObject *hunter;
 static GameObject *angerPotion;
 static GameObject *speedBoost;
 static GameObject *jetPack;
+static GameObject *missile;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -262,6 +264,9 @@ static GameObject *jetPack;
     }
     else if ([@"JetPack" isEqualToString:type] || [@"Jet Pack" isEqualToString:type]) {
         INIT_INSTANCE(jetPack, JetPack, 0.5, 0.5)
+    }
+    else if ([@"MissileLauncher" isEqualToString:type] || [@"Missile Launcher" isEqualToString:type]) {
+        INIT_INSTANCE(missile, MissileLauncher, 0.5, 0.5)
     }
     
     
