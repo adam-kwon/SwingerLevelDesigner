@@ -137,6 +137,7 @@
     [gameObjects addItemWithObjectValue:@"Magnet"];    
     [gameObjects addItemWithObjectValue:@"Strong Man"];
     [gameObjects addItemWithObjectValue:@"Fire Ring"];
+    [gameObjects addItemWithObjectValue:@"Anger Potion"];
     [gameObjects addItemWithObjectValue:@"Dummy"];
 }
 

@@ -55,6 +55,8 @@
 		397AA3E915CE38B800DF8881 /* Magnet.m in Sources */ = {isa = PBXBuildFile; fileRef = 397AA3E815CE38B800DF8881 /* Magnet.m */; };
 		399C3A0615865419005537B6 /* Cannon.png in Resources */ = {isa = PBXBuildFile; fileRef = 399C3A0515865419005537B6 /* Cannon.png */; };
 		399C3A0E1586736C005537B6 /* finalPlatform.png in Resources */ = {isa = PBXBuildFile; fileRef = 399C3A0D1586736C005537B6 /* finalPlatform.png */; };
+		39B3916D16226B63001FA19A /* potion-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B3916C16226B63001FA19A /* potion-hd.png */; };
+		39B3917116226C20001FA19A /* AngerPotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3917016226C20001FA19A /* AngerPotion.m */; };
 		39B966711592E51700D4BF00 /* ElephantWalk6.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B966701592E51700D4BF00 /* ElephantWalk6.png */; };
 		39BE5E39158FB6C200C7D79E /* L1aTreeClump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E36158FB6C200C7D79E /* L1aTreeClump1.png */; };
 		39BE5E3A158FB6C200C7D79E /* L1aTreeClump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E37158FB6C200C7D79E /* L1aTreeClump2.png */; };
@@ -153,6 +155,9 @@
 		397AA3E815CE38B800DF8881 /* Magnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Magnet.m; sourceTree = "<group>"; };
 		399C3A0515865419005537B6 /* Cannon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cannon.png; sourceTree = "<group>"; };
 		399C3A0D1586736C005537B6 /* finalPlatform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finalPlatform.png; sourceTree = "<group>"; };
+		39B3916C16226B63001FA19A /* potion-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "potion-hd.png"; sourceTree = "<group>"; };
+		39B3916F16226C20001FA19A /* AngerPotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AngerPotion.h; sourceTree = "<group>"; };
+		39B3917016226C20001FA19A /* AngerPotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AngerPotion.m; sourceTree = "<group>"; };
 		39B966701592E51700D4BF00 /* ElephantWalk6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ElephantWalk6.png; sourceTree = "<group>"; };
 		39BE5E36158FB6C200C7D79E /* L1aTreeClump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1aTreeClump1.png; sourceTree = "<group>"; };
 		39BE5E37158FB6C200C7D79E /* L1aTreeClump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1aTreeClump2.png; sourceTree = "<group>"; };
@@ -192,6 +197,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39B3916C16226B63001FA19A /* potion-hd.png */,
 				3921917F15D4CB6400441C6C /* hunter-hd.png */,
 				397AA3E515CE38A700DF8881 /* magnet-hd.png */,
 				39FACEE915BA3ACD00CC5717 /* FireRing.png */,
@@ -235,6 +241,8 @@
 		39104B2D15977BA900C80A13 /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
+				39B3916F16226C20001FA19A /* AngerPotion.h */,
+				39B3917016226C20001FA19A /* AngerPotion.m */,
 				39C05CCD1571C5EF007C0035 /* GameObject.h */,
 				39C05CCE1571C5EF007C0035 /* GameObject.m */,
 				39104B241597763C00C80A13 /* FinalPlatform.h */,
@@ -441,6 +449,7 @@
 				39FACEEA15BA3ACD00CC5717 /* FireRing.png in Resources */,
 				397AA3E615CE38A700DF8881 /* magnet-hd.png in Resources */,
 				3921918015D4CB6400441C6C /* hunter-hd.png in Resources */,
+				39B3916D16226B63001FA19A /* potion-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +486,7 @@
 				39FACEED15BA3AE800CC5717 /* FireRing.m in Sources */,
 				397AA3E915CE38B800DF8881 /* Magnet.m in Sources */,
 				3921917D15D4CA2700441C6C /* Hunter.m in Sources */,
+				39B3917116226C20001FA19A /* AngerPotion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,6 +30,7 @@
 #import "FireRing.h"
 #import "Magnet.h"
 #import "Hunter.h"
+#import "AngerPotion.h"
 
 #define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
                                                                 obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
@@ -96,6 +97,7 @@ static GameObject *floatingPlatform;
 static GameObject *fireRing;
 static GameObject *magnet;
 static GameObject *hunter;
+static GameObject *angerPotion;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -247,6 +249,9 @@ static GameObject *hunter;
     }
     else if ([@"Hunter" isEqualToString:type]) {
         INIT_INSTANCE(hunter, Hunter, 0.5, 0.5)
+    }
+    else if ([@"AngerPotion" isEqualToString:type] || [@"Anger Potion" isEqualToString:type]) {
+        INIT_INSTANCE(angerPotion, AngerPotion, 0.5, 0.5)
     }
     
     
