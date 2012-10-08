@@ -139,7 +139,8 @@
     [gameObjects addItemWithObjectValue:@"Fire Ring"];
     [gameObjects addItemWithObjectValue:@"Anger Potion"];
     [gameObjects addItemWithObjectValue:@"Jet Pack"];
-    [gameObjects addItemWithObjectValue:@"Missile Launcher"];    
+    [gameObjects addItemWithObjectValue:@"Missile Launcher"];
+    [gameObjects addItemWithObjectValue:@"Saw"];
     [gameObjects addItemWithObjectValue:@"Speed Boost"];
     [gameObjects addItemWithObjectValue:@"Dummy"];
 }
