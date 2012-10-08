@@ -67,6 +67,11 @@
 		39B3918516227051001FA19A /* Saw.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3918416227051001FA19A /* Saw.m */; };
 		39B391871622741C001FA19A /* block-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B391861622741C001FA19A /* block-hd.png */; };
 		39B3918A16227437001FA19A /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3918916227437001FA19A /* Block.m */; };
+		39B3918D16227DDA001FA19A /* Insect.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3918C16227DDA001FA19A /* Insect.m */; };
+		39B3919016227DF8001FA19A /* ElevatorPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3918F16227DF7001FA19A /* ElevatorPlatform.m */; };
+		39B3919316227E10001FA19A /* FallingPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3919216227E10001FA19A /* FallingPlatform.m */; };
+		39B3919616227E2D001FA19A /* CurvedPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3919516227E2C001FA19A /* CurvedPlatform.m */; };
+		39B3919916227E3D001FA19A /* Loop.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3919816227E3D001FA19A /* Loop.m */; };
 		39B966711592E51700D4BF00 /* ElephantWalk6.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B966701592E51700D4BF00 /* ElephantWalk6.png */; };
 		39BE5E39158FB6C200C7D79E /* L1aTreeClump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E36158FB6C200C7D79E /* L1aTreeClump1.png */; };
 		39BE5E3A158FB6C200C7D79E /* L1aTreeClump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E37158FB6C200C7D79E /* L1aTreeClump2.png */; };
@@ -183,6 +188,16 @@
 		39B391861622741C001FA19A /* block-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block-hd.png"; sourceTree = "<group>"; };
 		39B3918816227437001FA19A /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		39B3918916227437001FA19A /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
+		39B3918B16227DDA001FA19A /* Insect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Insect.h; sourceTree = "<group>"; };
+		39B3918C16227DDA001FA19A /* Insect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Insect.m; sourceTree = "<group>"; };
+		39B3918E16227DF7001FA19A /* ElevatorPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElevatorPlatform.h; sourceTree = "<group>"; };
+		39B3918F16227DF7001FA19A /* ElevatorPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElevatorPlatform.m; sourceTree = "<group>"; };
+		39B3919116227E10001FA19A /* FallingPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingPlatform.h; sourceTree = "<group>"; };
+		39B3919216227E10001FA19A /* FallingPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingPlatform.m; sourceTree = "<group>"; };
+		39B3919416227E2C001FA19A /* CurvedPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurvedPlatform.h; sourceTree = "<group>"; };
+		39B3919516227E2C001FA19A /* CurvedPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurvedPlatform.m; sourceTree = "<group>"; };
+		39B3919716227E3C001FA19A /* Loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loop.h; sourceTree = "<group>"; };
+		39B3919816227E3D001FA19A /* Loop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loop.m; sourceTree = "<group>"; };
 		39B966701592E51700D4BF00 /* ElephantWalk6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ElephantWalk6.png; sourceTree = "<group>"; };
 		39BE5E36158FB6C200C7D79E /* L1aTreeClump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1aTreeClump1.png; sourceTree = "<group>"; };
 		39BE5E37158FB6C200C7D79E /* L1aTreeClump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1aTreeClump2.png; sourceTree = "<group>"; };
@@ -275,18 +290,28 @@
 				39B3917016226C20001FA19A /* AngerPotion.m */,
 				39B3918816227437001FA19A /* Block.h */,
 				39B3918916227437001FA19A /* Block.m */,
+				39B3919416227E2C001FA19A /* CurvedPlatform.h */,
+				39B3919516227E2C001FA19A /* CurvedPlatform.m */,
 				39104B241597763C00C80A13 /* FinalPlatform.h */,
 				39104B251597763C00C80A13 /* FinalPlatform.m */,
 				39C05CCD1571C5EF007C0035 /* GameObject.h */,
 				39C05CCE1571C5EF007C0035 /* GameObject.m */,
 				3921917B15D4CA2700441C6C /* Hunter.h */,
 				3921917C15D4CA2700441C6C /* Hunter.m */,
+				39B3918E16227DF7001FA19A /* ElevatorPlatform.h */,
+				39B3918F16227DF7001FA19A /* ElevatorPlatform.m */,
+				39B3919116227E10001FA19A /* FallingPlatform.h */,
+				39B3919216227E10001FA19A /* FallingPlatform.m */,
 				39FACEC915B666D600CC5717 /* FloatingPlatform.h */,
 				39FACECA15B666D600CC5717 /* FloatingPlatform.m */,
 				39FACEEB15BA3AE600CC5717 /* FireRing.h */,
 				39FACEEC15BA3AE700CC5717 /* FireRing.m */,
+				39B3918B16227DDA001FA19A /* Insect.h */,
+				39B3918C16227DDA001FA19A /* Insect.m */,
 				39B3917916226DCA001FA19A /* JetPack.h */,
 				39B3917A16226DCA001FA19A /* JetPack.m */,
+				39B3919716227E3C001FA19A /* Loop.h */,
+				39B3919816227E3D001FA19A /* Loop.m */,
 				39B3917E16226EBC001FA19A /* MissileLauncher.h */,
 				39B3917F16226EBC001FA19A /* MissileLauncher.m */,
 				39F9A55E15A55EA500AAC46B /* StrongMan.h */,
@@ -537,6 +562,11 @@
 				39B3918016226EBC001FA19A /* MissileLauncher.m in Sources */,
 				39B3918516227051001FA19A /* Saw.m in Sources */,
 				39B3918A16227437001FA19A /* Block.m in Sources */,
+				39B3918D16227DDA001FA19A /* Insect.m in Sources */,
+				39B3919016227DF8001FA19A /* ElevatorPlatform.m in Sources */,
+				39B3919316227E10001FA19A /* FallingPlatform.m in Sources */,
+				39B3919616227E2D001FA19A /* CurvedPlatform.m in Sources */,
+				39B3919916227E3D001FA19A /* Loop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
