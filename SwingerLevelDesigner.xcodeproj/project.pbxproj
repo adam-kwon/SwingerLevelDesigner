@@ -65,6 +65,8 @@
 		39B3918016226EBC001FA19A /* MissileLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3917F16226EBC001FA19A /* MissileLauncher.m */; };
 		39B3918216227046001FA19A /* sawBlade-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B3918116227046001FA19A /* sawBlade-hd.png */; };
 		39B3918516227051001FA19A /* Saw.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3918416227051001FA19A /* Saw.m */; };
+		39B391871622741C001FA19A /* block-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B391861622741C001FA19A /* block-hd.png */; };
+		39B3918A16227437001FA19A /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B3918916227437001FA19A /* Block.m */; };
 		39B966711592E51700D4BF00 /* ElephantWalk6.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B966701592E51700D4BF00 /* ElephantWalk6.png */; };
 		39BE5E39158FB6C200C7D79E /* L1aTreeClump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E36158FB6C200C7D79E /* L1aTreeClump1.png */; };
 		39BE5E3A158FB6C200C7D79E /* L1aTreeClump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E37158FB6C200C7D79E /* L1aTreeClump2.png */; };
@@ -178,6 +180,9 @@
 		39B3918116227046001FA19A /* sawBlade-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sawBlade-hd.png"; sourceTree = "<group>"; };
 		39B3918316227051001FA19A /* Saw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Saw.h; sourceTree = "<group>"; };
 		39B3918416227051001FA19A /* Saw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Saw.m; sourceTree = "<group>"; };
+		39B391861622741C001FA19A /* block-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block-hd.png"; sourceTree = "<group>"; };
+		39B3918816227437001FA19A /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		39B3918916227437001FA19A /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
 		39B966701592E51700D4BF00 /* ElephantWalk6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ElephantWalk6.png; sourceTree = "<group>"; };
 		39BE5E36158FB6C200C7D79E /* L1aTreeClump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1aTreeClump1.png; sourceTree = "<group>"; };
 		39BE5E37158FB6C200C7D79E /* L1aTreeClump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = L1aTreeClump2.png; sourceTree = "<group>"; };
@@ -217,6 +222,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39B391861622741C001FA19A /* block-hd.png */,
 				39B3918116227046001FA19A /* sawBlade-hd.png */,
 				39B3917C16226EA6001FA19A /* missile-hd.png */,
 				39B3917716226DBB001FA19A /* fuelTank-hd.png */,
@@ -267,6 +273,8 @@
 			children = (
 				39B3916F16226C20001FA19A /* AngerPotion.h */,
 				39B3917016226C20001FA19A /* AngerPotion.m */,
+				39B3918816227437001FA19A /* Block.h */,
+				39B3918916227437001FA19A /* Block.m */,
 				39104B241597763C00C80A13 /* FinalPlatform.h */,
 				39104B251597763C00C80A13 /* FinalPlatform.m */,
 				39C05CCD1571C5EF007C0035 /* GameObject.h */,
@@ -486,6 +494,7 @@
 				39B3917816226DBB001FA19A /* fuelTank-hd.png in Resources */,
 				39B3917D16226EA6001FA19A /* missile-hd.png in Resources */,
 				39B3918216227046001FA19A /* sawBlade-hd.png in Resources */,
+				39B391871622741C001FA19A /* block-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +536,7 @@
 				39B3917B16226DCA001FA19A /* JetPack.m in Sources */,
 				39B3918016226EBC001FA19A /* MissileLauncher.m in Sources */,
 				39B3918516227051001FA19A /* Saw.m in Sources */,
+				39B3918A16227437001FA19A /* Block.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

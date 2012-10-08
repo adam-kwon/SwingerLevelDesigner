@@ -138,6 +138,7 @@
     [gameObjects addItemWithObjectValue:@"Strong Man"];
     [gameObjects addItemWithObjectValue:@"Fire Ring"];
     [gameObjects addItemWithObjectValue:@"Anger Potion"];
+    [gameObjects addItemWithObjectValue:@"Block"];
     [gameObjects addItemWithObjectValue:@"Jet Pack"];
     [gameObjects addItemWithObjectValue:@"Missile Launcher"];
     [gameObjects addItemWithObjectValue:@"Saw"];

@@ -35,6 +35,7 @@
 #import "JetPack.h"
 #import "MissileLauncher.h"
 #import "Saw.h"
+#import "Block.h"
 
 #define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
                                                                 obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
@@ -106,6 +107,7 @@ static GameObject *speedBoost;
 static GameObject *jetPack;
 static GameObject *missile;
 static GameObject *saw;
+static GameObject *block;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -272,6 +274,9 @@ static GameObject *saw;
     }
     else if ([@"Saw" isEqualToString:type]) {
         INIT_INSTANCE(saw, Saw, 0.5, 0.5)
+    }
+    else if ([@"Block" isEqualToString:type]) {
+        INIT_INSTANCE(block, Block, 0.5, 0.5)
     }
     
     
