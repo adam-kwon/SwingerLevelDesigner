@@ -16,6 +16,7 @@ typedef enum {
     kGameObjectTypeCannon,
     kGameObjectTypeSpring,
     kGameObjectTypeFinalPlatform,
+    kGameObjectTypeFallingPlatform,
     kGameObjectTypeFloatingPlatform,
     kGameObjectTypeElephant,
     kGameObjectTypeInsect,

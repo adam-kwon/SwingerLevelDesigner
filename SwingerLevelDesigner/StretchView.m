@@ -277,7 +277,7 @@
     
     startSelection = YES;
     // Loop in reverse so that one closest to user is selected first
-    for (int i = [gameObjects count] - 1; i >= 0; i--) {
+    for (int i = (int)[gameObjects count] - 1; i >= 0; i--) {
         GameObject *gameObject = [gameObjects objectAtIndex:i];
         if ([gameObject isPointInImage:downPoint] 
             || [gameObject isPointInMoveHandle:downPoint]
@@ -406,7 +406,7 @@
 }
 
 - (void) deleteSelectedGameObjects {
-    for (int i = [gameObjects count] - 1; i >= 0; i--) {
+    for (int i = (int)[gameObjects count] - 1; i >= 0; i--) {
         GameObject *go = [gameObjects objectAtIndex:i];
         if (go.selected) {
             [gameObjects removeObjectAtIndex:i];

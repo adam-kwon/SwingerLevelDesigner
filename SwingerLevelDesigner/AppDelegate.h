@@ -51,6 +51,10 @@
 @property (assign) IBOutlet NSTextField *moveY;
 @property (assign) IBOutlet NSTextField *frequency;
 @property (assign) IBOutlet NSTextField *numCopies;
+@property (assign) IBOutlet NSTextField *platformWidth;
+@property (assign) IBOutlet NSTextField *platformDistance;
+@property (assign) IBOutlet NSTextField *platformSpeed;
+
 @property (assign) IBOutlet NSStepper *numCopiesStepper;
 
 - (IBAction)showHelp:(id)sender;

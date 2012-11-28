@@ -8,6 +8,10 @@
 
 #import "GameObject.h"
 
-@interface FallingPlatform : GameObject
+@interface FallingPlatform : GameObject {
+    CGFloat width;
+}
+
+@property (nonatomic, readwrite, assign) CGFloat width;
 
 @end

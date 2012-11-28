@@ -48,6 +48,9 @@
 @synthesize frequency;
 @synthesize numCopies;
 @synthesize numCopiesStepper;
+@synthesize platformDistance;
+@synthesize platformSpeed;
+@synthesize platformWidth;
 
 - (void) initNewWorlds {
     fileName = nil;
@@ -131,6 +134,7 @@
 //    [gameObjects addItemWithObjectValue:@"Elephant"];
     [gameObjects addItemWithObjectValue:@"Wheel"];
     [gameObjects addItemWithObjectValue:@"Floating Platform"];    
+    [gameObjects addItemWithObjectValue:@"Falling Platform"];
     [gameObjects addItemWithObjectValue:@"Final Platform"];
     [gameObjects addItemWithObjectValue:@"Coin"];
     [gameObjects addItemWithObjectValue:@"Star"];
@@ -257,7 +261,7 @@
     [self loadWorld:WORLD_GRASSY_KNOLLS level:1];
     [levelStepper setIntValue:1];
     [levelField setIntValue:1];
-    int maxLevels = [[worlds objectForKey:[GPUtil convertedWorldName:WORLD_GRASSY_KNOLLS]] count];
+    int maxLevels = (int)[[worlds objectForKey:[GPUtil convertedWorldName:WORLD_GRASSY_KNOLLS]] count];
     [maxLevelField setStringValue:[NSString stringWithFormat:@"of %d", maxLevels]];
 }
 
@@ -350,7 +354,7 @@
     
     // Add dummy level as place holder
     NSDictionary *world = [worlds objectForKey:[GPUtil convertedWorldName:[worldNames stringValue]]];
-    int numLevels = [world count];
+    int numLevels = (int)[world count];
     NSArray *levelArray = [NSArray array];
 
     numLevels++;
@@ -397,7 +401,7 @@
         [levelStepper setIntegerValue:1];
         
         NSDictionary *world = [worlds objectForKey:[GPUtil convertedWorldName:str]];
-        [maxLevelField setIntValue:[world count]];
+        [maxLevelField setIntValue:(int)[world count]];
         
         if ([WORLD_GRASSY_KNOLLS isEqualToString:str]) {
             [self addCommonGameObjectsToDropdown];
@@ -485,7 +489,7 @@
             [levelField setIntValue:[levelStepper intValue]];
             [self loadWorld:[worldNames stringValue] level:[levelField intValue]];
         } else {
-            [levelStepper setIntValue:[world count]-1];
+            [levelStepper setIntValue:(int)[world count]-1];
         }
     } else if (sender == zOrderStepper) {
         [zOrder setIntValue:[zOrderStepper intValue]];

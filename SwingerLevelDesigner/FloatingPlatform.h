@@ -10,8 +10,12 @@
 
 @interface FloatingPlatform : GameObject {
     CGFloat width;
+    CGFloat distance;
+    CGFloat speed;
 }
 
 @property (nonatomic, readwrite, assign) CGFloat width;
+@property (nonatomic, readwrite, assign) CGFloat speed;
+@property (nonatomic, readwrite, assign) CGFloat distance;
 
 @end

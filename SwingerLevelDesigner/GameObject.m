@@ -26,6 +26,7 @@
 #import "Wheel.h"
 #import "StrongMan.h"
 #import "Torch.h"
+#import "FallingPlatform.h"
 #import "FloatingPlatform.h"
 #import "FireRing.h"
 #import "Magnet.h"
@@ -112,6 +113,7 @@ static GameObject *saw;
 static GameObject *block;
 static GameObject *insect;
 static GameObject *oilBarrel;
+static GameObject *fallingPlatform;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -287,6 +289,9 @@ static GameObject *oilBarrel;
     }
     else if ([@"Barrel" isEqualToString:type] || [@"Oil Barrel" isEqualToString:type]) {
         INIT_INSTANCE(oilBarrel, OilBarrel, 0.5, 0.5);
+    }
+    else if ([@"FallingPlatform" isEqualToString:type] || [@"Falling Platform" isEqualToString:type]) {
+        INIT_INSTANCE(fallingPlatform, FallingPlatform, 0.0, 0.5);
     }
     
     return go;
