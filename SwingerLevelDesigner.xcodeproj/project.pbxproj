@@ -86,6 +86,7 @@
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
 		39C478471665D89000173C60 /* barrel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C478461665D89000173C60 /* barrel-hd.png */; };
 		39C4784A1665D8F100173C60 /* insect-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C478491665D8F100173C60 /* insect-hd.png */; };
+		39C4784D1665DB8900173C60 /* OilBarrel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C4784C1665DB8900173C60 /* OilBarrel.m */; };
 		39F9A55C15A55E1400AAC46B /* StrongmanStand1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */; };
 		39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F9A55F15A55EA500AAC46B /* StrongMan.m */; };
 		39FACEC715B6668200CC5717 /* floatingPlatform.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FACEC615B6668200CC5717 /* floatingPlatform.png */; };
@@ -215,6 +216,8 @@
 		39C05CCE1571C5EF007C0035 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		39C478461665D89000173C60 /* barrel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barrel-hd.png"; sourceTree = "<group>"; };
 		39C478491665D8F100173C60 /* insect-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "insect-hd.png"; sourceTree = "<group>"; };
+		39C4784B1665DB8800173C60 /* OilBarrel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilBarrel.h; sourceTree = "<group>"; };
+		39C4784C1665DB8900173C60 /* OilBarrel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilBarrel.m; sourceTree = "<group>"; };
 		39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StrongmanStand1.png; sourceTree = "<group>"; };
 		39F9A55E15A55EA500AAC46B /* StrongMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongMan.h; sourceTree = "<group>"; };
 		39F9A55F15A55EA500AAC46B /* StrongMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrongMan.m; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				39104B3E15977C4100C80A13 /* Dummy.m */,
 				397AA3E715CE38B800DF8881 /* Magnet.h */,
 				397AA3E815CE38B800DF8881 /* Magnet.m */,
+				39C4784B1665DB8800173C60 /* OilBarrel.h */,
+				39C4784C1665DB8900173C60 /* OilBarrel.m */,
 				39B3917416226D0D001FA19A /* SpeedBoost.h */,
 				39B3917516226D0D001FA19A /* SpeedBoost.m */,
 			);
@@ -575,6 +580,7 @@
 				39B3919316227E10001FA19A /* FallingPlatform.m in Sources */,
 				39B3919616227E2D001FA19A /* CurvedPlatform.m in Sources */,
 				39B3919916227E3D001FA19A /* Loop.m in Sources */,
+				39C4784D1665DB8900173C60 /* OilBarrel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

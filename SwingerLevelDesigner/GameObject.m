@@ -37,6 +37,7 @@
 #import "Saw.h"
 #import "Block.h"
 #import "Insect.h"
+#import "OilBarrel.h"
 
 #define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
                                                                 obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
@@ -110,6 +111,7 @@ static GameObject *missile;
 static GameObject *saw;
 static GameObject *block;
 static GameObject *insect;
+static GameObject *oilBarrel;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -282,6 +284,9 @@ static GameObject *insect;
     }
     else if ([@"Insect" isEqualToString:type]) {
         INIT_INSTANCE(insect, Insect, 0.5, 0.5);
+    }
+    else if ([@"Barrel" isEqualToString:type] || [@"Oil Barrel" isEqualToString:type]) {
+        INIT_INSTANCE(oilBarrel, OilBarrel, 0.5, 0.5);
     }
     
     return go;
