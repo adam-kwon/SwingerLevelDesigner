@@ -10,6 +10,9 @@
 
 @implementation Insect
 
+@synthesize speed;
+@synthesize width;
+
 - (id) initWithAnchorPoint:(CGPoint)ap {
     self = [super initWithContentsOfFile:@"insect-hd" anchorPoint:ap];
     self.gameObjectType = kGameObjectTypeInsect;
