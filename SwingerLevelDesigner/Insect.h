@@ -8,6 +8,13 @@
 
 #import "GameObject.h"
 
-@interface Insect : GameObject
+@interface Insect : GameObject {
+    CGFloat speed;
+    CGFloat width;
+}
+
+@property (nonatomic, readwrite, assign) CGFloat speed;
+@property (nonatomic, readwrite, assign) CGFloat width;
+
 
 @end

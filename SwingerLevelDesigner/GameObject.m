@@ -36,6 +36,7 @@
 #import "MissileLauncher.h"
 #import "Saw.h"
 #import "Block.h"
+#import "Insect.h"
 
 #define INIT_INSTANCE(obj, objectName, anchorX, anchorY)    if (obj == nil) { \
                                                                 obj = [[objectName alloc] initWithAnchorPoint:CGPointMake(anchorX, anchorY)]; \
@@ -108,6 +109,7 @@ static GameObject *jetPack;
 static GameObject *missile;
 static GameObject *saw;
 static GameObject *block;
+static GameObject *insect;
 
 - (CGRect) imageRect {
     CGRect rect = CGRectMake(position.x - anchorXOffset, position.y - anchorYOffset, self.size.width, self.size.height);
@@ -278,7 +280,9 @@ static GameObject *block;
     else if ([@"Block" isEqualToString:type]) {
         INIT_INSTANCE(block, Block, 0.5, 0.5)
     }
-    
+    else if ([@"Insect" isEqualToString:type]) {
+        INIT_INSTANCE(insect, Insect, 0.5, 0.5);
+    }
     
     return go;
 }
@@ -288,7 +292,7 @@ static GameObject *block;
     
     [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.position.x/2] forKey:@"XPosition"];
     [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.position.y/2] forKey:@"YPosition"];
-    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.zOrder] forKey:@"Z-Order"];
+    [levelDict setObject:[NSString stringWithFormat:@"%d", self.zOrder] forKey:@"Z-Order"];
     [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.scaleY] forKey:@"PoleScale"];
     [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.grip] forKey:@"Grip"];
     [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.windSpeed] forKey:@"WindSpeed"];

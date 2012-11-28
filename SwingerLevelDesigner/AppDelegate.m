@@ -141,6 +141,7 @@
     [gameObjects addItemWithObjectValue:@"Block"];
     [gameObjects addItemWithObjectValue:@"Jet Pack"];
     [gameObjects addItemWithObjectValue:@"Missile Launcher"];
+    [gameObjects addItemWithObjectValue:@"Insect"];
     [gameObjects addItemWithObjectValue:@"Saw"];
     [gameObjects addItemWithObjectValue:@"Speed Boost"];
     [gameObjects addItemWithObjectValue:@"Dummy"];

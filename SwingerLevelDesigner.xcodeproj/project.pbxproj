@@ -84,6 +84,8 @@
 		39BE5E4C1590344200C7D79E /* Coin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E4B1590344200C7D79E /* Coin1.png */; };
 		39BE5E601591A3A300C7D79E /* spring.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BE5E5F1591A3A300C7D79E /* spring.png */; };
 		39C05CCF1571C5EF007C0035 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C05CCE1571C5EF007C0035 /* GameObject.m */; };
+		39C478471665D89000173C60 /* barrel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C478461665D89000173C60 /* barrel-hd.png */; };
+		39C4784A1665D8F100173C60 /* insect-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C478491665D8F100173C60 /* insect-hd.png */; };
 		39F9A55C15A55E1400AAC46B /* StrongmanStand1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */; };
 		39F9A56015A55EA500AAC46B /* StrongMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F9A55F15A55EA500AAC46B /* StrongMan.m */; };
 		39FACEC715B6668200CC5717 /* floatingPlatform.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FACEC615B6668200CC5717 /* floatingPlatform.png */; };
@@ -211,6 +213,8 @@
 		39BE5E5F1591A3A300C7D79E /* spring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring.png; sourceTree = "<group>"; };
 		39C05CCD1571C5EF007C0035 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		39C05CCE1571C5EF007C0035 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		39C478461665D89000173C60 /* barrel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barrel-hd.png"; sourceTree = "<group>"; };
+		39C478491665D8F100173C60 /* insect-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "insect-hd.png"; sourceTree = "<group>"; };
 		39F9A55B15A55E1400AAC46B /* StrongmanStand1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StrongmanStand1.png; sourceTree = "<group>"; };
 		39F9A55E15A55EA500AAC46B /* StrongMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongMan.h; sourceTree = "<group>"; };
 		39F9A55F15A55EA500AAC46B /* StrongMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrongMan.m; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 		390ADF531573474700A3F01A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39C478461665D89000173C60 /* barrel-hd.png */,
 				39B391861622741C001FA19A /* block-hd.png */,
 				39B3918116227046001FA19A /* sawBlade-hd.png */,
 				39B3917C16226EA6001FA19A /* missile-hd.png */,
@@ -244,6 +249,7 @@
 				39B3917216226CF9001FA19A /* cherry-hd.png */,
 				39B3916C16226B63001FA19A /* potion-hd.png */,
 				3921917F15D4CB6400441C6C /* hunter-hd.png */,
+				39C478491665D8F100173C60 /* insect-hd.png */,
 				397AA3E515CE38A700DF8881 /* magnet-hd.png */,
 				39FACEE915BA3ACD00CC5717 /* FireRing.png */,
 				39FACEC615B6668200CC5717 /* floatingPlatform.png */,
@@ -520,6 +526,8 @@
 				39B3917D16226EA6001FA19A /* missile-hd.png in Resources */,
 				39B3918216227046001FA19A /* sawBlade-hd.png in Resources */,
 				39B391871622741C001FA19A /* block-hd.png in Resources */,
+				39C478471665D89000173C60 /* barrel-hd.png in Resources */,
+				39C4784A1665D8F100173C60 /* insect-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
