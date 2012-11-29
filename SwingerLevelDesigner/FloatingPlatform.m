@@ -36,6 +36,7 @@
         AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
         [appDelegate.platformWidth setStringValue:[NSString stringWithFormat:@"%.2f", self.width]];
         [appDelegate.platformSpeed setStringValue:[NSString stringWithFormat:@"%.2f", self.speed]];
+        [appDelegate.platformDistance setStringValue:[NSString stringWithFormat:@"%.2f", self.distance]];
     }
 }
 
@@ -45,6 +46,7 @@
         AppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
         self.speed = [appDelegate.platformSpeed floatValue];
         self.width = [appDelegate.platformWidth floatValue];
+        self.distance = [appDelegate.platformDistance floatValue];
     }
 }
 
