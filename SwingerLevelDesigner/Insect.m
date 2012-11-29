@@ -48,15 +48,16 @@
 - (void) levelForSerialization:(NSMutableDictionary*)levelDict {
     [super levelForSerialization:levelDict];
     
-    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.speed] forKey:@"FlyDistance"];
-    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.width] forKey:@"FlySpeed"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.width] forKey:@"FlyDistance"];
+    [levelDict setObject:[NSString stringWithFormat:@"%.2f", self.speed] forKey:@"FlySpeed"];
 }
 
 
 - (void) loadFromDict:(NSDictionary*)level {
     [super loadFromDict:level];
     
-    self.speed = [[level objectForKey:@"SpinRate"] floatValue];
+    self.width = [[level objectForKey:@"FlyDistance"] floatValue];
+    self.speed = [[level objectForKey:@"FlySpeed"] floatValue];
 }
 
 @end

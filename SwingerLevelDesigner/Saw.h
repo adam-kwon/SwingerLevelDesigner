@@ -8,6 +8,12 @@
 
 #import "GameObject.h"
 
-@interface Saw : GameObject
+@interface Saw : GameObject {    
+    CGFloat speed;
+    CGFloat width;
+}
+
+@property (nonatomic, readwrite, assign) CGFloat speed;
+@property (nonatomic, readwrite, assign) CGFloat width;
 
 @end
