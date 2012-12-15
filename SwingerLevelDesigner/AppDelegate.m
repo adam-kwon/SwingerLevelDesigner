@@ -14,6 +14,7 @@
 #import "Notifications.h"
 #import "GPUtil.h"
 #import "Constants.h"
+#import "Cannon.h"
 
 @implementation AppDelegate
 
@@ -451,7 +452,18 @@
         if (i == [numCopies intValue]-1) {
             selected = YES;
         }
-        [self.stretchView addGameObject:gameObject isSelected:selected];    
+        [self.stretchView addGameObject:gameObject isSelected:selected];
+        
+        if ([gameObject isKindOfClass:[Cannon class]]) {
+            Cannon *cannon = (Cannon*)gameObject;
+            
+            for (NSValue *val in cannon.trajectories) {
+                GameObject *coin = [GameObject instanceOf:@"Coin"];
+                coin.position = [val pointValue];
+                [self.stretchView addGameObject:coin isSelected:NO];
+                
+            }
+        }
     }
 }
 

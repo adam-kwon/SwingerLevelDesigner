@@ -8,12 +8,14 @@
 
 #import "Cannon.h"
 #import "Constants.h"
+#import "StretchView.h"
 
 @implementation Cannon
 
 @synthesize cannonForce;
 @synthesize cannonSpeed;
 @synthesize cannonRotationAngle;
+@synthesize trajectories;
 
 - (id) initWithAnchorPoint:(CGPoint)ap {
     self = [super initWithContentsOfFile:@"Cannon" anchorPoint:ap];
@@ -22,7 +24,58 @@
     self.cannonRotationAngle = 45;
     self.gameObjectType = kGameObjectTypeCannon;
     
+    [self initTrajectory];
+ 
     return self;
+}
+
+- (void) initTrajectory {
+    trajectories = [[NSMutableArray alloc] init];
+    float x1, x2, y1, y2;
+    
+    x1 = position.x + [self size].width/2;
+    y1 = position.y + 190;
+    
+    x2 = position.x + [self size].width/2 + 300*cos((90-cannonRotationAngle)*M_PI/180);
+    
+    y2 = position.y + 190 + (200*sin((90-cannonRotationAngle)*M_PI/180));
+    
+    
+    if (cannonRotationAngle > 0 && cannonRotationAngle < 180) {
+        float angle = (90-45) * (M_PI/180.f);
+        if (cannonRotationAngle < 45) {
+            angle = (90-cannonRotationAngle) * (M_PI/180.f);
+        }
+        
+        float x0 = (x1 + self.size.width/2 - 275 * cosf(angle))/PTM_RATIO;
+        float y0 = ((y1 - self.size.width/2) + self.size.width * sinf(angle))/PTM_RATIO;
+        float v01 = self.cannonForce + 4 + [self getWindForce:1].x;
+        float v02 = self.cannonForce + 4 + [self getWindForce:1].y;
+        float g = 30.0f + 6.0f;
+        
+        float v0x = v01 * cosf(angle);
+        float v0y = v02 * sinf(angle);
+        
+        float range = (2*(v0x*v0y))/g;
+        float t = 0;
+        float stepAmt = v01/400.0f;
+                
+        [trajectories removeAllObjects];
+        while (true) {
+            float xPos = (x0 + (cosf(angle)*v01*t)) * PTM_RATIO;
+            float yPos = (y0 + ((sinf(angle)*v02*t) - (g/2)*(t*t))) * PTM_RATIO;
+            
+            t += stepAmt;
+            
+            
+            [trajectories addObject:[NSValue valueWithPoint:CGPointMake(xPos-1.5, yPos-1.5)]];
+            
+            if (xPos > (x0 + range)*PTM_RATIO) {
+                break;
+            }
+        }
+    }
+    
 }
 
 - (void) draw:(CGContextRef)ctx {    
@@ -136,5 +189,6 @@
 - (NSString*) gameObjectTypeString {
     return @"Cannon";
 }
+
 
 @end
