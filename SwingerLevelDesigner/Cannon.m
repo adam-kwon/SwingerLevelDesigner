@@ -33,12 +33,12 @@
     trajectories = [[NSMutableArray alloc] init];
     float x1, x2, y1, y2;
     
-    x1 = position.x + [self size].width/2;
-    y1 = position.y + 190;
+    x1 = position.x + [self size].width/2 + 120;
+    y1 = position.y + 160;
     
     x2 = position.x + [self size].width/2 + 300*cos((90-cannonRotationAngle)*M_PI/180);
     
-    y2 = position.y + 190 + (200*sin((90-cannonRotationAngle)*M_PI/180));
+    y2 = position.y + 160 + (200*sin((90-cannonRotationAngle)*M_PI/180));
     
     
     if (cannonRotationAngle > 0 && cannonRotationAngle < 180) {
@@ -59,8 +59,7 @@
         float range = (2*(v0x*v0y))/g;
         float t = 0;
         float stepAmt = v01/400.0f;
-                
-        [trajectories removeAllObjects];
+        
         while (true) {
             float xPos = (x0 + (cosf(angle)*v01*t)) * PTM_RATIO;
             float yPos = (y0 + ((sinf(angle)*v02*t) - (g/2)*(t*t))) * PTM_RATIO;
@@ -134,6 +133,7 @@
                 [linePath lineToPoint:CGPointMake(xPos, yPos)];
             }
             
+
             CGContextFillRect(ctx, CGRectMake(xPos-1.5, yPos-1.5, 3, 3));
             
             if (xPos > (x0 + range)*PTM_RATIO) {

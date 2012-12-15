@@ -459,7 +459,8 @@
             
             for (NSValue *val in cannon.trajectories) {
                 GameObject *coin = [GameObject instanceOf:@"Coin"];
-                coin.position = [val pointValue];
+                CGPoint p = [val pointValue];
+                coin.position = CGPointMake(r.origin.x + p.x + coin.anchorXOffset, r.origin.y + p.y + coin.anchorYOffset);
                 [self.stretchView addGameObject:coin isSelected:NO];
                 
             }
