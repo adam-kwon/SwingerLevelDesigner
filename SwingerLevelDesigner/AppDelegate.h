@@ -54,9 +54,13 @@
 @property (assign) IBOutlet NSTextField *platformWidth;
 @property (assign) IBOutlet NSTextField *platformDistance;
 @property (assign) IBOutlet NSTextField *platformSpeed;
+@property (assign) IBOutlet NSComboBox *coinValue;
+@property (assign) IBOutlet NSTextField *coinSpacing;
+
 
 @property (assign) IBOutlet NSStepper *numCopiesStepper;
 
+- (IBAction)addCoinsFollowingTrajectory:(id)sender;
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showOpenPanel:(id)sender;
 - (IBAction)openLevel:(id)sender;
