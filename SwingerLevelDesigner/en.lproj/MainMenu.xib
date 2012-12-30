@@ -4413,22 +4413,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">leftEdge</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="512259875"/>
-					</object>
-					<int key="connectionID">934</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">rightEdge</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="188504319"/>
-					</object>
-					<int key="connectionID">935</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">wheelSpeed</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="767180667"/>
@@ -4530,6 +4514,30 @@
 						<reference key="destination" ref="854300934"/>
 					</object>
 					<int key="connectionID">1003</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">coinSpacing</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="367306779"/>
+					</object>
+					<int key="connectionID">1018</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">coinValue</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="1012122310"/>
+					</object>
+					<int key="connectionID">1019</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">addCoinsFollowingTrajectory:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="912628525"/>
+					</object>
+					<int key="connectionID">1020</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -7195,7 +7203,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1016</int>
+			<int key="maxID">1020</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -7203,6 +7211,7 @@
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="addCoinsFollowingTrajectory:">id</string>
 						<string key="addGameObject:">id</string>
 						<string key="addLevel:">id</string>
 						<string key="newDocument:">id</string>
@@ -7215,6 +7224,10 @@
 						<string key="stepperAction:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="addCoinsFollowingTrajectory:">
+							<string key="name">addCoinsFollowingTrajectory:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="addGameObject:">
 							<string key="name">addGameObject:</string>
 							<string key="candidateClassName">id</string>
@@ -7261,6 +7274,8 @@
 						<string key="cannonForce">NSTextField</string>
 						<string key="cannonRotationAngle">NSTextField</string>
 						<string key="cannonSpeed">NSTextField</string>
+						<string key="coinSpacing">NSTextField</string>
+						<string key="coinValue">NSComboBox</string>
 						<string key="frequency">NSTextField</string>
 						<string key="gameObjects">NSComboBox</string>
 						<string key="gameWorldSize">NSTextField</string>
@@ -7308,6 +7323,14 @@
 						<object class="IBToOneOutletInfo" key="cannonSpeed">
 							<string key="name">cannonSpeed</string>
 							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coinSpacing">
+							<string key="name">coinSpacing</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coinValue">
+							<string key="name">coinValue</string>
+							<string key="candidateClassName">NSComboBox</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="frequency">
 							<string key="name">frequency</string>
