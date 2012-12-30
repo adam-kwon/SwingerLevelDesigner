@@ -16,6 +16,7 @@
 @synthesize cannonSpeed;
 @synthesize cannonRotationAngle;
 @synthesize trajectories;
+@synthesize coinSpacing;
 
 - (id) initWithAnchorPoint:(CGPoint)ap {
     self = [super initWithContentsOfFile:@"Cannon" anchorPoint:ap];
@@ -23,17 +24,17 @@
     self.cannonForce = 15;
     self.cannonRotationAngle = 45;
     self.gameObjectType = kGameObjectTypeCannon;
+    trajectories = [[NSMutableArray alloc] init];
     
-    [self initTrajectory];
- 
     return self;
 }
 
 - (void) initTrajectory {
-    trajectories = [[NSMutableArray alloc] init];
+    [trajectories removeAllObjects];
+    
     float x1, x2, y1, y2;
     
-    x1 = position.x + [self size].width/2 + 120;
+    x1 = position.x + [self size].width/2 - 30 ;
     y1 = position.y + 160;
     
     x2 = position.x + [self size].width/2 + 300*cos((90-cannonRotationAngle)*M_PI/180);
@@ -58,8 +59,8 @@
         
         float range = (2*(v0x*v0y))/g;
         float t = 0;
-        float stepAmt = v01/400.0f;
-        
+        float stepAmt = v01/(400.0/(coinSpacing < 0.05 ? 1 : coinSpacing));
+
         while (true) {
             float xPos = (x0 + (cosf(angle)*v01*t)) * PTM_RATIO;
             float yPos = (y0 + ((sinf(angle)*v02*t) - (g/2)*(t*t))) * PTM_RATIO;

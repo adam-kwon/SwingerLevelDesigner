@@ -26,6 +26,7 @@
 
 
 - (void) addGameObject:(GameObject*)gameObject isSelected:(BOOL)selected;
+- (GameObject*) getSelectedGameObject;
 
 - (void) unselectAllGameObjects;
 - (void) loadLevel:(NSArray*)levelItems;

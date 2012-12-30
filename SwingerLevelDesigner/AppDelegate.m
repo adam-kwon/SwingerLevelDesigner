@@ -52,6 +52,8 @@
 @synthesize platformDistance;
 @synthesize platformSpeed;
 @synthesize platformWidth;
+@synthesize coinSpacing;
+@synthesize coinValue;
 
 - (void) initNewWorlds {
     fileName = nil;
@@ -454,17 +456,6 @@
         }
         [self.stretchView addGameObject:gameObject isSelected:selected];
         
-        if ([gameObject isKindOfClass:[Cannon class]]) {
-            Cannon *cannon = (Cannon*)gameObject;
-            
-            for (NSValue *val in cannon.trajectories) {
-                GameObject *coin = [GameObject instanceOf:@"Coin"];
-                CGPoint p = [val pointValue];
-                coin.position = CGPointMake(r.origin.x + p.x + coin.anchorXOffset, r.origin.y + p.y + coin.anchorYOffset);
-                [self.stretchView addGameObject:coin isSelected:NO];
-                
-            }
-        }
     }
 }
 
@@ -547,5 +538,26 @@
     }
     
 }
+
+- (IBAction)addCoinsFollowingTrajectory:(id)sender {
+    GameObject *go = [self.stretchView getSelectedGameObject];
+
+    if ([go isKindOfClass:[Cannon class]]) {
+        Cannon *cannon = (Cannon*)go;
+        cannon.coinSpacing = [self.coinSpacing floatValue];
+        [cannon initTrajectory];
+        NSScrollView *sv = (NSScrollView*)self.stretchView.superview;
+        NSRect r = [sv documentVisibleRect];
+
+        for (NSValue *val in cannon.trajectories) {
+            GameObject *coin = [GameObject instanceOf:@"Coin"];
+            CGPoint p = [val pointValue];
+            coin.position = CGPointMake(r.origin.x + p.x + coin.anchorXOffset, r.origin.y + p.y + coin.anchorYOffset);
+            [self.stretchView addGameObject:coin isSelected:NO];
+            
+        }
+    }
+}
+
 
 @end

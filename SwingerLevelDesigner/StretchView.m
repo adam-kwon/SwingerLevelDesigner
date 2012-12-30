@@ -15,7 +15,6 @@
 - (void) drawGrid:(CGContextRef)ctx;
 - (void) updateSelectedInfo;
 - (void) updateDisplay:(id)p;
-- (GameObject*) getSelectedGameObject;
 - (GameObject*) getMoveHandleSelectedGameObject;
 - (GameObject*) getResizeHandleSelectedGameObject;
 - (void) handleZOrderChangedNotification:(NSNotification *)notification;

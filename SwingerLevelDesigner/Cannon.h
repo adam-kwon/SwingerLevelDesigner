@@ -12,9 +12,13 @@
     CGFloat cannonSpeed;
     CGFloat cannonRotationAngle;
     CGFloat cannonForce;
+    CGFloat coinSpacing;
     NSMutableArray *trajectories;
 }
 
+- (void) initTrajectory;
+
+@property (nonatomic, readwrite, assign) CGFloat coinSpacing;
 @property (nonatomic, readwrite, assign) CGFloat cannonSpeed;
 @property (nonatomic, readwrite, assign) CGFloat cannonRotationAngle;
 @property (nonatomic, readwrite, assign) CGFloat cannonForce;
