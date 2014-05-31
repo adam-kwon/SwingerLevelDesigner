@@ -1,4 +1,4 @@
 SwingerLevelDesigner
 ====================
 
-Level designer for Swinger.
+This is a level designer for the game Swinger (see Github project).
